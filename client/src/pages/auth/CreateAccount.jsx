@@ -45,6 +45,15 @@ function CreateAccount() {
       return;
     }
 
+    if (isPsicologo && !form.identity_numb) {
+      setState({
+        ...state,
+        loading: false,
+        errorMsg: "You need to provide Alma ID to verify",
+      });
+      return;
+    }
+
     setState({ ...state, loading: true });
 
     Meteor.call("auth.signup", form, (error) => {
