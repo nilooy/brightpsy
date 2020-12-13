@@ -4,8 +4,8 @@ import Page404 from "../pages/public/Page404";
 import publicRoutes from "./public";
 import privateRoutes from "./private";
 import auth from "./auth";
-import ThemedSuspense from "../components/ThemedSuspense";
-import AccessibleNavigationAnnouncer from "../components/AccessibleNavigationAnnouncer";
+import ThemedSuspense from "../components/ui/ThemedSuspense";
+import AccessibleNavigationAnnouncer from "../components/ui/AccessibleNavigationAnnouncer";
 
 const Routes = () => {
   const routes = [...publicRoutes, ...privateRoutes, ...auth];

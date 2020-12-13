@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import App from "./src/App";
 import { SidebarProvider } from "./src/context/SidebarContext";
-import ThemedSuspense from "./src/components/ThemedSuspense";
+import ThemedSuspense from "./src/components/ui/ThemedSuspense";
 import { Windmill } from "@windmill/react-ui";
 // import * as serviceWorker from './serviceWorker'
 

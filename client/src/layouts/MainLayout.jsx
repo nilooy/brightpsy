@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Redirect, useLocation } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+import Sidebar from "../components/ui/Sidebar";
+import Header from "../components/ui/Header";
 import { SidebarContext } from "../context/SidebarContext";
 
 const Layout = ({ children }) => {

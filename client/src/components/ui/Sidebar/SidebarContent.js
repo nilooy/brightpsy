@@ -1,7 +1,7 @@
 import React from "react";
-import routes from "../../routes/sidebar";
+import routes from "../../../routes/sidebar";
 import { NavLink, Route } from "react-router-dom";
-import * as Icons from "../../assets/icons";
+import * as Icons from "../../../assets/icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { Button } from "@windmill/react-ui";
 
@@ -50,7 +50,7 @@ function SidebarContent() {
       </ul>
       <div className="px-6 my-6">
         <Button>
-          Create account
+          Create Studio
           <span className="ml-2" aria-hidden="true">
             +
           </span>
