@@ -1,3 +1,10 @@
 @tailwind base;
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+  position: absolute;
+}
 @tailwind components;
 @tailwind utilities;

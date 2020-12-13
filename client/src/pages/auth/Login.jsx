@@ -55,6 +55,7 @@ const Login = () => {
             className="mt-1"
             type="email"
             placeholder="john@doe.com"
+            required
           />
         </Label>
 
@@ -67,6 +68,7 @@ const Login = () => {
             className="mt-1"
             type="password"
             placeholder="***************"
+            required
           />
         </Label>
 

@@ -18,8 +18,10 @@ import {
   DropdownItem,
   WindmillContext,
 } from "@windmill/react-ui";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  const history = useHistory();
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
 
@@ -138,7 +140,9 @@ function Header() {
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 <span>Settings</span>
               </DropdownItem>
-              <DropdownItem onClick={() => alert("Log out!")}>
+              <DropdownItem
+                onClick={() => Meteor.logout(() => history.push("/login"))}
+              >
                 <OutlineLogoutIcon
                   className="w-4 h-4 mr-3"
                   aria-hidden="true"

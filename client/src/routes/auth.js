@@ -20,6 +20,11 @@ const authRoutes = [
         component: CreateAccount,
       },
       {
+        path: "/create-account/:role",
+        exact: true,
+        component: CreateAccount,
+      },
+      {
         path: "/forgot-password",
         exact: true,
         component: ForgotPassword,
