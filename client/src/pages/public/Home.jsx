@@ -1,40 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import ThemedSuspense from "../../components/ThemedSuspense";
 
 const Home = () => {
-  return (
-    <div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos
-        reprehenderit similique itaque id laborum asperiores laboriosam eius
-        quasi, voluptates voluptate a corrupti magni pariatur, consectetur, rem
-        delectus! Tempora, saepe.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos
-        reprehenderit similique itaque id laborum asperiores laboriosam eius
-        quasi, voluptates voluptate a corrupti magni pariatur, consectetur, rem
-        delectus! Tempora, saepe.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos
-        reprehenderit similique itaque id laborum asperiores laboriosam eius
-        quasi, voluptates voluptate a corrupti magni pariatur, consectetur, rem
-        delectus! Tempora, saepe.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos
-        reprehenderit similique itaque id laborum asperiores laboriosam eius
-        quasi, voluptates voluptate a corrupti magni pariatur, consectetur, rem
-        delectus! Tempora, saepe.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eos
-        reprehenderit similique itaque id laborum asperiores laboriosam eius
-        quasi, voluptates voluptate a corrupti magni pariatur, consectetur, rem
-        delectus! Tempora, saepe.
-      </p>
-    </div>
-  );
+  const history = useHistory();
+
+  useEffect(() => {
+    if (Meteor.useId) {
+      history.push("/dashboard");
+    } else {
+      setTimeout(() => {
+        history.push("/dashboard");
+      }, 1500);
+    }
+  }, []);
+
+  return <ThemedSuspense />;
 };
 
 export default Home;
