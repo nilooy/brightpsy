@@ -1,6 +1,6 @@
 import React from "react";
 import routes from "../../../routes/sidebar";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Route, useHistory } from "react-router-dom";
 import * as Icons from "../../../assets/icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { Button } from "@windmill/react-ui";
@@ -11,6 +11,7 @@ function Icon({ icon, ...props }) {
 }
 
 function SidebarContent() {
+  const history = useHistory();
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <a
@@ -49,7 +50,7 @@ function SidebarContent() {
         )}
       </ul>
       <div className="px-6 my-6">
-        <Button>
+        <Button onClick={() => history.push("/studio/create")}>
           Create Studio
           <span className="ml-2" aria-hidden="true">
             +
