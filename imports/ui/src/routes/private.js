@@ -4,7 +4,9 @@ import { lazy } from "react";
 import MainLayout from "../layouts/MainLayout";
 import CreateStudio from "../pages/private/Studio/CreateStudio";
 import ListStudio from "../pages/private/Studio/ListStudio";
-const Dashboard = lazy(() => import("../pages/private/Dashboard"));
+import CreatePricePackage from "../pages/private/PricePackage/CreatePricePackage";
+import ListPricePackage from "../pages/private/PricePackage/ListPricePackage";
+import Dashboard from "../pages/private/Dashboard";
 
 const privateRoutes = [
   {
@@ -16,7 +18,7 @@ const privateRoutes = [
         component: Dashboard,
       },
       {
-        path: "/studio",
+        path: "/studios",
         exact: true,
         component: ListStudio,
       },
@@ -24,6 +26,16 @@ const privateRoutes = [
         path: "/studio/create",
         exact: true,
         component: CreateStudio,
+      },
+      {
+        path: "/pacchetti",
+        exact: true,
+        component: ListPricePackage,
+      },
+      {
+        path: "/pacchetti/create",
+        exact: true,
+        component: CreatePricePackage,
       },
     ],
   },

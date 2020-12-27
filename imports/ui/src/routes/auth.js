@@ -1,9 +1,8 @@
-import { lazy } from "react";
 import AuthLayout from "../layouts/AuthLayout";
 
-const Login = lazy(() => import("../pages/auth/Login"));
-const CreateAccount = lazy(() => import("../pages/auth/CreateAccount"));
-const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassword"));
+import Login from "../pages/auth/Login";
+import CreateAccount from "../pages/auth/CreateAccount";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 
 const authRoutes = [
   {
