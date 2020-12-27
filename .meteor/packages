@@ -20,3 +20,5 @@ react-meteor-data       # React higher-order component for reactively tracking M
 hexsprite:postcss
 accounts-password
 alanning:roles
+server-render
+communitypackages:react-router-ssr

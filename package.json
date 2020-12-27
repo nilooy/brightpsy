@@ -9,7 +9,7 @@
   },
   "meteor": {
     "mainModule": {
-      "client": "client/main.jsx",
+      "client": "imports/main.js",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
@@ -23,13 +23,17 @@
     "classnames": "2.2.6",
     "faker": "4.1.0",
     "firebase": "^8.2.0",
+    "imports": "^1.0.0",
     "meteor-node-stubs": "^1.0.1",
     "react": "^16.13.1",
     "react-chartjs-2": "2.9.0",
     "react-dom": "^16.13.1",
     "react-focus-lock": "2.4.0",
+    "react-helmet": "^6.1.0",
+    "react-meteor-data": "^0.2.11",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
+    "react-ssr-prepass": "^1.2.1",
     "react-transition-group": "4.4.1"
   },
   "devDependencies": {

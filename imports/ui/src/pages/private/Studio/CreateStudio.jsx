@@ -3,6 +3,7 @@ import PageTitle from "../../../components/ui/Typography/PageTitle";
 import { Input, HelperText, Label, Button } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
 import { Meteor } from "meteor/meteor";
+import { useHistory } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -12,6 +13,8 @@ const initialState = {
 
 const CreateStudio = () => {
   const [form, setForm] = useState(initialState);
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     setForm({
@@ -39,6 +42,7 @@ const CreateStudio = () => {
               if (error) {
                 console.error(error);
               }
+              history.push("/studio");
             }
           );
         });
@@ -106,6 +110,7 @@ const CreateStudio = () => {
               className="mt-1 border"
               name="image"
               onChange={handleChange}
+              required
             />
             <HelperText className="p-3 text-gray-400">
               Upload image of your studio

@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { StudioCollection } from "./StudioCollection";
+import { StudioCollection } from "../../../imports/api/StudioCollection";
 
 Meteor.methods({
   "studio.create"(data) {

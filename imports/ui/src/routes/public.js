@@ -1,6 +1,6 @@
 import { Fragment, lazy } from "react";
 
-const Home = lazy(() => import("../pages/public/Home"));
+import Home from "../pages/public/Home";
 
 const publicRoutes = [
   {

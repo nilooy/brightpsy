@@ -19,6 +19,7 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
+import SelectStudio from "./SelectStudio";
 
 function Header() {
   const history = useHistory();
@@ -47,7 +48,11 @@ function Header() {
         >
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
-        {/* <!-- Search input --> */}
+        {/* <!-- Select Studio --> */}
+        <div className="relative">
+          <SelectStudio />
+        </div>
+
         <div className="flex justify-center flex-1 lg:mr-32">
           <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
             <div className="absolute inset-y-0 flex items-center pl-2">
