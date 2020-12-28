@@ -4,6 +4,7 @@ import { NavLink, Route, useHistory } from "react-router-dom";
 import * as Icons from "../../../assets/icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { Button } from "@windmill/react-ui";
+import { GiMeditation } from "@react-icons/all-files/gi/GiMeditation";
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -15,10 +16,11 @@ function SidebarContent() {
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <a
-        className="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+        className="flex ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
         href="#"
       >
-        Windmill
+        <GiMeditation className="text-purple-700 text-2xl ml-2" />
+        Psicologi
       </a>
       <ul className="mt-6">
         {routes.map((route) =>

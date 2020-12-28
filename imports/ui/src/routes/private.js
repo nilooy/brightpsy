@@ -7,6 +7,7 @@ import ListStudio from "../pages/private/Studio/ListStudio";
 import CreatePricePackage from "../pages/private/PricePackage/CreatePricePackage";
 import ListPricePackage from "../pages/private/PricePackage/ListPricePackage";
 import Dashboard from "../pages/private/Dashboard";
+import Profile from "../pages/private/Profile";
 
 const privateRoutes = [
   {
@@ -16,6 +17,11 @@ const privateRoutes = [
         path: "/dashboard",
         exact: true,
         component: Dashboard,
+      },
+      {
+        path: "/profile",
+        exact: true,
+        component: Profile,
       },
       {
         path: "/studios",

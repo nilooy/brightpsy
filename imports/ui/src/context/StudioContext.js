@@ -35,6 +35,9 @@ export const StudioProvider = ({ children }) => {
     setIsStudioMenuOpen(!isStudioMenuOpen);
   }
 
+  if (studios && !selectedStudio)
+    setSelectedStudio(studios.find((s) => s.default));
+
   const value = useMemo(
     () => ({
       studios,

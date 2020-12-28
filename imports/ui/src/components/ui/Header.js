@@ -20,9 +20,11 @@ import {
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
 import SelectStudio from "./SelectStudio";
+import { useTracker } from "meteor/react-meteor-data";
 
 function Header() {
   const history = useHistory();
+  const user = useTracker(() => Meteor.user());
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
 
@@ -36,6 +38,10 @@ function Header() {
   function handleProfileClick() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
+
+  const avatar = user
+    ? user?.profile?.imageUrl
+    : "https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82";
 
   return (
     <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
@@ -124,8 +130,8 @@ function Header() {
             >
               <Avatar
                 className="align-middle"
-                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                alt=""
+                src={avatar}
+                alt="avatar"
                 aria-hidden="true"
               />
             </button>

@@ -3,7 +3,12 @@ import React from "react";
 import CTA from "../../components/ui/CTA";
 import InfoCard from "../../components/ui/Cards/InfoCard";
 import PageTitle from "../../components/ui/Typography/PageTitle";
-import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from "../../assets/icons";
+import {
+  ChatIcon,
+  PeopleIcon,
+  MoneyIcon,
+  StudioIcon,
+} from "../../assets/icons";
 import RoundIcon from "../../components/ui/RoundIcon";
 
 function Dashboard() {
@@ -33,18 +38,18 @@ function Dashboard() {
           />
         </InfoCard>
 
-        <InfoCard title="New sales" value="376">
+        <InfoCard title="Paziente" value="376">
           <RoundIcon
-            icon={CartIcon}
+            icon={PeopleIcon}
             iconColorClass="text-blue-500 dark:text-blue-100"
             bgColorClass="bg-blue-100 dark:bg-blue-500"
             className="mr-4"
           />
         </InfoCard>
 
-        <InfoCard title="Pending contacts" value="35">
+        <InfoCard title="Appuntamenti" value="35">
           <RoundIcon
-            icon={ChatIcon}
+            icon={StudioIcon}
             iconColorClass="text-teal-500 dark:text-teal-100"
             bgColorClass="bg-teal-100 dark:bg-teal-500"
             className="mr-4"

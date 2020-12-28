@@ -8,6 +8,7 @@ Meteor.methods({
       name,
       address,
       imageUrl,
+      default: !StudioCollection.find().count(),
       userId: this.userId,
       createdAt: new Date(),
     });
