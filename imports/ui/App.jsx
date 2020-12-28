@@ -6,7 +6,8 @@ import { Windmill } from "@windmill/react-ui";
 
 const App = () => (
   <ContextProvider>
-    <Windmill usePreferences>
+    {/* usePreferences */}
+    <Windmill dark={false}>
       <Routes />
     </Windmill>
   </ContextProvider>

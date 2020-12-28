@@ -5,11 +5,11 @@ import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
 import { Input, Label, Button, Badge } from "@windmill/react-ui";
 
 const initialState = {
-  firstName: "Niloy",
-  lastName: "sss",
-  email: "test@test.com",
-  password: "citi0119",
-  confirmPassword: "citi0119",
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
   privacyPolicy: false,
   identity_numb: "",
 };

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { StudioCollection } from "../../../api/StudioCollection";
 import { useTracker } from "meteor/react-meteor-data";
 
@@ -35,8 +35,10 @@ export const StudioProvider = ({ children }) => {
     setIsStudioMenuOpen(!isStudioMenuOpen);
   }
 
-  if (studios && !selectedStudio)
-    setSelectedStudio(studios.find((s) => s.default));
+  useEffect(() => {
+    if (studios && !selectedStudio)
+      setSelectedStudio(studios.find((s) => s.default));
+  }, [studios, selectedStudio]);
 
   const value = useMemo(
     () => ({
