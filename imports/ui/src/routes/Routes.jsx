@@ -14,22 +14,24 @@ const Routes = () => {
 
   return (
     <>
-      {routes.map((route, i) => (
-        <Route
-          key={i}
-          exact={route.subRoutes.some((r) => r.exact)}
-          path={route.subRoutes.map((r) => r.path)}
-        >
-          <route.layout>
-            {route.subRoutes.map((subRoute, i) => (
-              <Route key={i} {...subRoute} />
-            ))}
-          </route.layout>
+      <Switch>
+        {routes.map((route, i) => (
+          <Route
+            key={i}
+            exact={route.subRoutes.some((r) => r.exact)}
+            path={route.subRoutes.map((r) => r.path)}
+          >
+            <route.layout>
+              {route.subRoutes.map((subRoute, i) => (
+                <Route key={i} {...subRoute} />
+              ))}
+            </route.layout>
+          </Route>
+        ))}
+        <Route path="*">
+          <Page404 />
         </Route>
-      ))}
-      <Route path="*">
-        <Page404 />
-      </Route>
+      </Switch>
     </>
   );
 };

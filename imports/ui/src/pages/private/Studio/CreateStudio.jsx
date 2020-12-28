@@ -42,7 +42,7 @@ const CreateStudio = () => {
               if (error) {
                 console.error(error);
               }
-              history.push("/studio");
+              history.push("/studios");
             }
           );
         });
