@@ -55,7 +55,7 @@ function Header() {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
         {/* <!-- Select Studio --> */}
-        <div className="relative">
+        <div className="relative sm:block hidden">
           <SelectStudio />
         </div>
 
