@@ -74,7 +74,14 @@ const Login = () => {
 
         {state.errorMsg && (
           <div className="text-center mt-3">
-            <Badge type="danger">{state.errorMsg}</Badge>
+            <Badge type="danger">{state.errorMsg} </Badge>
+            <Badge type="success">
+              {state.errorMsg == "User not found" ? (
+                <Link to="/create-account">Create Account</Link>
+              ) : (
+                ""
+              )}
+            </Badge>
           </div>
         )}
 

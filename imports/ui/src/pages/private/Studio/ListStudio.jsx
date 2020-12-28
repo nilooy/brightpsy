@@ -3,15 +3,27 @@ import PageTitle from "../../../components/ui/Typography/PageTitle";
 
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { StudioContext } from "../../../context/StudioContext";
+import { useHistory } from "react-router-dom";
 
 const ListStudio = () => {
   const { studios, selectedStudio, setSelectStudio } = useContext(
     StudioContext
   );
 
+  const history = useHistory();
+
   return (
     <>
-      <PageTitle>Studios</PageTitle>
+      <div className="flex justify-between mt-3 mb-2">
+        <PageTitle>Studios</PageTitle>
+        <Button
+          onClick={() => history.push("/studio/create")}
+          aria-label="Create Studio"
+          aria-haspopup="true"
+        >
+          Crea Studio +
+        </Button>
+      </div>
       <div className="grid gap-6 mb-8 md:grid-cols-2">
         {studios &&
           studios.map((studio) => (

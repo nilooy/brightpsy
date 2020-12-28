@@ -11,12 +11,12 @@ export const PricePackageProvider = ({ children }) => {
 
   const { pricePackages, isLoadingPricePackage } = useTracker(() => {
     const noDataAvailable = { pricePackages: [] };
-    if (!Meteor.user()) {
+    if (!Meteor.user() && !selectedStudio) {
       return noDataAvailable;
     }
     const handler = Meteor.subscribe(
       "pricePackage.getByStudio",
-      selectedStudio._id
+      selectedStudio?._id
     );
 
     if (!handler.ready()) {
@@ -24,8 +24,6 @@ export const PricePackageProvider = ({ children }) => {
     }
 
     const pricePackages = PricePackageCollection.find().fetch();
-
-    console.log(pricePackages);
 
     return { pricePackages };
   });
