@@ -22,7 +22,7 @@ jobs:
           ssh-private-key: ${{ secrets.SERVER_STUDIAMO }}
       - name: Preparing deploy
         env:
-        NPM_CONFIG_PREFIX: "~/.npm-global"
+          NPM_CONFIG_PREFIX: "~/.npm-global"
         run: |
           npm install -g mup
       - name: Deploying app to https://progboy.com
