@@ -1,9 +1,9 @@
 name: CI
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 jobs:
   build:
@@ -20,6 +20,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: ${{ secrets.SERVER_STUDIAMO }}
+     - name: Preparing deploy
+        env:
+        NPM_CONFIG_PREFIX: "~/.npm-global"
+        run: |
+            npm install -g mup
       - name: Deploying app to https://progboy.com
         run: |
           npm i -g mup
