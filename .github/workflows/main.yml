@@ -29,8 +29,8 @@ jobs:
       - name: Deploying app to https://progboy.com
         run: |
           cd .deploy
-          mup config --config=mup-staging.js
-          mup deploy --config=mup-staging.js
+          mup config
+          mup deploy
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
