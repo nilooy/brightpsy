@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: meteorengineer/setup-meteor@v1
+      with:
+        meteor-release: '1.12'
+      - name: Install NPM dependencies
+        run: meteor npm install
+      - name: Configure Server Credentials
+      - uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SERVER_STUDIAMO }}
+      - name: Deploying app to https://progboy.com
+        run: |
+            cd .deploy
+            mup config --config=mup-staging.js
+            mup deploy --config=mup-staging.js
+
