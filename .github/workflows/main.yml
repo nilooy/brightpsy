@@ -22,6 +22,7 @@ jobs:
           ssh-private-key: ${{ secrets.SERVER_STUDIAMO }}
       - name: Deploying app to https://progboy.com
         run: |
+          npm i -g mup
           cd .deploy
           mup config --config=mup-staging.js
           mup deploy --config=mup-staging.js
