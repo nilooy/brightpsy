@@ -1,9 +1,9 @@
 name: CI
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 jobs:
   build:
@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Setup Meteor.js environment
       - uses: meteorengineer/setup-meteor@v1.0.3
-      with:
-        meteor-release: '1.12'
+        with:
+          meteor-release: "1.12"
       - name: Install NPM dependencies
         run: meteor npm install
       - name: Configure Server Credentials
@@ -22,7 +22,6 @@ jobs:
           ssh-private-key: ${{ secrets.SERVER_STUDIAMO }}
       - name: Deploying app to https://progboy.com
         run: |
-            cd .deploy
-            mup config --config=mup-staging.js
-            mup deploy --config=mup-staging.js
-
+          cd .deploy
+          mup config --config=mup-staging.js
+          mup deploy --config=mup-staging.js
