@@ -14,6 +14,9 @@ export const PricePackageProvider = ({ children }) => {
     if (!Meteor.user() && !selectedStudio) {
       return noDataAvailable;
     }
+
+    if (!selectedStudio) return { pricePackages: [] };
+
     const handler = Meteor.subscribe(
       "pricePackage.getByStudio",
       selectedStudio?._id
