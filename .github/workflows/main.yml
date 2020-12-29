@@ -30,7 +30,7 @@ jobs:
         run: |
           cd .deploy
           mup setup
-          mup deploy
+          mup deploy --cached-build
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
