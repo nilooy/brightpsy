@@ -4,7 +4,7 @@ import Page404 from "../pages/public/Page404";
 import publicRoutes from "./public";
 import privateRoutes from "./private";
 import auth from "./auth";
-import AccessibleNavigationAnnouncer from "../components/ui/AccessibleNavigationAnnouncer";
+import AccessibleNavigationAnnouncer from "../components/shared/AccessibleNavigationAnnouncer";
 import { createMemoryHistory } from "history";
 
 const Routes = () => {

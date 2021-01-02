@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { Fragment, lazy } from "react";
 
 // use lazy for better code splitting, a.k.a. load faster
 import MainLayout from "../layouts/MainLayout";
@@ -8,11 +8,27 @@ import CreatePricePackage from "../pages/private/PricePackage/CreatePricePackage
 import ListPricePackage from "../pages/private/PricePackage/ListPricePackage";
 import Dashboard from "../pages/private/Dashboard";
 import Profile from "../pages/private/Profile";
+import ThemedSuspense from "../components/shared/ThemedSuspense";
 
 const privateRoutes = [
   {
+    layout: Fragment,
+    subRoutes: [
+      {
+        path: "/app",
+        exact: true,
+        component: ThemedSuspense, // preloader TODO
+      },
+    ],
+  },
+  {
     layout: MainLayout,
     subRoutes: [
+      {
+        path: "/app",
+        exact: true,
+        component: ThemedSuspense,
+      },
       {
         path: "/dashboard",
         exact: true,

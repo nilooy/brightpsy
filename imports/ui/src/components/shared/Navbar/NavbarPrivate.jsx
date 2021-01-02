@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { SidebarContext } from "../../context/SidebarContext";
+import { SidebarContext } from "../../../context/SidebarContext";
 import {
   SearchIcon,
   MoonIcon,
@@ -9,7 +9,7 @@ import {
   OutlinePersonIcon,
   OutlineCogIcon,
   OutlineLogoutIcon,
-} from "../../assets/icons";
+} from "../../../assets/icons";
 import {
   Avatar,
   Badge,
@@ -19,7 +19,7 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
-import SelectStudio from "./SelectStudio";
+import SelectStudio from "../SelectStudio";
 import { useTracker } from "meteor/react-meteor-data";
 
 function Header() {

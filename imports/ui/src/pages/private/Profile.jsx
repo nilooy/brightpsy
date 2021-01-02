@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import PageTitle from "../../components/ui/Typography/PageTitle";
+import PageTitle from "../../components/shared/Typography/PageTitle";
 import { Avatar } from "@windmill/react-ui";
 import { MdEdit } from "@react-icons/all-files/md/MdEdit";
 import { storage } from "../../../firebase";
