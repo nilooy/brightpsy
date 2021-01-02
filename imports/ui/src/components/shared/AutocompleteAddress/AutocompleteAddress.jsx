@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { Input } from "@windmill/react-ui";
+
 const initialState = {
   street_number: "",
   route: "",
@@ -80,11 +82,12 @@ const AutocompleteAddress = () => {
         e.preventDefault();
       }}
     >
-      <input
-        id="autocomplete"
-        placeholder="Enter your address"
+      <Input
+        className="pl-8 text-gray-700 border"
+        placeholder="Cerca psicologi vicino te"
+        aria-label="Search"
         onFocus={geolocate}
-        type="text"
+        id="autocomplete"
         autoComplete="new-password"
       />
     </form>
