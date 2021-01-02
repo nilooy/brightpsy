@@ -1,7 +1,31 @@
+## References:
+# https://git.io/Jf3l9
+# https://circleci.com/docs/2.0/yarn/
+# https://circleci.com/docs/2.0/caching/#yarn-node
+# https://circleci.com/orbs/registry/orb/circleci/node
+# https://discuss.circleci.com/t/circleci-2-1-config-overview/26057
 version: 2.1
+
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@2.0.3
+
+jobs:
+  prepare:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: Meteor Install
+          command: curl https://install.meteor.com/ | sh
+      - run:
+          name: MUP Install
+          command: npm i -g mup
+      - run:
+          name: Install Dependencies
+          command: meteor npm i
+
 workflows:
-  node-tests:
+  run-ci:
     jobs:
-      - node/test
+      - prepare
