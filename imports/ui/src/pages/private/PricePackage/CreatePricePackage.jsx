@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import PageTitle from "../../../components/ui/Typography/PageTitle";
+import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
 import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";

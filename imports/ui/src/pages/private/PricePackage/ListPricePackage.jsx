@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PageTitle from "../../../components/ui/Typography/PageTitle";
+import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { useHistory } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { PricePackageContext } from "../../../context/PricePackageContext";

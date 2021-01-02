@@ -1,15 +1,15 @@
 import React from "react";
 
-import CTA from "../../components/ui/CTA";
-import InfoCard from "../../components/ui/Cards/InfoCard";
-import PageTitle from "../../components/ui/Typography/PageTitle";
+import CTA from "../../components/shared/CTA";
+import InfoCard from "../../components/shared/Cards/InfoCard";
+import PageTitle from "../../components/shared/Typography/PageTitle";
 import {
   ChatIcon,
   PeopleIcon,
   MoneyIcon,
   StudioIcon,
 } from "../../assets/icons";
-import RoundIcon from "../../components/ui/RoundIcon";
+import RoundIcon from "../../components/shared/RoundIcon";
 
 function Dashboard() {
   return (

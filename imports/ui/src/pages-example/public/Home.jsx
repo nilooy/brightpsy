@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import ThemedSuspense from "../../components/ui/ThemedSuspense";
+import ThemedSuspense from "../../components/shared/ThemedSuspense";
 
 const Home = () => {
   const history = useHistory();
