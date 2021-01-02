@@ -20,7 +20,7 @@ jobs:
           command: curl https://install.meteor.com/ | sh
       - run:
           name: MUP Install
-          command: export NPM_CONFIG_PREFIX=~/.npm-global && sudo npm install -g mup && sudo chown -R $USER /usr/local/lib/node_modules
+          command: export NPM_CONFIG_PREFIX=~/.npm-global && sudo npm install -g mup && sudo chown -R $(whoami) ~/.npm
       - run:
           name: Install Dependencies
           command: meteor npm i
