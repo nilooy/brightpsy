@@ -20,10 +20,18 @@ jobs:
           command: curl https://install.meteor.com/ | sh
       - run:
           name: MUP Install
-          command: npm i -g mup
+          command: sudo npm install -g mup && sudo chown -R $USER /usr/local/lib/node_modules
       - run:
           name: Install Dependencies
           command: meteor npm i
+  build_and_deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: Deploy
+          command: cd .deploy && mup deploy
 
 workflows:
   run-ci:
