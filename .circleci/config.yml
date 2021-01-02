@@ -24,17 +24,11 @@ jobs:
       - run:
           name: Install Dependencies
           command: meteor npm i
-  build_and_deploy:
-    executor:
-      name: node/default
-    steps:
-      - checkout
       - run:
           name: Deploy
-          command: cd .deploy && mup deploy
+          command: npm run deploy-prod
 
 workflows:
   run-ci:
     jobs:
       - prepare
-      - build_and_deploy

@@ -6,7 +6,8 @@
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
-    "deploy": "cd .deploy && mup deploy --config=mup-local.js"
+    "deploy": "cd .deploy && mup deploy --config=mup-local.js",
+    "deploy-prod": "cd .deploy && mup deploy"
   },
   "meteor": {
     "mainModule": {
@@ -38,6 +39,7 @@
     "react-transition-group": "4.4.1"
   },
   "devDependencies": {
+    "mup": "^1.5.3",
     "@babel/runtime": "^7.11.2",
     "@svgr/webpack": "5.4.0",
     "autoprefixer": "^10.1.0",
