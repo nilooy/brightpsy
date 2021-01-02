@@ -37,3 +37,4 @@ workflows:
   run-ci:
     jobs:
       - prepare
+      - build_and_deploy
