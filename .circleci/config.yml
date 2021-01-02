@@ -16,6 +16,23 @@ jobs:
       name: node/default
     steps:
       - checkout
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*Deploy has started :)*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
       - run:
           name: Meteor Install
           command: curl https://install.meteor.com/ | sh
