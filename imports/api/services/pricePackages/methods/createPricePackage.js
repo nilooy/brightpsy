@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { PricePackageCollection } from "../../../imports/api/PricePackageCollection";
+import { PricePackages } from "../models/PricePackageCollection";
 
 Meteor.methods({
   "pricePackage.create"(data) {

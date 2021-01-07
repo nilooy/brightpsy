@@ -11,7 +11,7 @@
   },
   "meteor": {
     "mainModule": {
-      "client": "imports/main.js",
+      "client": "imports/client.js",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
@@ -36,7 +36,8 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-ssr-prepass": "^1.2.1",
-    "react-transition-group": "4.4.1"
+    "react-transition-group": "4.4.1",
+    "simpl-schema": "^1.10.2"
   },
   "devDependencies": {
     "mup": "^1.5.3",

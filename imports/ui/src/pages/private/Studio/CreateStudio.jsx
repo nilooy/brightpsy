@@ -4,6 +4,10 @@ import { Input, HelperText, Label, Button } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
 import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
+import {
+  addPhoto,
+  createStudio,
+} from "../../../../../api/services/studio/methods/createStudio";
 
 const initialState = {
   name: "",
@@ -29,22 +33,18 @@ const CreateStudio = () => {
 
     const { name, address, image } = form;
 
-    Meteor.call("studio.create", { name, address, image }, (error, result) => {
+    createStudio.call({ name, address, image }, (error, result) => {
       if (error) {
         console.error(error);
       }
       if (result) {
         uploadImage((imageUrl) => {
-          Meteor.call(
-            "studio.addPhoto",
-            { studioId: result, imageUrl },
-            (error) => {
-              if (error) {
-                console.error(error);
-              }
-              history.push("/studios");
+          addPhoto.call({ studioId: result, imageUrl }, (error) => {
+            if (error) {
+              console.error(error);
             }
-          );
+            history.push("/studios");
+          });
         });
       }
       console.log(result);

@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { PricePackageCollection } from "../../../api/PricePackageCollection";
+import { PricePackageCollection } from "../../../api/services/pricePackages/models/PricePackageCollection";
 import { useTracker } from "meteor/react-meteor-data";
 import { StudioContext } from "./StudioContext";
 

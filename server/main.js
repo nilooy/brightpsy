@@ -1,12 +1,10 @@
 import { Meteor } from "meteor/meteor";
-import "./services/auth/signup";
-import "./services/auth/addProfilePic";
-import "./services/studio/createStudio";
-import "./services/studio/listStudio";
-import "./services/pricePackages/createPricePackage";
-import "./services/pricePackages/listPricePackage";
-import { createRoles } from "./utils/authorization";
-import "../imports/main";
+import { createRoles } from "../imports/api/utils/authorization";
+
+// Register all methods and Publications
+import "../imports/api/register-api";
+// SSR ***
+import "../imports/client";
 
 Meteor.startup(() => {
   // Create accepted roles

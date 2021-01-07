@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
-import { addUserRoles } from "../../utils/authorization";
+import { addUserRoles } from "../../../utils/authorization";
 
 Meteor.methods({
   "auth.signup"(data) {

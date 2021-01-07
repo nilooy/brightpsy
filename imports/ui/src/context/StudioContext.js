@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { StudioCollection } from "../../../api/StudioCollection";
+import { Studios } from "../../../api/services/studio/models/StudioCollection";
 import { useTracker } from "meteor/react-meteor-data";
 
 // create context
@@ -17,7 +17,7 @@ export const StudioProvider = ({ children }) => {
       return { ...noDataAvailable, isLoading: true };
     }
 
-    const studios = StudioCollection.find().fetch();
+    const studios = Studios.find().fetch();
 
     return { studios };
   });
