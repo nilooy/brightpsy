@@ -1,14 +1,16 @@
+import React from "react";
+import { AutocompleteProvider } from "../components/features/AutocompleteAddress/AutoCompleteContext";
 import { SidebarProvider } from "./SidebarContext";
 import { StudioProvider } from "./StudioContext";
 import { PricePackageProvider } from "./PricePackageContext";
-
-import React from "react";
 
 const ContextProvider = ({ children }) => {
   return (
     <StudioProvider>
       <SidebarProvider>
-        <PricePackageProvider>{children}</PricePackageProvider>
+        <PricePackageProvider>
+          <AutocompleteProvider>{children}</AutocompleteProvider>
+        </PricePackageProvider>
       </SidebarProvider>
     </StudioProvider>
   );
