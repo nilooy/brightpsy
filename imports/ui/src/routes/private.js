@@ -2,12 +2,13 @@ import { Fragment, lazy } from "react";
 
 // use lazy for better code splitting, a.k.a. load faster
 import MainLayout from "../layouts/MainLayout";
-import CreateStudio from "../pages/private/Studio/CreateStudio";
-import ListStudio from "../pages/private/Studio/ListStudio";
 import CreatePricePackage from "../pages/private/PricePackage/CreatePricePackage";
 import ListPricePackage from "../pages/private/PricePackage/ListPricePackage";
 import Dashboard from "../pages/private/Dashboard";
 import Profile from "../pages/private/Profile";
+import Studios from "../pages/private/Studio/Studios";
+import CreateStudio from "../pages/private/Studio/CreateStudio";
+import EditStudio from "../pages/private/Studio/EditStudio";
 import ThemedSuspense from "../components/shared/ThemedSuspense";
 
 const privateRoutes = [
@@ -42,12 +43,17 @@ const privateRoutes = [
       {
         path: "/studios",
         exact: true,
-        component: ListStudio,
+        component: Studios,
       },
       {
         path: "/studio/create",
         exact: true,
         component: CreateStudio,
+      },
+      {
+        path: "/studio/edit",
+        exact: true,
+        component: EditStudio,
       },
       {
         path: "/pacchetti",

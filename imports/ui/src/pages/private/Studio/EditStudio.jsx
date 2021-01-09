@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { Input, HelperText, Label, Button } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
@@ -15,8 +15,10 @@ import { AutocompleteContext } from "../../../components/features/AutocompleteAd
 import { toast } from "react-toastify";
 import Tag from "../../../components/features/TagManager/Tag";
 import { TagContext } from "../../../components/features/TagManager/TagContext";
+import { StudioContext } from "../../../context/StudioContext";
 
 const initialState = {
+  _id: "",
   name: "",
   image: null,
   type: "personal",
@@ -24,13 +26,34 @@ const initialState = {
   physical: false,
 };
 
-const CreateStudio = () => {
+const EditStudio = () => {
   const [form, setForm] = useState(initialState);
 
-  const { address } = useContext(AutocompleteContext);
+  const { studios } = useContext(StudioContext);
   const {
     tagState: { tags },
+    loadTag,
   } = useContext(TagContext);
+
+  useEffect(() => {
+    if (!studios) return;
+
+    console.log(studios);
+
+    const { _id, name, type, online, physical, tags } = studios[0];
+    setForm({
+      ...form,
+      _id,
+      name,
+      type,
+      online,
+      physical,
+    });
+
+    loadTag(tags);
+  }, [studios]);
+
+  const { address } = useContext(AutocompleteContext);
 
   const history = useHistory();
 
@@ -91,11 +114,15 @@ const CreateStudio = () => {
     );
   };
 
-  const imageUrl = form.image && URL.createObjectURL(form.image);
+  const imageUrl = studios[0].imageUrl
+    ? studios[0].imageUrl
+    : form.image && URL.createObjectURL(form.image);
+
+  console.log(imageUrl);
 
   return (
     <>
-      <PageTitle>Create Studio</PageTitle>
+      <PageTitle>Edit Studio</PageTitle>
       <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <form onSubmit={handleSubmit}>
           <Label>
@@ -107,13 +134,6 @@ const CreateStudio = () => {
               onChange={handleChange}
               value={form.name}
               required
-            />
-          </Label>
-          <Label className="mt-2">
-            <span>Address</span>
-            <AutocompleteAddress
-              icon={<IoMapOutline className="w-5 h-5" aria-hidden="true" />}
-              noForm={true}
             />
           </Label>
 
@@ -205,4 +225,4 @@ const CreateStudio = () => {
   );
 };
 
-export default CreateStudio;
+export default EditStudio;
