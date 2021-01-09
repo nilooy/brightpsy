@@ -1,4 +1,11 @@
-@tailwind base;
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+@import "../imports/ui/src/components/features/TagManager/tag_manager.css";
+@import "react-toastify/dist/ReactToastify.css";
+
+@import "tailwindcss/utilities";
+
 .switch-wrapper {
   position: relative;
 }
@@ -6,5 +13,3 @@
 .switch-wrapper > div {
   position: absolute;
 }
-@tailwind components;
-@tailwind utilities;

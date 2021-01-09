@@ -8,6 +8,9 @@ import { BsCameraVideoFill } from "@react-icons/all-files/bs/BsCameraVideoFill";
 import { MdVerifiedUser } from "@react-icons/all-files/md/MdVerifiedUser";
 import { AiOutlineUserDelete } from "@react-icons/all-files/ai/AiOutlineUserDelete";
 
+import { SearchIcon } from "../../assets/icons";
+import AutocompleteAddress from "../../components/features/AutocompleteAddress/AutocompleteAddress";
+
 export default function Home() {
   return (
     <>
@@ -37,7 +40,9 @@ export default function Home() {
                   <h1 className="text-gray-500 font-semibold sm:text-5xl text-2xl mb-3">
                     Stai cercando un psicologo
                   </h1>
-                  <SearchInput />
+                  <AutocompleteAddress
+                    icon={<SearchIcon className="w-5 h-5" aria-hidden="true" />}
+                  />
                   <p className="mt-4 text-lg text-gray-400">
                     Il tuo salute mentale sono importante
                   </p>

@@ -1,31 +1,63 @@
-import { Meteor } from "meteor/meteor";
-import { Studios, StudioSchema } from "../models/StudioCollection";
-// import { Addresses } from "../models/AddressSchema";
+import { Studios } from "../models/StudioCollection";
+import { Addresses } from "../models/AddressCollection";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 
 import SimpleSchema from "simpl-schema";
 
 // TODO: Confirm if this can be risky as imported on client
 
-export const createStudio = new ValidatedMethod({
-  name: "studio.create",
+export const createOrUpdateStudio = new ValidatedMethod({
+  name: "studio.createOrUpdate",
   validate: new SimpleSchema({
     name: { type: String },
-    address: { type: Object },
+    address: { type: Object, optional: true, blackbox: true },
+    type: { type: String, optional: true },
+    online: { type: Boolean, optional: true },
+    physical: { type: Boolean, optional: true },
+    studioId: { type: String, optional: true },
+    addressId: { type: String, optional: true },
+    tags: { type: Array, optional: true },
+    "tags.$": { type: Object, optional: true },
+    "tags.$.id": { type: String, optional: true },
+    "tags.$.text": { type: String, optional: true },
   }).validator(),
-  run({ name, type }) {
-    const studioId = Studios.insert({
-      name,
-      type,
+  run({
+    name,
+    type,
+    address,
+    mode,
+    online,
+    physical,
+    studioId: id,
+    addressId,
+    tags,
+  }) {
+    // for update we need studioId as id and addressId
+    const studio = Studios.upsert(id, {
+      $set: {
+        name,
+        type,
+        mode,
+        online,
+        physical,
+        tags,
+      },
     });
 
-    // Addresses.insert({ formatted_address: "asdas" });
+    Addresses.upsert(addressId, {
+      $set: { studioId: studio?.insertedId, ...address },
+    });
+
+    return studio?.insertedId;
   },
 });
 
 export const addPhoto = new ValidatedMethod({
   name: "studio.addPhoto",
-  validate: StudioSchema.pick("imageUrl").validator(),
+  validate: new SimpleSchema({
+    studioId: String,
+    imageUrl: String,
+  }).validator(),
   run({ studioId, imageUrl }) {
     return Studios.update(studioId, {
       $set: {
