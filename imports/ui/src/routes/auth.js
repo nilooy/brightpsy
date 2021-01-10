@@ -3,11 +3,17 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/auth/Login";
 import CreateAccount from "../pages/auth/CreateAccount";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import AuthWelcome from "../pages/auth/AuthWelcome";
 
 const authRoutes = [
   {
     layout: AuthLayout,
     subRoutes: [
+      {
+        path: "/welcome",
+        exact: true,
+        component: AuthWelcome,
+      },
       {
         path: "/login",
         exact: true,

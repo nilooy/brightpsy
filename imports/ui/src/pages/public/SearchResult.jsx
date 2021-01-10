@@ -22,7 +22,7 @@ const SearchResult = () => {
 
   return (
     <>
-      <div className="flex flex-wrap bg-gray-100 sm:flex-row">
+      <div className="flex flex-wrap bg-gray-100 sm:flex-row mb-20">
         {studios &&
           studios.map((studio) => (
             <StudioCard

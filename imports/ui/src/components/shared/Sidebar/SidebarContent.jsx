@@ -5,6 +5,7 @@ import * as Icons from "../../../assets/icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { Button } from "@windmill/react-ui";
 import Logo from "../Logo";
+import { privatePath } from "../../../routes/privatePath";
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -46,7 +47,7 @@ function SidebarContent() {
         )}
       </ul>
       <div className="px-6 my-6">
-        <Button onClick={() => history.push("/studios/create")}>
+        <Button onClick={() => history.push(privatePath.studioCreate)}>
           Create Studio
           <span className="ml-2" aria-hidden="true">
             +

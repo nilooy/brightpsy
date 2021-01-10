@@ -26,6 +26,7 @@ const StudioSchema = new SimpleSchema({
   "tags.$.id": { type: String, optional: true },
   "tags.$.text": { type: String, optional: true },
   imageUrl: { type: String, optional: true },
+  userId: { type: String },
 });
 
 Studios.attachSchema(StudioSchema);

@@ -63,12 +63,11 @@ const AutocompleteAddress = ({ className, icon, noForm }) => {
         <input
           ref={input}
           className="border block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-          placeholder="Jane Doe"
           placeholder="Cerca psicologi vicino te"
           aria-label="Search"
           onFocus={geolocate}
           id="autocomplete"
-          autoComplete="new-password"
+          autoComplete={"" + Math.random()}
         />
         <div className="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
           {icon}

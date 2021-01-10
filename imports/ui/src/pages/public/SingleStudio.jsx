@@ -1,13 +1,15 @@
 import React from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Studios } from "../../../../api/services/studio/models/StudioCollection";
+import { PricePackages } from "../../../../api/services/pricePackages/models/PricePackageCollection";
 import { useHistory, useParams } from "react-router-dom";
+import { Card, CardBody, Button } from "@windmill/react-ui";
 
 const SingleStudio = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { studio, isLoadingStudio } = useTracker(() => {
+  const { studio, pricePackages, isLoadingStudio } = useTracker(() => {
     const noDataAvailable = { studio: [] };
 
     const handler = Meteor.subscribe("studios.getById", id);
@@ -18,7 +20,9 @@ const SingleStudio = () => {
 
     const studio = Studios.find().fetch()[0];
 
-    return { studio };
+    const pricePackages = PricePackages.find().fetch();
+
+    return { studio, pricePackages };
   });
 
   console.log(studio);
@@ -70,7 +74,11 @@ const SingleStudio = () => {
                       alt="..."
                       src={studio.imageUrl}
                       className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                      style={{ maxWidth: "150px", height: "150px" }}
+                      style={{
+                        maxWidth: "150px",
+                        height: "150px",
+                        width: "150px",
+                      }}
                     />
                   </div>
                 </div>
@@ -156,12 +164,46 @@ const SingleStudio = () => {
                     ))}
                 </div>
               </div>
-              <div className="mt-10 py-10 border-t border-gray-300 text-center">
+              <div className="mt-10 py-10 border-t border-gray-300 text-center ">
                 <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-9/12 px-4">
-                    <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                      {studio.desc}
+                  <div className="w-full lg:w-9/12 px-4 bg-gray-100">
+                    <p className="mb-4 text-sm leading-relaxed text-gray-800">
+                      <b>Descrizione: </b> {" " + studio.desc}
                     </p>
+                  </div>
+                </div>
+
+                <div>
+                  <h1 className="text-gray-600 text-3xl text-center my-2">
+                    Packages
+                  </h1>
+
+                  <div className="grid gap-6 mb-8 md:grid-cols-4 p-2">
+                    {pricePackages &&
+                      pricePackages.map((item) => (
+                        <Card
+                          key={item._id}
+                          className="flex h-full bg-gray-100 shadow-lg"
+                        >
+                          <CardBody>
+                            <p className="mb-4 font-semibold text-gray-600 text-3xl dark:text-gray-300">
+                              {item.title}
+                            </p>
+                            <p className="text-gray-600 dark:text-gray-400 p-2">
+                              {item.desc}
+                            </p>
+                            <p className="text-gray-600 dark:text-gray-400 mt-1">
+                              {item.quantity} Sedute
+                            </p>
+                            <p className="text-gray-600 dark:text-gray-400 mt-1">
+                              {item.hours} Ore
+                            </p>
+                            <p className="dark:text-gray-400 text-3xl text-green-400">
+                              {item.cost} €
+                            </p>
+                          </CardBody>
+                        </Card>
+                      ))}
                   </div>
                 </div>
               </div>

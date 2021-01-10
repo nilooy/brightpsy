@@ -5,12 +5,16 @@ export const createRoles = (callback) => {
   callback();
 };
 
-export const addUserRoles = (userId, roleToadd) => {
+export const addUserRoles = (userId, roleToadd, identity_numb) => {
   if (!userId)
     throw new Meteor.Error("authorization", "User not found to add roles");
 
   // check if the sent role is in the roles array
   if (roles.find((role) => role === roleToadd)) {
-    Roles.addUsersToRoles(userId, "student");
+    if (identity_numb) {
+      Roles.addUsersToRoles(userId, "doctor");
+    } else {
+      Roles.addUsersToRoles(userId, "user");
+    }
   }
 };

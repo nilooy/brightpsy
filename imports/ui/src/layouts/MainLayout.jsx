@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     closeSidebar();
   }, [location]);
 
-  if (!Meteor.userId()) return <Redirect to="/login" />;
+  if (!Meteor.userId()) return <Redirect to="/welcome" />;
 
   return (
     <div
