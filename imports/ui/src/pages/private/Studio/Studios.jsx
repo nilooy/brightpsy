@@ -4,6 +4,7 @@ import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { StudioContext } from "../../../context/StudioContext";
 import { Redirect, useHistory } from "react-router-dom";
+import { privatePath } from "../../../routes/privatePath";
 
 const ListStudio = () => {
   const { studios, selectedStudio, setSelectStudio } = useContext(
@@ -11,9 +12,9 @@ const ListStudio = () => {
   );
 
   return !studios.length ? (
-    <Redirect to="/studios/create" />
+    <Redirect to={privatePath.studioCreate} />
   ) : (
-    <Redirect to="/studios/edit" />
+    <Redirect to={privatePath.studioEdit} />
   );
 };
 

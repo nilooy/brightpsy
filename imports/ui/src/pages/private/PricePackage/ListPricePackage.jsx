@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { PricePackageContext } from "../../../context/PricePackageContext";
 import { StudioContext } from "../../../context/StudioContext";
+import { privatePath } from "../../../routes/privatePath";
 
 const ListPricePackage = () => {
   const history = useHistory();
@@ -20,7 +21,7 @@ const ListPricePackage = () => {
             Devi creare il studio prima di creare i pacchetti
           </h1>
           <Button
-            onClick={() => history.push("/studios/create")}
+            onClick={() => history.push(privatePath.studioCreate)}
             aria-label="Create Studio"
             aria-haspopup="true"
           >
@@ -36,7 +37,7 @@ const ListPricePackage = () => {
       <div className="flex justify-between mt-3">
         <PageTitle>Pacchetti</PageTitle>
         <Button
-          onClick={() => history.push("/pacchetti/create")}
+          onClick={() => history.push(privatePath.packagesCreate)}
           aria-label="Select Studio"
           aria-haspopup="true"
         >

@@ -15,7 +15,7 @@ export default function NavbarPublic(props) {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              <AiOutlineMenuUnfold className="text-white" />
+              <AiOutlineMenuUnfold color="black" />
             </button>
           </div>
           <div
@@ -28,7 +28,7 @@ export default function NavbarPublic(props) {
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <a
-                  href="/login"
+                  href="/welcome"
                   className=" text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                   type="button"
                   style={{ transition: "all .15s ease" }}
@@ -38,7 +38,7 @@ export default function NavbarPublic(props) {
               </li>
               <li className="flex items-center">
                 <a
-                  href="/create-account"
+                  href="/welcome/create-account"
                   className={
                     (props.transparent
                       ? "bg-white text-gray-800 active:bg-gray-100"

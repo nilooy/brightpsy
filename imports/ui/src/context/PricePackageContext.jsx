@@ -11,7 +11,7 @@ export const PricePackageProvider = ({ children }) => {
 
   const { pricePackages, isLoadingPricePackage } = useTracker(() => {
     const noDataAvailable = { pricePackages: [] };
-    if (!Meteor.user()) {
+    if (!Meteor.user() || !studios[0]) {
       return noDataAvailable;
     }
 

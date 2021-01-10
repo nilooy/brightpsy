@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { GithubIcon, TwitterIcon } from "../../assets/icons";
 import { Label, Input, Button, Badge } from "@windmill/react-ui";
+import { privatePath } from "../../routes/privatePath";
 
 const initialState = {
   email: "",
@@ -37,7 +38,8 @@ const Login = () => {
     });
   };
 
-  const redirectOnSuccess = () => state.success && <Redirect to="/dashboard" />;
+  const redirectOnSuccess = () =>
+    state.success && <Redirect to={privatePath.dashboard} />;
 
   return (
     <>

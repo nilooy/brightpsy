@@ -5,6 +5,7 @@ import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
 import { StudioContext } from "../../../context/StudioContext";
 import { createOrUpdatePricePackage } from "../../../../../api/services/pricePackages/methods/createPricePackage";
+import { privatePath } from "../../../routes/privatePath";
 
 const initialState = {
   title: "",
@@ -40,7 +41,7 @@ const CreatePricePackage = () => {
         }
         if (result) {
           console.log(result);
-          history.push("/pacchetti");
+          history.push(privatePath.packages);
         }
       }
     );
