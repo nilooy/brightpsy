@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 import Page404 from "../pages/public/Page404";
 import publicRoutes from "./public";
-import privateRoutes from "./private";
+import { privateRoutes } from "./private";
 import auth from "./auth";
 import AccessibleNavigationAnnouncer from "../components/shared/AccessibleNavigationAnnouncer";
 import { createMemoryHistory } from "history";

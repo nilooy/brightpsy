@@ -15,6 +15,7 @@ import { AutocompleteContext } from "../../../components/features/AutocompleteAd
 import { toast } from "react-toastify";
 import Tag from "../../../components/features/TagManager/Tag";
 import { TagContext } from "../../../components/features/TagManager/TagContext";
+import { privatePath } from "../../../routes/privatePath";
 
 const initialState = {
   name: "",
@@ -67,7 +68,7 @@ const CreateStudio = () => {
                 console.error(error);
               }
               toast("Studio created successfully", { autoClose: 1000 });
-              history.push("/studio/edit");
+              history.push(privatePath.studioEdit);
             });
           });
         }
@@ -211,7 +212,7 @@ const CreateStudio = () => {
               required
             />
           </Label>
-          <Label>
+          <Label className="mt-2">
             <span>Email</span>
             <Input
               className="mt-1 border"
@@ -221,7 +222,7 @@ const CreateStudio = () => {
               value={form.email}
             />
           </Label>
-          <Label>
+          <Label className="mt-2">
             <span>Tel</span>
             <Input
               type="number"

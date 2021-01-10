@@ -41,7 +41,7 @@ const EditStudio = () => {
   } = useContext(TagContext);
 
   useEffect(() => {
-    if (!studios) return;
+    if (!studios[0]) return;
 
     const {
       _id,
@@ -142,8 +142,8 @@ const EditStudio = () => {
     );
   };
 
-  const imageUrl = studios[0].imageUrl
-    ? studios[0].imageUrl
+  const imageUrl = studios?.[0]?.imageUrl
+    ? studios?.[0]?.imageUrl
     : form.image && URL.createObjectURL(form.image);
 
   return (
@@ -261,7 +261,7 @@ const EditStudio = () => {
             />
           </Label>
 
-          <Label>
+          <Label className="mt-2">
             <span>Email</span>
             <Input
               type="email"
@@ -272,7 +272,7 @@ const EditStudio = () => {
               value={form.email}
             />
           </Label>
-          <Label>
+          <Label className="mt-2">
             <span>Tel</span>
             <Input
               type="number"

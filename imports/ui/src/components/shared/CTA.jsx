@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { PricePackageContext } from "../../context/PricePackageContext";
 import { StudioContext } from "../../context/StudioContext";
 import { useTracker } from "meteor/react-meteor-data";
+import { privatePath } from "../../routes/privatePath";
 
 function CTA() {
   const { selectedStudio } = useContext(StudioContext);
@@ -16,7 +17,9 @@ function CTA() {
       className="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
       href="https://github.com/estevanmaito/windmill-dashboard-react"
       onClick={() =>
-        history.push(selectedStudio ? "/pacchetti/create" : "/studios/create")
+        history.push(
+          selectedStudio ? privatePath.packagesCreate : privatePath.studioCreate
+        )
       }
     >
       <div className="flex items-center">
