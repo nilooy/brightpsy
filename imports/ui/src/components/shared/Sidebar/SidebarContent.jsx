@@ -46,7 +46,7 @@ function SidebarContent() {
         )}
       </ul>
       <div className="px-6 my-6">
-        <Button onClick={() => history.push("/studio/create")}>
+        <Button onClick={() => history.push("/studios/create")}>
           Create Studio
           <span className="ml-2" aria-hidden="true">
             +

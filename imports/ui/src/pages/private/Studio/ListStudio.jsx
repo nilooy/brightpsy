@@ -17,7 +17,7 @@ const ListStudio = () => {
       <div className="flex justify-between mt-3 mb-2">
         <PageTitle>Studios</PageTitle>
         <Button
-          onClick={() => history.push("/studio/create")}
+          onClick={() => history.push("/studios/create")}
           aria-label="Create Studio"
           aria-haspopup="true"
         >

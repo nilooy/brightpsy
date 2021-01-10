@@ -20,7 +20,7 @@ const ListPricePackage = () => {
             Devi creare il studio prima di creare i pacchetti
           </h1>
           <Button
-            onClick={() => history.push("/studio/create")}
+            onClick={() => history.push("/studios/create")}
             aria-label="Create Studio"
             aria-haspopup="true"
           >

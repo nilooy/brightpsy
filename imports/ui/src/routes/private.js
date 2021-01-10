@@ -46,12 +46,12 @@ const privateRoutes = [
         component: Studios,
       },
       {
-        path: "/studio/create",
+        path: "/studios/create",
         exact: true,
         component: CreateStudio,
       },
       {
-        path: "/studio/edit",
+        path: "/studios/edit",
         exact: true,
         component: EditStudio,
       },
