@@ -1,4 +1,4 @@
-import { Studios } from "../../imports/api/services/studio/models/StudioCollection";
+/* import { Studios } from "../../imports/api/services/studio/models/StudioCollection";
 import faker, { company } from "faker/locale/it";
 
 const imageUrl =
@@ -23,3 +23,4 @@ const imageUrl =
     userId: faker.random.uuid(),
   })
 );
+ */

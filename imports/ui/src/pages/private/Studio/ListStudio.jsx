@@ -4,6 +4,7 @@ import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { StudioContext } from "../../../context/StudioContext";
 import { useHistory } from "react-router-dom";
+import { privatePath } from "../../../routes/private";
 
 const ListStudio = () => {
   const { studios, selectedStudio, setSelectStudio } = useContext(
@@ -17,7 +18,7 @@ const ListStudio = () => {
       <div className="flex justify-between mt-3 mb-2">
         <PageTitle>Studios</PageTitle>
         <Button
-          onClick={() => history.push("/studios/create")}
+          onClick={() => history.push(privatePath.studioCreate)}
           aria-label="Create Studio"
           aria-haspopup="true"
         >

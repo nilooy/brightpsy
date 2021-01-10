@@ -38,6 +38,7 @@ export const createOrUpdateStudio = new ValidatedMethod({
     email,
     tel,
   }) {
+    console.log("this.userId", this.userId);
     // for update we need studioId as id and addressId
     const studio = Studios.upsert(id, {
       $set: {
