@@ -6,14 +6,7 @@ export default function NavbarPublic(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-      <nav
-        className={
-          (props.transparent
-            ? "top-0 absolute z-50 w-full"
-            : "relative shadow-lg bg-white") +
-          " flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg"
-        }
-      >
+      <nav className="relative shadow-lg bg-white flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Logo link="/" />

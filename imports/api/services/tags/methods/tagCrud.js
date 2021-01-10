@@ -11,11 +11,12 @@ export const createOrUpdateTag = new ValidatedMethod({
   }).validator(),
   run({ id, text }) {
     // TODO: Not save tag if the tag exist because it's just for tag suggestion / autocomplete, shouldn't have duplicate
-    /*   const findTag = Tags.find({ tag: tag }).fetch();
+    const findTag = Tags.find({ text: text }).fetch()[0];
 
     console.log("findTag", findTag);
 
-    if (findTag.length) return findTag._id; */
+    if (findTag) return findTag._id;
+
     // for update we need studioId as id and addressId
     const savedTag = Tags.upsert(id, {
       $set: {

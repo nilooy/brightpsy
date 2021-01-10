@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
-import { Input, HelperText, Label, Button } from "@windmill/react-ui";
+import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
 import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
@@ -24,9 +24,14 @@ const initialState = {
   type: "personal",
   online: true,
   physical: false,
+  desc: "",
+  email: "",
+  tel: "",
 };
 
 const EditStudio = () => {
+  const uploadHiddenInput = useRef();
+
   const [form, setForm] = useState(initialState);
 
   const { studios } = useContext(StudioContext);
@@ -38,9 +43,17 @@ const EditStudio = () => {
   useEffect(() => {
     if (!studios) return;
 
-    console.log(studios);
-
-    const { _id, name, type, online, physical, tags } = studios[0];
+    const {
+      _id,
+      name,
+      type,
+      online,
+      physical,
+      tags,
+      desc,
+      email,
+      tel,
+    } = studios[0];
     setForm({
       ...form,
       _id,
@@ -48,6 +61,9 @@ const EditStudio = () => {
       type,
       online,
       physical,
+      desc,
+      email,
+      tel,
     });
 
     loadTag(tags);
@@ -72,24 +88,36 @@ const EditStudio = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, type, online, physical } = form;
+    const { name, type, online, physical, desc, email, tel } = form;
 
     createOrUpdateStudio.call(
-      { name, address, type, online, physical, tags },
+      {
+        studioId: form._id,
+        name,
+        address,
+        type,
+        online,
+        physical,
+        tags,
+        desc,
+        email,
+        tel,
+      },
       (error, result) => {
         if (error) {
           console.error(error);
         }
-        if (result) {
+        if (result && !form.image) {
           uploadImage((imageUrl) => {
             addPhoto.call({ studioId: result, imageUrl }, (error) => {
               if (error) {
                 console.error(error);
               }
-              toast("Studio created successfully");
-              history.push("/studio/edit");
+              toast("Studio updated", { autoClose: 2000 });
             });
           });
+        } else {
+          toast("Studio updated", { autoClose: 2000 });
         }
       }
     );
@@ -117,8 +145,6 @@ const EditStudio = () => {
   const imageUrl = studios[0].imageUrl
     ? studios[0].imageUrl
     : form.image && URL.createObjectURL(form.image);
-
-  console.log(imageUrl);
 
   return (
     <>
@@ -202,23 +228,69 @@ const EditStudio = () => {
 
           <Label className="mt-2">
             <span>Studio Images</span>
-            <div className="sm:w-2/4 w-full h-full m-auto">
+            <div className="w-64 h-full">
               <img src={imageUrl} alt="" />
             </div>
             <Input
+              ref={uploadHiddenInput}
               type="file"
-              className="mt-1 border"
+              className="mt-1 border hidden"
               name="image"
               onChange={handleChange}
-              required
             />
+            <Button
+              className="my-2"
+              onClick={() => uploadHiddenInput.current.click()}
+            >
+              Change Image
+            </Button>
             <HelperText className="p-3 text-gray-400">
               Upload image of your studio
             </HelperText>
           </Label>
-          <Button className="mt-4 float-right" type="submit">
-            Create
-          </Button>
+          <Label className="mt-3">
+            <span>Descrizione</span>
+            <Textarea
+              className="mt-2 border"
+              rows="3"
+              placeholder="Descrizione breve del studio"
+              name="desc"
+              onChange={handleChange}
+              value={form.desc}
+              required
+            />
+          </Label>
+
+          <Label>
+            <span>Email</span>
+            <Input
+              type="email"
+              className="mt-1 border"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+              value={form.email}
+            />
+          </Label>
+          <Label>
+            <span>Tel</span>
+            <Input
+              type="number"
+              className="mt-1 border"
+              placeholder="Tel"
+              name="tel"
+              onChange={handleChange}
+              value={form.tel}
+            />
+          </Label>
+          <div className="flex float-right">
+            <Button layout="outline" className="mt-4 mx-2" type="submit">
+              Preview
+            </Button>
+            <Button className="mt-4" type="submit">
+              Update
+            </Button>
+          </div>
         </form>
       </div>
     </>

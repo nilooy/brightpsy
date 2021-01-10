@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
-import { Input, HelperText, Label, Button } from "@windmill/react-ui";
+import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
 import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
@@ -22,6 +22,9 @@ const initialState = {
   type: "personal",
   online: true,
   physical: false,
+  desc: "",
+  email: "",
+  tel: "",
 };
 
 const CreateStudio = () => {
@@ -49,10 +52,10 @@ const CreateStudio = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, type, online, physical } = form;
+    const { name, type, online, physical, desc, email, tel } = form;
 
     createOrUpdateStudio.call(
-      { name, address, type, online, physical, tags },
+      { name, address, type, online, physical, tags, desc, email, tel },
       (error, result) => {
         if (error) {
           console.error(error);
@@ -63,7 +66,7 @@ const CreateStudio = () => {
               if (error) {
                 console.error(error);
               }
-              toast("Studio created successfully");
+              toast("Studio created successfully", { autoClose: 1000 });
               history.push("/studio/edit");
             });
           });
@@ -195,6 +198,39 @@ const CreateStudio = () => {
             <HelperText className="p-3 text-gray-400">
               Upload image of your studio
             </HelperText>
+          </Label>
+          <Label>
+            <span>Descrizione</span>
+            <Textarea
+              className="mt-2 border"
+              rows="3"
+              placeholder="Descrizione breve del studio"
+              name="desc"
+              onChange={handleChange}
+              value={form.desc}
+              required
+            />
+          </Label>
+          <Label>
+            <span>Email</span>
+            <Input
+              className="mt-1 border"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+              value={form.email}
+            />
+          </Label>
+          <Label>
+            <span>Tel</span>
+            <Input
+              type="number"
+              className="mt-1 border"
+              placeholder="Tel"
+              name="tel"
+              onChange={handleChange}
+              value={form.tel}
+            />
           </Label>
           <Button className="mt-4 float-right" type="submit">
             Create
