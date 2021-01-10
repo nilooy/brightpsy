@@ -28,9 +28,10 @@ div.ReactTags__selected span.ReactTags__tag {
   margin: 4px 5px;
   border-radius: 2px;
 }
-div.ReactTags__selected a.ReactTags__remove {
-  color: #aaa;
-  margin-left: 5px;
+
+.ReactTags__remove {
+  color: rgb(218, 90, 90);
+  margin-left: 10px;
   cursor: pointer;
 }
 

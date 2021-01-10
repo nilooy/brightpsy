@@ -21,6 +21,7 @@ export const TagProvider = ({ children }) => {
     removeTag.call({ id: tagToRemove._id });
 
     setTagState({
+      ...tagState,
       tags: tagState.tags.filter((tag, index) => index !== id),
     });
   };
@@ -28,12 +29,17 @@ export const TagProvider = ({ children }) => {
   const handleAddition = (tag) => {
     let { tags } = tagState;
 
+    const isDuplicate = !!tags.find((t) => t.text === tag.text);
+
+    if (isDuplicate) return;
+
     createOrUpdateTag.call({ text: tag.text }, (err, result) => {
       if (err) console.log(err);
 
       tag.id = result;
 
       setTagState({
+        ...tagState,
         tags: [...tags, tag],
       });
     });
@@ -41,7 +47,15 @@ export const TagProvider = ({ children }) => {
 
   const loadTag = (tags) => {
     setTagState({
+      ...tagState,
       tags,
+    });
+  };
+
+  const setSuggestion = (suggestions) => {
+    setTagState({
+      ...tagState,
+      suggestions,
     });
   };
 
@@ -51,6 +65,7 @@ export const TagProvider = ({ children }) => {
       handleDelete,
       handleAddition,
       loadTag,
+      setSuggestion,
     }),
     [tagState]
   );

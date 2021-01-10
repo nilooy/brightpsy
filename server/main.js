@@ -9,4 +9,6 @@ import "../imports/client";
 Meteor.startup(() => {
   // Create accepted roles
   createRoles(() => console.log("@=> Roles created"));
+  // import migration
+  import "./migration/migration1";
 });

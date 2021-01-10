@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { PricePackageCollection } from "../../../api/services/pricePackages/models/PricePackageCollection";
+import { PricePackages } from "../../../api/services/pricePackages/models/PricePackageCollection";
 import { useTracker } from "meteor/react-meteor-data";
 import { StudioContext } from "./StudioContext";
 
@@ -7,26 +7,24 @@ import { StudioContext } from "./StudioContext";
 export const PricePackageContext = React.createContext();
 
 export const PricePackageProvider = ({ children }) => {
-  const { selectedStudio } = useContext(StudioContext);
+  const { studios } = useContext(StudioContext);
 
   const { pricePackages, isLoadingPricePackage } = useTracker(() => {
     const noDataAvailable = { pricePackages: [] };
-    if (!Meteor.user() && !selectedStudio) {
+    if (!Meteor.user()) {
       return noDataAvailable;
     }
 
-    if (!selectedStudio) return { pricePackages: [] };
-
     const handler = Meteor.subscribe(
       "pricePackage.getByStudio",
-      selectedStudio?._id
+      studios?.[0]?._id
     );
 
     if (!handler.ready()) {
       return { ...noDataAvailable, isLoading: true };
     }
 
-    const pricePackages = PricePackageCollection.find().fetch();
+    const pricePackages = PricePackages.find().fetch();
 
     return { pricePackages };
   });

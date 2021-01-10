@@ -35,11 +35,6 @@ export const StudioProvider = ({ children }) => {
     setIsStudioMenuOpen(!isStudioMenuOpen);
   }
 
-  useEffect(() => {
-    if (studios && !selectedStudio)
-      setSelectedStudio(studios.find((s) => s.default));
-  }, [studios, selectedStudio]);
-
   const value = useMemo(
     () => ({
       studios,
