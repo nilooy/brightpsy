@@ -16,7 +16,7 @@ function CTA() {
       className="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
       href="https://github.com/estevanmaito/windmill-dashboard-react"
       onClick={() =>
-        history.push(selectedStudio ? "/pacchetti/create" : "/studio/create")
+        history.push(selectedStudio ? "/pacchetti/create" : "/studios/create")
       }
     >
       <div className="flex items-center">

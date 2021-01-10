@@ -11,9 +11,9 @@ const ListStudio = () => {
   );
 
   return !studios.length ? (
-    <Redirect to="/studio/create" />
+    <Redirect to="/studios/create" />
   ) : (
-    <Redirect to="/studio/edit" />
+    <Redirect to="/studios/edit" />
   );
 };
 
