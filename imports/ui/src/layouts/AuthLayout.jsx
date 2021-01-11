@@ -1,12 +1,13 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { GiMeditation } from "@react-icons/all-files/gi/GiMeditation";
+import { privatePath } from "../routes/privatePath";
 
 const ImageLight = "/img/login-office.jpeg";
 const ImageDark = "/img/login-office-dark.jpeg";
 
 const AuthLayout = ({ children }) => {
-  if (Meteor.userId()) return <Redirect to="/dashboard" />;
+  if (Meteor.userId()) return <Redirect to={privatePath.dashboard} />;
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">

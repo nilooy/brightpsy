@@ -54,10 +54,6 @@ function Header() {
         >
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
-        {/* <!-- Select Studio --> */}
-        <div className="relative sm:block hidden">
-          <SelectStudio />
-        </div>
 
         <div className="flex justify-center flex-1 lg:mr-32">
           <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">

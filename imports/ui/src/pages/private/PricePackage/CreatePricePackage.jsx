@@ -4,6 +4,8 @@ import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
 import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
 import { StudioContext } from "../../../context/StudioContext";
+import { createOrUpdatePricePackage } from "../../../../../api/services/pricePackages/methods/createPricePackage";
+import { privatePath } from "../../../routes/privatePath";
 
 const initialState = {
   title: "",
@@ -16,7 +18,7 @@ const initialState = {
 const CreatePricePackage = () => {
   const [form, setForm] = useState(initialState);
 
-  const { selectedStudio } = useContext(StudioContext);
+  const { studios } = useContext(StudioContext);
 
   const history = useHistory();
 
@@ -31,17 +33,15 @@ const CreatePricePackage = () => {
     e.preventDefault();
 
     const { title, desc, quantity, hours, cost } = form;
-
-    Meteor.call(
-      "pricePackage.create",
-      { title, desc, quantity, hours, cost, studioId: selectedStudio._id },
+    createOrUpdatePricePackage.call(
+      { title, desc, quantity, hours, cost, studioId: studios[0]._id },
       (error, result) => {
         if (error) {
           console.error(error);
         }
         if (result) {
           console.log(result);
-          history.push("/pacchetti");
+          history.push(privatePath.packages);
         }
       }
     );
