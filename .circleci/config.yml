@@ -44,7 +44,7 @@ jobs:
           command: meteor npm i
       - run:
           name: Deploy
-          command: npm run deploy-prod
+          command: npm run deploy-staging
       - slack/notify:
           event: fail
           mentions: "@here"
