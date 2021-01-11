@@ -18,7 +18,10 @@ shell-server@0.5.0            # Server-side component of the `meteor shell` comm
 static-html             # Define static page content in .html files
 react-meteor-data       # React higher-order component for reactively tracking Meteor data
 hexsprite:postcss
-accounts-password
+accounts-password@1.6.3
 alanning:roles
-server-render
+server-render@0.3.1
 communitypackages:react-router-ssr
+aldeed:collection2
+mdg:validated-method
+kschingiz:publish-lookups
