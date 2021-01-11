@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { FaFacebookSquare } from "@react-icons/all-files/fa/FaFacebookSquare";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
@@ -12,6 +12,7 @@ const initialState = {
   confirmPassword: "",
   privacyPolicy: false,
   identity_numb: "",
+  role: "",
 };
 
 function CreateAccount() {
@@ -23,8 +24,13 @@ function CreateAccount() {
     success: false,
   });
 
-  const { role } = useParams();
-  const isPsicologo = role === "psicologo";
+  const { role: roleParam } = useParams();
+
+  useEffect(() => {
+    setForm({ ...form, role: roleParam ? roleParam : "user" });
+  }, [roleParam]);
+
+  const isDoctor = form.role === "doctor";
 
   const handleChange = (e) => {
     setForm({
@@ -45,7 +51,7 @@ function CreateAccount() {
       return;
     }
 
-    if (isPsicologo && !form.identity_numb) {
+    if (isDoctor && !form.identity_numb) {
       setState({
         ...state,
         loading: false,
@@ -136,7 +142,7 @@ function CreateAccount() {
         </Label>
 
         {/* psicologo id */}
-        {isPsicologo && (
+        {isDoctor && (
           <Label className="p-2 border border-orange-300">
             <span>Alma ID *</span>
             <Input
@@ -171,10 +177,10 @@ function CreateAccount() {
         </Label>
 
         <p className="mt-2 text-center">
-          {!isPsicologo ? (
+          {!isDoctor ? (
             <Link
               className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-              to="/create-account/psicologo"
+              to="/create-account/doctor"
             >
               Clicca qui se sei un psicologo
             </Link>
@@ -196,7 +202,7 @@ function CreateAccount() {
       <hr className="my-4" />
 
       {/* Social block */}
-      {!isPsicologo && (
+      {!isDoctor && (
         <>
           <Button block className="my-2" layout="outline">
             <FcGoogle className="w-4 h-4 mr-2" aria-hidden="true" />

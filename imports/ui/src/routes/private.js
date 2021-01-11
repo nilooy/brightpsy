@@ -1,21 +1,27 @@
-import { Fragment, lazy } from "react";
+import { Fragment } from "react";
 
-// use lazy for better code splitting, a.k.a. load faster
 import MainLayout from "../layouts/MainLayout";
-import CreateStudio from "../pages/private/Studio/CreateStudio";
-import ListStudio from "../pages/private/Studio/ListStudio";
 import CreatePricePackage from "../pages/private/PricePackage/CreatePricePackage";
 import ListPricePackage from "../pages/private/PricePackage/ListPricePackage";
 import Dashboard from "../pages/private/Dashboard";
 import Profile from "../pages/private/Profile";
+import Studios from "../pages/private/Studio/Studios";
+import CreateStudio from "../pages/private/Studio/CreateStudio";
+import EditStudio from "../pages/private/Studio/EditStudio";
 import ThemedSuspense from "../components/shared/ThemedSuspense";
+import {
+  privatePath,
+  privatePathUser,
+  rootPath,
+  rootPathUser,
+} from "./privatePath";
 
-const privateRoutes = [
+export const privateRoutes = [
   {
     layout: Fragment,
     subRoutes: [
       {
-        path: "/app",
+        path: rootPath,
         exact: true,
         component: ThemedSuspense, // preloader TODO
       },
@@ -25,37 +31,42 @@ const privateRoutes = [
     layout: MainLayout,
     subRoutes: [
       {
-        path: "/app",
+        path: rootPath,
         exact: true,
         component: ThemedSuspense,
       },
       {
-        path: "/dashboard",
+        path: privatePath.dashboard,
         exact: true,
         component: Dashboard,
       },
       {
-        path: "/profile",
+        path: privatePath.profile,
         exact: true,
         component: Profile,
       },
       {
-        path: "/studios",
+        path: privatePath.studio,
         exact: true,
-        component: ListStudio,
+        component: Studios,
       },
       {
-        path: "/studio/create",
+        path: privatePath.studioCreate,
         exact: true,
         component: CreateStudio,
       },
       {
-        path: "/pacchetti",
+        path: privatePath.studioEdit,
+        exact: true,
+        component: EditStudio,
+      },
+      {
+        path: privatePath.packages,
         exact: true,
         component: ListPricePackage,
       },
       {
-        path: "/pacchetti/create",
+        path: privatePath.packagesCreate,
         exact: true,
         component: CreatePricePackage,
       },
@@ -63,4 +74,35 @@ const privateRoutes = [
   },
 ];
 
-export default privateRoutes;
+export const privateRoutesUser = [
+  {
+    layout: Fragment,
+    subRoutes: [
+      {
+        path: rootPathUser,
+        exact: true,
+        component: ThemedSuspense, // preloader TODO
+      },
+    ],
+  },
+  {
+    layout: MainLayout,
+    subRoutes: [
+      {
+        path: rootPathUser,
+        exact: true,
+        component: ThemedSuspense,
+      },
+      {
+        path: privatePathUser.dashboard,
+        exact: true,
+        component: Dashboard,
+      },
+      {
+        path: privatePathUser.profile,
+        exact: true,
+        component: Profile,
+      },
+    ],
+  },
+];

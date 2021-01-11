@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { GiMeditation } from "@react-icons/all-files/gi/GiMeditation";
 import { useHistory } from "react-router-dom";
+import { privatePath } from "../../routes/privatePath";
 
 function ThemedSuspense() {
   const history = useHistory();
 
   useEffect(() => {
     if (Meteor.useId) {
-      history.push("/dashboard");
+      history.push(privatePath.dashboard);
     } else {
       setTimeout(() => {
-        history.push("/dashboard");
+        history.push(privatePath.dashboard);
       }, 1500);
     }
   }, []);
