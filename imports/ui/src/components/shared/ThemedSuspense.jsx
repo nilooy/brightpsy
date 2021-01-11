@@ -12,7 +12,7 @@ function ThemedSuspense() {
     } else {
       setTimeout(() => {
         history.push(privatePath.dashboard);
-      }, 1500);
+      }, 1400);
     }
   }, []);
 
