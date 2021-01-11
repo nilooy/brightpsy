@@ -11,7 +11,7 @@
   },
   "meteor": {
     "mainModule": {
-      "client": "imports/main.js",
+      "client": "imports/client.js",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
@@ -27,8 +27,11 @@
     "firebase": "^8.2.0",
     "imports": "^1.0.0",
     "meteor-node-stubs": "^1.0.1",
+    "postcss-import": "^14.0.0",
     "react": "^16.13.1",
     "react-chartjs-2": "2.9.0",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^3.0.2",
     "react-dom": "^16.13.1",
     "react-focus-lock": "2.4.0",
     "react-helmet": "^6.1.0",
@@ -36,7 +39,11 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-ssr-prepass": "^1.2.1",
-    "react-transition-group": "4.4.1"
+    "react-tag-input": "^6.5.2",
+    "react-toastify": "^6.2.0",
+    "react-transition-group": "4.4.1",
+    "simpl-schema": "^1.10.2",
+    "uninstall": "0.0.0"
   },
   "devDependencies": {
     "mup": "^1.5.3",
