@@ -9,7 +9,7 @@
     "deploy": "cd .deploy && mup deploy --config=mup-local.js",
     "deploy-prod": "cd .deploy && mup deploy",
     "predeploy-staging": "cd .deploy && mup setup --config=mup-staging.js",
-    "deploy-staging": "mup deploy --config=mup-staging.js"
+    "deploy-staging": "cd .deploy && mup deploy --config=mup-staging.js"
   },
   "meteor": {
     "mainModule": {
