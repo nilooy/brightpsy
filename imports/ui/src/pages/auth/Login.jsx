@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { GithubIcon, TwitterIcon } from "../../assets/icons";
 import { Label, Input, Button, Badge } from "@windmill/react-ui";
 import { privatePath } from "../../routes/privatePath";
+import SocialAuth from "./SocialAuth";
 
 const initialState = {
   email: "",
@@ -94,14 +95,7 @@ const Login = () => {
 
       <hr className="my-8" />
 
-      <Button block layout="outline">
-        <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-        Github
-      </Button>
-      <Button className="mt-4" block layout="outline">
-        <TwitterIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-        Twitter
-      </Button>
+      <SocialAuth />
 
       <p className="mt-4">
         <Link
