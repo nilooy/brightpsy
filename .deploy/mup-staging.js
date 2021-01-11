@@ -2,7 +2,7 @@ module.exports = {
   servers: {
     one: {
       // TODO: set host address, username, and authentication method
-      host: "vps-1c1da5e1.vps.ovh.net",
+      host: "5.196.4.90",
       username: "ubuntu",
       // password: 'server-password'
       // or neither for authenticate from ssh-agent
