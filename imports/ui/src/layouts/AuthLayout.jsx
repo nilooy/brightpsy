@@ -28,9 +28,9 @@ const AuthLayout = ({ children }) => {
             />
             {/* Title */}
             <div className="absolute top-1/2 w-full flex justify-center">
-              <GiMeditation className="text-purple-700 text-6xl animate-pulse" />
+              <GiMeditation className="text-blue-700 text-5xl animate-pulse" />
               <p className="text-5xl italic font-bold text-gray-600">
-                <span className="text-blue-700 text-6xl">Bright</span>Psi
+                Bright<span className="text-blue-700 text-5xl">Psi</span>
               </p>
             </div>
             {/* Title */}

@@ -16,6 +16,9 @@ jobs:
       name: node/default
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "34:74:ca:40:db:99:a7:af:db:45:ff:ab:71:5f:dd:db"
       - slack/notify:
           custom: |
             {

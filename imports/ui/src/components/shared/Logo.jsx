@@ -7,8 +7,8 @@ const Logo = ({ link }) => {
       className="flex ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
       href={link}
     >
-      <GiMeditation className="text-purple-700 text-2xl ml-2" />
-      Psicologi
+      <GiMeditation className="text-blue-700 text-2xl" />
+      Bright<span className="text-blue-700 text-xl">Psi</span>
     </a>
   );
 };
