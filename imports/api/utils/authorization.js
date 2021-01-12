@@ -1,4 +1,4 @@
-const roles = ["admin", "doctor", "user"];
+export const roles = ["admin", "doctor", "user"];
 
 export const createRoles = (callback) => {
   roles.forEach((role) => Roles.createRole(role, { unlessExists: true }));

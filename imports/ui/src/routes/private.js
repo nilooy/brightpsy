@@ -9,12 +9,7 @@ import Studios from "../pages/private/Studio/Studios";
 import CreateStudio from "../pages/private/Studio/CreateStudio";
 import EditStudio from "../pages/private/Studio/EditStudio";
 import ThemedSuspense from "../components/shared/ThemedSuspense";
-import {
-  privatePath,
-  privatePathUser,
-  rootPath,
-  rootPathUser,
-} from "./privatePath";
+import { privatePath, rootPath, rootPathUser } from "./privatePath";
 
 export const privateRoutes = [
   {
@@ -89,17 +84,17 @@ export const privateRoutesUser = [
     layout: MainLayout,
     subRoutes: [
       {
-        path: rootPathUser,
+        path: rootPath,
         exact: true,
         component: ThemedSuspense,
       },
       {
-        path: privatePathUser.dashboard,
+        path: privatePath.dashboard,
         exact: true,
         component: Dashboard,
       },
       {
-        path: privatePathUser.profile,
+        path: privatePath.profile,
         exact: true,
         component: Profile,
       },

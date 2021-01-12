@@ -1,4 +1,5 @@
-// Support for playing D&D: Roll 3d6 for dexterity.
+import { roles } from "../imports/api/utils/authorization";
+
 Accounts.onCreateUser((options, user) => {
   if (user.services.google) {
     const data = user.services.google;
@@ -7,6 +8,8 @@ Accounts.onCreateUser((options, user) => {
       lastName: data?.family_name,
       imageUrl: data?.picture,
     };
+
+    user.username = data?.email; // to avoid duplicate email
   }
 
   if (user.services.facebook) {
@@ -17,6 +20,13 @@ Accounts.onCreateUser((options, user) => {
       lastName: data?.last_name,
       imageUrl: data?.picture?.data?.url,
     };
+
+    user.username = data?.email; // to avoid duplicate email
+  }
+
+  if (!Roles.userIsInRole(user._id, roles)) {
+    user.profile.notAbleToBeDoctor = true;
+    Roles.addUsersToRoles(user._id, "user");
   }
 
   return user;
