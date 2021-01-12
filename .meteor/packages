@@ -25,3 +25,6 @@ communitypackages:react-router-ssr
 aldeed:collection2
 mdg:validated-method
 kschingiz:publish-lookups
+service-configuration
+accounts-facebook
+accounts-google

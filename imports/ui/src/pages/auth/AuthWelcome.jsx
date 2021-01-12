@@ -9,7 +9,7 @@ function AuthWelcome() {
       style={{ height: "65vh" }}
     >
       <Link
-        class="text-blue-500 bg-transparent border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-3"
+        className="text-blue-500 bg-transparent border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-3"
         style={{ transition: "all .15s ease" }}
         to="/create-account/doctor"
       >
@@ -17,7 +17,7 @@ function AuthWelcome() {
       </Link>
 
       <Link
-        class="text-blue-500 bg-transparent border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
+        className="text-blue-500 bg-transparent border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
         style={{ transition: "all .15s ease" }}
         to="/create-account"
       >
@@ -25,7 +25,7 @@ function AuthWelcome() {
       </Link>
 
       <Link
-        class="mt-5 text-gray-500 bg-transparent border border-solid border-gray-500 hover:bg-gray-500 hover:text-white active:bg-gray-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
+        className="mt-5 text-gray-500 bg-transparent border border-solid border-gray-500 hover:bg-gray-500 hover:text-white active:bg-gray-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
         style={{ transition: "all .15s ease" }}
         to="/login"
       >
