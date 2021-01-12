@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 import Page404 from "../pages/public/Page404";
 import publicRoutes from "./public";
-import { privateRoutes } from "./private";
+import { privateRoutes, privateRoutesUser } from "./private";
 import auth from "./auth";
 import AccessibleNavigationAnnouncer from "../components/shared/AccessibleNavigationAnnouncer";
-import { createMemoryHistory } from "history";
+import { SecurityContext } from "../context/SecurityContext";
 
 const Routes = () => {
-  const routes = [...publicRoutes, ...privateRoutes, ...auth];
+  const { isDoctor } = useContext(SecurityContext);
+  const privateRoutesBasedOnRole = isDoctor ? privateRoutes : privateRoutesUser;
 
-  const history = createMemoryHistory();
+  console.log("isDoctor", isDoctor);
+
+  const routes = [...publicRoutes, ...privateRoutesBasedOnRole, ...auth];
 
   return (
     <>

@@ -23,5 +23,3 @@ ServiceConfiguration.configurations.upsert(
     },
   }
 );
-
-console.log("Meteor.settings.google.clientId", Meteor.settings.google.secret);

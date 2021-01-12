@@ -1,41 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebookSquare } from "@react-icons/all-files/fa/FaFacebookSquare";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
 
-import { Button } from "@windmill/react-ui";
-import { useHistory } from "react-router-dom";
+import { Button, Badge } from "@windmill/react-ui";
+import { useHistory, useParams } from "react-router-dom";
 import { privatePath } from "../../routes/privatePath";
 
 const SocialAuth = () => {
   const history = useHistory();
+
+  const { role } = useParams();
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleGoogle = () => {
     Meteor.loginWithGoogle(
       {
         requestPermissions: ["email", "profile"],
       },
-      (err, data) => {
+      (err) => {
         if (err) {
-          console.log(err);
+          setErrorMsg(err.reason);
         } else {
-          history.push(privatePath.dashboard);
+          addRole();
         }
       }
     );
   };
   const handleFacebook = () => {
-    console.log("facebook");
     Meteor.loginWithFacebook(
       {
         requestPermissions: ["public_profile", "email"],
       },
-      (err, data) => {
+      (err) => {
         if (err) {
-          console.log(err);
+          setErrorMsg(err.reason);
         } else {
+          addRole();
         }
       }
     );
+  };
+
+  const addRole = () => {
+    if (role === "doctor") {
+      Meteor.call("auth.updateRole", {}, (error) => {
+        console.log(error);
+        history.push(privatePath.dashboard);
+      });
+    }
+    history.push(privatePath.dashboard);
   };
 
   return (
@@ -51,6 +65,11 @@ const SocialAuth = () => {
         />
         With Facebook
       </Button>
+      {errorMsg && (
+        <div className="text-center mt-3">
+          <Badge type="danger">{errorMsg}</Badge>
+        </div>
+      )}
     </>
   );
 };

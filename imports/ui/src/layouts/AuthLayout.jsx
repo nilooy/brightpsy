@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { GiMeditation } from "@react-icons/all-files/gi/GiMeditation";
 import { privatePath } from "../routes/privatePath";
+import Logo from "../components/shared/Logo";
 
 const ImageLight = "/img/login-office.jpeg";
 const ImageDark = "/img/login-office-dark.jpeg";
@@ -28,10 +29,7 @@ const AuthLayout = ({ children }) => {
             />
             {/* Title */}
             <div className="absolute top-1/2 w-full flex justify-center">
-              <GiMeditation className="text-blue-700 text-5xl animate-pulse" />
-              <p className="text-5xl italic font-bold text-gray-600">
-                Bright<span className="text-blue-700 text-5xl">Psi</span>
-              </p>
+              <Logo />
             </div>
             {/* Title */}
           </div>
