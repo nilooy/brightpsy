@@ -59,4 +59,7 @@ jobs:
 workflows:
   run-ci:
     jobs:
-      - prepare
+      - prepare:
+          filters:
+            branches:
+              only: dev
