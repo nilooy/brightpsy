@@ -62,4 +62,4 @@ workflows:
       - prepare:
           filters:
             branches:
-              only: dev
+              only: staging
