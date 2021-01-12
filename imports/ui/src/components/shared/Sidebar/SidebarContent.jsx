@@ -1,11 +1,13 @@
-import React from "react";
-import routes from "../../../routes/sidebar";
+import React, { useContext } from "react";
+import sidebar from "../../../routes/sidebar";
+import sidebarUser from "../../../routes/sidebarUser";
 import { NavLink, Route, useHistory } from "react-router-dom";
 import * as Icons from "../../../assets/icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import { Button } from "@windmill/react-ui";
 import Logo from "../Logo";
 import { privatePath } from "../../../routes/privatePath";
+import { SecurityContext } from "../../../context/SecurityContext";
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -14,6 +16,11 @@ function Icon({ icon, ...props }) {
 
 function SidebarContent() {
   const history = useHistory();
+
+  const { isDoctor } = useContext(SecurityContext);
+
+  const routes = isDoctor ? sidebar : sidebarUser;
+
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <Logo link="/app" />
