@@ -25,6 +25,7 @@ Accounts.onCreateUser((options, user) => {
   }
 
   if (!Roles.userIsInRole(user._id, roles)) {
+    user.profile.notAbleToBeDoctor = true;
     Roles.addUsersToRoles(user._id, "user");
   }
 

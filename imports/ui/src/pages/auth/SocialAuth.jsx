@@ -46,7 +46,7 @@ const SocialAuth = () => {
     if (role === "doctor") {
       Meteor.call("auth.updateRole", {}, (error) => {
         console.log(error);
-        // history.push(privatePath.dashboard);
+        history.push(privatePath.dashboard);
       });
     }
     history.push(privatePath.dashboard);
