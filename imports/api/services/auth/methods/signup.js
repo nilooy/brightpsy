@@ -46,3 +46,11 @@ Meteor.methods({
     addUserRoles(userId, role, identity_numb);
   },
 });
+
+Meteor.methods({
+  "auth.updateRole"() {
+    if (Meteor.userId()) {
+      return Roles.setUserRoles(Meteor.userId(), "doctor");
+    }
+  },
+});
