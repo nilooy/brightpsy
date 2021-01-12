@@ -53,8 +53,6 @@ Meteor.methods({
 
     const user = Meteor.user();
 
-    console.log(user.profile);
-
     if (!user.profile.notAbleToBeDoctor) {
       Meteor.users.update(
         { _id: Meteor.userId() },
