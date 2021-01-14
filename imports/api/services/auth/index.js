@@ -1,6 +1,7 @@
 /* Methods */
 
 import "./methods/signup";
+import "./methods/addProfilePic";
 
 /* Publications */
 
