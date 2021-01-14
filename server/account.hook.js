@@ -1,6 +1,10 @@
 import { roles } from "../imports/api/utils/authorization";
 
 Accounts.onCreateUser((options, user) => {
+  if (user.services.password) {
+    user.profile = options.profile;
+  }
+
   if (user.services.google) {
     const data = user.services.google;
     user.profile = {
@@ -10,6 +14,7 @@ Accounts.onCreateUser((options, user) => {
     };
 
     user.username = data?.email; // to avoid duplicate email
+    Roles.addUsersToRoles(user._id, "user");
   }
 
   if (user.services.facebook) {
@@ -22,10 +27,6 @@ Accounts.onCreateUser((options, user) => {
     };
 
     user.username = data?.email; // to avoid duplicate email
-  }
-
-  if (!Roles.userIsInRole(user._id, roles)) {
-    user.profile.notAbleToBeDoctor = true;
     Roles.addUsersToRoles(user._id, "user");
   }
 

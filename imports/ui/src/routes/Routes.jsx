@@ -11,8 +11,6 @@ const Routes = () => {
   const { isDoctor } = useContext(SecurityContext);
   const privateRoutesBasedOnRole = isDoctor ? privateRoutes : privateRoutesUser;
 
-  console.log("isDoctor", isDoctor);
-
   const routes = [...publicRoutes, ...privateRoutesBasedOnRole, ...auth];
 
   return (
