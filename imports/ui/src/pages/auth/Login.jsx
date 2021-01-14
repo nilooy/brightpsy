@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import { GithubIcon, TwitterIcon } from "../../assets/icons";
 import { Label, Input, Button, Badge } from "@windmill/react-ui";
 import { privatePath } from "../../routes/privatePath";
@@ -12,6 +12,9 @@ const initialState = {
 
 const Login = () => {
   const [form, setForm] = useState(initialState);
+
+  const { role } = useParams();
+  const history = useHistory();
 
   const [state, setState] = useState({
     loading: false,
@@ -93,6 +96,17 @@ const Login = () => {
         </Button>
       </form>
 
+      {!role && (
+        <Button
+          onClick={() => history.push("/login/doctor")}
+          className="mt-4 bg-gray-100"
+          block
+          layout="outline"
+        >
+          Sei un psicologo?
+        </Button>
+      )}
+
       <hr className="my-8" />
 
       <SocialAuth />
@@ -109,7 +123,7 @@ const Login = () => {
       <p className="mt-1">
         <Link
           className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-          to="/create-account"
+          to={!role ? "/create-account" : "/create-account/doctor"}
         >
           Create account
         </Link>

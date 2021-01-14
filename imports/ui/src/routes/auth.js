@@ -20,6 +20,11 @@ const authRoutes = [
         component: Login,
       },
       {
+        path: "/login/:role",
+        exact: true,
+        component: Login,
+      },
+      {
         path: "/create-account",
         exact: true,
         component: CreateAccount,

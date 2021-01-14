@@ -10,7 +10,6 @@ function Profile() {
   const fileInput = useRef();
 
   const [file, setFile] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState("");
 
   const user = useTracker(() => Meteor.user());
 
