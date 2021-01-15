@@ -1,30 +1,14 @@
 import React from "react";
-import { Studios } from "../../../../api/services/studio/models/StudioCollection";
-import { useTracker } from "meteor/react-meteor-data";
 import PageTitle from "../../components/shared/Typography/PageTitle";
-import { Card, CardBody, Button } from "@windmill/react-ui";
 import StudioCard from "../../components/shared/Cards/StudioCard";
 import { useHistory } from "react-router-dom";
 import { privatePath } from "../../routes/privatePath";
+import { useStudios } from "../../apiHooks/studio";
 
 const UserSearch = () => {
   const history = useHistory();
 
-  const { studios, isLoadingStudio } = useTracker(() => {
-    const noDataAvailable = { studios: [] };
-    if (!Meteor.user()) {
-      return noDataAvailable;
-    }
-    const handler = Meteor.subscribe("studios.public.getAll");
-
-    if (!handler.ready()) {
-      return { ...noDataAvailable, isLoading: true };
-    }
-
-    const studios = Studios.find().fetch();
-
-    return { studios };
-  });
+  const { data: studios } = useStudios();
 
   return (
     <>

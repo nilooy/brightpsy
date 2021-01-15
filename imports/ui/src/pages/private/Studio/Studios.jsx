@@ -1,17 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import PageTitle from "../../../components/shared/Typography/PageTitle";
-
-import { Card, CardBody, Button } from "@windmill/react-ui";
-import { StudioContext } from "../../../context/StudioContext";
-import { Redirect, useHistory } from "react-router-dom";
+import React from "react";
+import { Redirect } from "react-router-dom";
+import { useStudioByUser } from "../../../apiHooks/studio";
 import { privatePath } from "../../../routes/privatePath";
 
 const ListStudio = () => {
-  const { studios, selectedStudio, setSelectStudio } = useContext(
-    StudioContext
-  );
+  const { data: studio } = useStudioByUser();
 
-  return !studios.length ? (
+  return !studio ? (
     <Redirect to={privatePath.studioCreate} />
   ) : (
     <Redirect to={privatePath.studioEdit} />

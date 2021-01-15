@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { useHistory } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
-import { PricePackageContext } from "../../../context/PricePackageContext";
-import { StudioContext } from "../../../context/StudioContext";
 import { privatePath } from "../../../routes/privatePath";
+import { usePricePackages } from "../../../apiHooks/pricePackage";
+import { useStudioByUser } from "../../../apiHooks/studio";
 
 const ListPricePackage = () => {
   const history = useHistory();
 
-  const { pricePackages } = useContext(PricePackageContext);
-  const { studios } = useContext(StudioContext);
+  const { data: studio } = useStudioByUser();
+  const { data: pricePackages } = usePricePackages(studio?._id);
 
-  if (!studios.length) {
+  if (!studio) {
     return (
       <div className="mt-3">
         <PageTitle>Pacchetti</PageTitle>

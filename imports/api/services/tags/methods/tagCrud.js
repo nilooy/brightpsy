@@ -37,3 +37,11 @@ export const removeTag = new ValidatedMethod({
     Tags.remove({ _id: id, userId: this.userId });
   },
 });
+
+//Get tag
+
+Meteor.methods({
+  "tag.getAll"() {
+    return Tags.find({}).fetch();
+  },
+});

@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { PricePackageContext } from "../../context/PricePackageContext";
-import { StudioContext } from "../../context/StudioContext";
 import { useTracker } from "meteor/react-meteor-data";
 import { privatePath } from "../../routes/privatePath";
+import { useStudioByUser } from "../../apiHooks/studio";
 
 function CTA() {
-  const { selectedStudio } = useContext(StudioContext);
-  const { pricePackages } = useContext(PricePackageContext);
+  const { data: studio } = useStudioByUser();
   const user = useTracker(() => Meteor.user());
 
   const history = useHistory();
@@ -18,7 +16,7 @@ function CTA() {
       href="https://github.com/estevanmaito/windmill-dashboard-react"
       onClick={() =>
         history.push(
-          selectedStudio ? privatePath.packagesCreate : privatePath.studioCreate
+          studio ? privatePath.packagesCreate : privatePath.studioCreate
         )
       }
     >
@@ -28,7 +26,7 @@ function CTA() {
         </svg>
         <span>Benvenuto {user?.profile?.firstName} a Studio Psicologi</span>
       </div>
-      {selectedStudio ? (
+      {studio ? (
         <span>
           Crea Paccetti{" "}
           <span dangerouslySetInnerHTML={{ __html: "&RightArrow;" }}></span>

@@ -1,4 +1,5 @@
 /* Methods */
+import "./methods/readPricePackage";
 
 /* Publications */
 
