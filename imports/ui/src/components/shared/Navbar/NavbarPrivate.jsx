@@ -19,7 +19,6 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
-import SelectStudio from "../SelectStudio";
 import { useTracker } from "meteor/react-meteor-data";
 
 function Header() {
@@ -62,7 +61,7 @@ function Header() {
             </div>
             <Input
               className="pl-8 text-gray-700"
-              placeholder="Search for projects"
+              placeholder="Di a noi il tuo problema"
               aria-label="Search"
             />
           </div>

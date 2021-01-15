@@ -7,14 +7,14 @@ export default {
     danger: "bg-red-50 text-red-900 dark:bg-red-600 dark:text-white",
     warning: "bg-yellow-50 text-yellow-900 dark:bg-yellow-600 dark:text-white",
     neutral: "bg-gray-50 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-    info: "bg-blue-50 text-blue-900 dark:bg-blue-600 dark:text-white",
+    info: "bg-green-50 text-green-900 dark:bg-green-600 dark:text-white",
     icon: {
       base: "h-5 w-5",
       success: "text-green-400 dark:text-green-300",
       danger: "text-red-400 dark:text-red-300",
       warning: "text-yellow-400 dark:text-yellow-100",
       neutral: "text-gray-400 dark:text-gray-500",
-      info: "text-blue-400 dark:text-blue-300",
+      info: "text-green-400 dark:text-green-300",
     },
   },
   // Pagination
@@ -99,7 +99,7 @@ export default {
     danger: "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700",
     warning: "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600",
     neutral: "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700",
-    primary: "text-blue-700 bg-blue-100 dark:text-white dark:bg-blue-600",
+    primary: "text-green-700 bg-green-100 dark:text-white dark:bg-green-600",
   },
   // Backdrop
   backdrop: {
@@ -111,7 +111,7 @@ export default {
     base:
       "block w-full text-sm dark:text-gray-300 form-textarea focus:outline-none",
     active:
-      "focus:border-blue-400 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 dark:focus:shadow-outline-gray focus:shadow-outline-blue",
+      "focus:border-green-400 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 dark:focus:shadow-outline-gray focus:shadow-outline-green",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
     valid:
       "border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:shadow-outline-green dark:focus:shadow-outline-green",
@@ -122,7 +122,7 @@ export default {
   select: {
     base: "block w-full text-sm dark:text-gray-300 focus:outline-none",
     active:
-      "focus:border-blue-400 dark:border-gray-600 dark:bg-gray-700 focus:shadow-outline-blue dark:focus:shadow-outline-gray dark:focus:border-gray-600",
+      "focus:border-green-400 dark:border-gray-600 dark:bg-gray-700 focus:shadow-outline-green dark:focus:shadow-outline-gray dark:focus:border-gray-600",
     select: "form-select leading-5",
     multiple: "form-multiselect",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
@@ -143,16 +143,16 @@ export default {
     base:
       "block w-full text-sm focus:outline-none dark:text-gray-300 form-input leading-5",
     active:
-      "focus:border-blue-400 dark:border-gray-600 focus:shadow-outline-blue dark:focus:border-gray-600 dark:focus:shadow-outline-gray dark:bg-gray-700",
+      "focus:border-green-400 dark:border-gray-600 focus:shadow-outline-green dark:focus:border-gray-600 dark:focus:shadow-outline-gray dark:bg-gray-700",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
     valid:
       "border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:shadow-outline-green dark:focus:shadow-outline-green",
     invalid:
       "border-red-600 dark:bg-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:shadow-outline-red dark:focus:shadow-outline-red",
     radio:
-      "text-blue-600 form-radio focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray",
+      "text-green-600 form-radio focus:border-green-400 focus:outline-none focus:shadow-outline-green dark:focus:shadow-outline-gray",
     checkbox:
-      "text-blue-600 form-checkbox focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray",
+      "text-green-600 form-checkbox focus:border-green-400 focus:outline-none focus:shadow-outline-green dark:focus:shadow-outline-gray",
   },
   // HelperText
   helperText: {
@@ -196,8 +196,9 @@ export default {
       right: "ml-2 -mr-1",
     },
     primary: {
-      base: "text-white bg-blue-600 border border-transparent",
-      active: "active:bg-blue-600 hover:bg-blue-700 focus:shadow-outline-blue",
+      base: "text-white bg-green-600 border border-transparent",
+      active:
+        "active:bg-green-600 hover:bg-green-700 focus:shadow-outline-green",
       disabled: "opacity-50 cursor-not-allowed",
     },
     outline: {

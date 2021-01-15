@@ -10,6 +10,9 @@ import CreateStudio from "../pages/private/Studio/CreateStudio";
 import EditStudio from "../pages/private/Studio/EditStudio";
 import ThemedSuspense from "../components/shared/ThemedSuspense";
 import { privatePath, rootPath, rootPathUser } from "./privatePath";
+import UserDashboard from "../pages/private/UserDashboard";
+import UserSearch from "../pages/private/UserSearch";
+import UserSingleStudio from "../pages/private/UserSingleStudio";
 
 export const privateRoutes = [
   {
@@ -91,7 +94,17 @@ export const privateRoutesUser = [
       {
         path: privatePath.dashboard,
         exact: true,
-        component: Dashboard,
+        component: UserDashboard,
+      },
+      {
+        path: privatePath.search,
+        exact: true,
+        component: UserSearch,
+      },
+      {
+        path: privatePath.studioById(),
+        exact: true,
+        component: UserSingleStudio,
       },
       {
         path: privatePath.profile,
