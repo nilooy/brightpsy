@@ -18,3 +18,5 @@ Meteor.startup(() => {
   // import migration
   // import "./migration";
 });
+
+process.on("unhandledRejection", (reason, promise) => {});

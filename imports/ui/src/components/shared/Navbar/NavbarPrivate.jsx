@@ -19,7 +19,6 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
-import SelectStudio from "../SelectStudio";
 import { useTracker } from "meteor/react-meteor-data";
 
 function Header() {

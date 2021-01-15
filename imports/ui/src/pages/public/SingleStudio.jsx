@@ -4,26 +4,15 @@ import { Studios } from "../../../../api/services/studio/models/StudioCollection
 import { PricePackages } from "../../../../api/services/pricePackages/models/PricePackageCollection";
 import { useHistory, useParams } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
+import { useStudioById } from "../../apiHooks/studio";
+import { usePricePackages } from "../../apiHooks/pricePackage";
 
 const SingleStudio = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { studio, pricePackages, isLoadingStudio } = useTracker(() => {
-    const noDataAvailable = { studio: [] };
-
-    const handler = Meteor.subscribe("studios.getById", id);
-
-    if (!handler.ready()) {
-      return { ...noDataAvailable, isLoading: true };
-    }
-
-    const studio = Studios.find().fetch()[0];
-
-    const pricePackages = PricePackages.find().fetch();
-
-    return { studio, pricePackages };
-  });
+  const { data: studio } = useStudioById(id);
+  const { data: pricePackages } = usePricePackages(studio?._id);
 
   console.log(studio);
 
@@ -131,7 +120,7 @@ const SingleStudio = () => {
                 </h3>
                 {studio.address && (
                   <div className="text-sm leading-normal mt-0 mb-1 text-gray-500 ">
-                    Indirizzo: {studio.address}
+                    Indirizzo: {studio.address.formatted_address}
                   </div>
                 )}
                 {studio.email && (

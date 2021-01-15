@@ -1,1 +1,1 @@
-import "./migration1";
+// import "./migration1";

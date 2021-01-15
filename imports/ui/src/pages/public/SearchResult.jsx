@@ -1,24 +1,11 @@
 import React from "react";
 import StudioCard from "../../components/shared/Cards/StudioCard";
-import { useTracker } from "meteor/react-meteor-data";
-import { Studios } from "../../../../api/services/studio/models/StudioCollection";
 import { useHistory } from "react-router-dom";
+import { useStudios } from "../../apiHooks/studio";
 
 const SearchResult = () => {
   const history = useHistory();
-  const { studios, isLoadingStudio } = useTracker(() => {
-    const noDataAvailable = { studios: [] };
-
-    const handler = Meteor.subscribe("studios.public.getAll");
-
-    if (!handler.ready()) {
-      return { ...noDataAvailable, isLoading: true };
-    }
-
-    const studios = Studios.find().fetch();
-
-    return { studios };
-  });
+  const { data: studios } = useStudios();
 
   return (
     <>

@@ -3,6 +3,7 @@ import { TagContext } from "./TagContext";
 import { WithContext as ReactTags } from "react-tag-input";
 import { Tags } from "../../../../../api/services/tags/model/TagsCollection";
 import { useTracker } from "meteor/react-meteor-data";
+import { useTags } from "../../../apiHooks/tag";
 
 const KeyCodes = {
   comma: 188,
@@ -14,29 +15,16 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 const Tag = () => {
   const { tagState, handleDelete, handleAddition } = useContext(TagContext);
 
-  const { suggestions } = useTracker(() => {
-    const noDataAvailable = { suggestions: [] };
-    if (!Meteor.user()) {
-      return noDataAvailable;
-    }
-    const handler = Meteor.subscribe("tags.get");
+  const { data: savedTags } = useTags();
 
-    if (!handler.ready()) {
-      return { ...noDataAvailable, isLoading: true };
-    }
+  const suggestions =
+    savedTags &&
+    savedTags.map((tag) => ({
+      id: tag._id,
+      text: tag.text,
+    }));
 
-    const results = Tags.find().fetch();
-    const suggestions = [];
-
-    results.forEach((item) => {
-      suggestions.push({
-        id: item._id,
-        text: item.text,
-      });
-    });
-
-    return { suggestions };
-  });
+  console.log(savedTags);
 
   const { tags } = tagState;
 

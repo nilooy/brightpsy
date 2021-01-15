@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
-import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
-import { Meteor } from "meteor/meteor";
+import { Input, Label, Button, Textarea } from "@windmill/react-ui";
+
 import { useHistory } from "react-router-dom";
-import { StudioContext } from "../../../context/StudioContext";
 import { createOrUpdatePricePackage } from "../../../../../api/services/pricePackages/methods/createPricePackage";
 import { privatePath } from "../../../routes/privatePath";
+import { useStudioByUser } from "../../../apiHooks/studio";
 
 const initialState = {
   title: "",
@@ -18,7 +18,7 @@ const initialState = {
 const CreatePricePackage = () => {
   const [form, setForm] = useState(initialState);
 
-  const { studios } = useContext(StudioContext);
+  const { data: studio } = useStudioByUser();
 
   const history = useHistory();
 
@@ -34,7 +34,7 @@ const CreatePricePackage = () => {
 
     const { title, desc, quantity, hours, cost } = form;
     createOrUpdatePricePackage.call(
-      { title, desc, quantity, hours, cost, studioId: studios[0]._id },
+      { title, desc, quantity, hours, cost, studioId: studio._id },
       (error, result) => {
         if (error) {
           console.error(error);
