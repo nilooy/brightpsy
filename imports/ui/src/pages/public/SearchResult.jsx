@@ -9,8 +9,9 @@ const SearchResult = () => {
 
   return (
     <>
-      <div className="lg:px-72">
-        <div className="">
+    
+      <div className="lg:px-72 ">
+        <div className="mb-16">
           {studios &&
             studios.map((studio) => (
               <StudioCard
@@ -28,6 +29,7 @@ const SearchResult = () => {
             ))}
         </div>
       </div>
+      
     </>
   );
 };
