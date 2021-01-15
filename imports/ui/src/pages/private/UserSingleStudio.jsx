@@ -4,15 +4,26 @@ import { Studios } from "../../../../api/services/studio/models/StudioCollection
 import { PricePackages } from "../../../../api/services/pricePackages/models/PricePackageCollection";
 import { useHistory, useParams } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
-import { useStudioById } from "../../apiHooks/studio";
-import { usePricePackages } from "../../apiHooks/pricePackage";
 
-const SingleStudio = () => {
+const UserSingleStudio = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { data: studio } = useStudioById(id);
-  const { data: pricePackages } = usePricePackages(studio?._id);
+  const { studio, pricePackages, isLoadingStudio } = useTracker(() => {
+    const noDataAvailable = { studio: [] };
+
+    const handler = Meteor.subscribe("studios.getById", id);
+
+    if (!handler.ready()) {
+      return { ...noDataAvailable, isLoading: true };
+    }
+
+    const studio = Studios.find().fetch()[0];
+
+    const pricePackages = PricePackages.find().fetch();
+
+    return { studio, pricePackages };
+  });
 
   console.log(studio);
 
@@ -52,7 +63,7 @@ const SingleStudio = () => {
           </svg>
         </div>
       </section>
-      <section className="relative py-16 bg-gray-300">
+      <section className="relative py-16">
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
@@ -120,7 +131,7 @@ const SingleStudio = () => {
                 </h3>
                 {studio.address && (
                   <div className="text-sm leading-normal mt-0 mb-1 text-gray-500 ">
-                    Indirizzo: {studio.address.formatted_address}
+                    Indirizzo: {studio.address}
                   </div>
                 )}
                 {studio.email && (
@@ -204,4 +215,4 @@ const SingleStudio = () => {
   );
 };
 
-export default SingleStudio;
+export default UserSingleStudio;

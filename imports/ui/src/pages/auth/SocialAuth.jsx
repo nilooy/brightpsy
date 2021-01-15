@@ -11,6 +11,10 @@ const SocialAuth = () => {
 
   const { role } = useParams();
 
+  if (role === "doctor") {
+    return null;
+  }
+
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleGoogle = () => {
@@ -22,7 +26,7 @@ const SocialAuth = () => {
         if (err) {
           setErrorMsg(err.reason);
         } else {
-          addRole();
+          history.push(privatePath.dashboard);
         }
       }
     );
@@ -36,20 +40,10 @@ const SocialAuth = () => {
         if (err) {
           setErrorMsg(err.reason);
         } else {
-          addRole();
+          history.push(privatePath.dashboard);
         }
       }
     );
-  };
-
-  const addRole = () => {
-    if (role === "doctor") {
-      Meteor.call("auth.updateRole", {}, (error) => {
-        console.log(error);
-        history.push(privatePath.dashboard);
-      });
-    }
-    history.push(privatePath.dashboard);
   };
 
   return (

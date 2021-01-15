@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import PageTitle from "../../../components/shared/Typography/PageTitle";
 import { Input, HelperText, Label, Button, Textarea } from "@windmill/react-ui";
 import { storage } from "../../../../firebase";
-import { Meteor } from "meteor/meteor";
 import { useHistory } from "react-router-dom";
 import {
   addPhoto,
@@ -10,12 +9,11 @@ import {
 } from "../../../../../api/services/studio/methods/createStudio";
 import AutocompleteAddress from "../../../components/features/AutocompleteAddress/AutocompleteAddress";
 
-import { IoMapOutline } from "@react-icons/all-files/io5/IoMapOutline";
 import { AutocompleteContext } from "../../../components/features/AutocompleteAddress/AutoCompleteContext";
 import { toast } from "react-toastify";
 import Tag from "../../../components/features/TagManager/Tag";
 import { TagContext } from "../../../components/features/TagManager/TagContext";
-import { StudioContext } from "../../../context/StudioContext";
+import { useStudioByUser } from "../../../apiHooks/studio";
 
 const initialState = {
   _id: "",
@@ -30,18 +28,19 @@ const initialState = {
 };
 
 const EditStudio = () => {
+  const { data: studio } = useStudioByUser();
+
   const uploadHiddenInput = useRef();
 
   const [form, setForm] = useState(initialState);
 
-  const { studios } = useContext(StudioContext);
   const {
     tagState: { tags },
     loadTag,
   } = useContext(TagContext);
 
   useEffect(() => {
-    if (!studios[0]) return;
+    if (!studio) return;
 
     const {
       _id,
@@ -53,7 +52,7 @@ const EditStudio = () => {
       desc,
       email,
       tel,
-    } = studios[0];
+    } = studio;
     setForm({
       ...form,
       _id,
@@ -67,7 +66,7 @@ const EditStudio = () => {
     });
 
     loadTag(tags);
-  }, [studios]);
+  }, [studio]);
 
   const { address } = useContext(AutocompleteContext);
 
@@ -142,8 +141,8 @@ const EditStudio = () => {
     );
   };
 
-  const imageUrl = studios?.[0]?.imageUrl
-    ? studios?.[0]?.imageUrl
+  const imageUrl = studio?.imageUrl
+    ? studio?.imageUrl
     : form.image && URL.createObjectURL(form.image);
 
   return (

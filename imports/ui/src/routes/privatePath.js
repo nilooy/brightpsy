@@ -1,5 +1,4 @@
 export const rootPath = "/app";
-export const rootPathUser = "/user";
 
 export const privatePath = {
   dashboard: rootPath + "/dashboard",
@@ -9,9 +8,6 @@ export const privatePath = {
   studioEdit: rootPath + "/studio/edit",
   packages: rootPath + "/packages",
   packagesCreate: rootPath + "/package/create",
-};
-
-export const privatePathUser = {
-  dashboard: rootPathUser + "/dashboard",
-  profile: rootPath + "/profile",
+  search: rootPath + "/search",
+  studioById: (id = ":id") => rootPath + "/studio/" + id,
 };

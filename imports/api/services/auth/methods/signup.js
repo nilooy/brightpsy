@@ -46,23 +46,3 @@ Meteor.methods({
     addUserRoles(userId, role, identity_numb);
   },
 });
-
-Meteor.methods({
-  "auth.updateRole"() {
-    if (!Meteor.userId()) return;
-
-    const user = Meteor.user();
-
-    if (!user.profile.notAbleToBeDoctor) {
-      Meteor.users.update(
-        { _id: Meteor.userId() },
-        {
-          $set: {
-            "profile.isFirstTime": false,
-          },
-        }
-      );
-      return Roles.setUserRoles(Meteor.userId(), "doctor");
-    }
-  },
-});

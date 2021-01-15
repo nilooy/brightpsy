@@ -2,7 +2,7 @@
   "name": "psicologi",
   "private": true,
   "scripts": {
-    "start": "MONGO_URL=mongodb://localhost:27017/psicologi meteor run --settings settings.json",
+    "start": "MONGO_URL=mongodb://localhost:27017/psicologi meteor run --settings settings.json --port 3050",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
@@ -38,6 +38,7 @@
     "react-focus-lock": "2.4.0",
     "react-helmet": "^6.1.0",
     "react-meteor-data": "^0.2.11",
+    "react-query": "^3.5.12",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-ssr-prepass": "^1.2.1",
