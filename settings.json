@@ -6,5 +6,13 @@
   "google": {
     "clientId": "170622820218-1fh9ehb4v9oedpss2mkp7vh1t5h4ondh.apps.googleusercontent.com",
     "secret": "D7Wh9V8rxq4PfzYxwARpVuea"
+  },
+  "twilio": {
+    "twilio_account_sid": "AC060af78f9e4ee29c16cc927244a701f9",
+    "twilio_api_key": "SK4b4fb05bd11b378bd2c6f8e8139fcb67",
+    "twilio_api_secret": "h9dW9VmxFI9ZbeDaf20MsGZdz6OChFV2",
+    "twilio_chat_service_sid": "IS254a061c7a21453c8c6129bf7c43b088",
+    "twilio_notification_service_sid": "",
+    "twilio_sync_service_sid": ""
   }
 }

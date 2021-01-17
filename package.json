@@ -23,6 +23,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@windmill/react-ui": "0.3.1",
     "bcrypt": "^5.0.0",
+    "bufferutil": "^4.0.3",
     "chart.js": "2.9.3",
     "classnames": "2.2.6",
     "faker": "4.1.0",
@@ -46,10 +47,12 @@
     "react-toastify": "^6.2.0",
     "react-transition-group": "4.4.1",
     "simpl-schema": "^1.10.2",
-    "uninstall": "0.0.0"
+    "twilio": "^3.55.0",
+    "twilio-chat": "^4.1.0",
+    "uninstall": "0.0.0",
+    "utf-8-validate": "^5.0.4"
   },
   "devDependencies": {
-    "mup": "^1.5.3",
     "@babel/runtime": "^7.11.2",
     "@svgr/webpack": "5.4.0",
     "autoprefixer": "^10.1.0",
@@ -58,6 +61,7 @@
     "cssnano": "4.1.10",
     "cz-conventional-changelog": "3.2.0",
     "meteor-node-stubs": "^1.0.1",
+    "mup": "^1.5.3",
     "postcss": "^8.2.1",
     "postcss-load-config": "^3.0.0",
     "tailwindcss": "^2.0.2"

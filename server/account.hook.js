@@ -1,5 +1,3 @@
-import { roles } from "../imports/api/utils/authorization";
-
 Accounts.onCreateUser((options, user) => {
   if (user.services.password) {
     user.profile = options.profile;

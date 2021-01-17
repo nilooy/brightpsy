@@ -9,10 +9,11 @@ import Studios from "../pages/private/Studio/Studios";
 import CreateStudio from "../pages/private/Studio/CreateStudio";
 import EditStudio from "../pages/private/Studio/EditStudio";
 import ThemedSuspense from "../components/shared/ThemedSuspense";
-import { privatePath, rootPath, rootPathUser } from "./privatePath";
+import { privatePath, rootPath } from "./privatePath";
 import UserDashboard from "../pages/private/UserDashboard";
 import UserSearch from "../pages/private/UserSearch";
 import UserSingleStudio from "../pages/private/UserSingleStudio";
+import Messages from "../pages/private/Messages";
 
 export const privateRoutes = [
   {
@@ -68,6 +69,16 @@ export const privateRoutes = [
         exact: true,
         component: CreatePricePackage,
       },
+      {
+        path: privatePath.messages,
+        exact: true,
+        component: Messages,
+      },
+      {
+        path: privatePath.messageByUserId(),
+        exact: true,
+        component: Messages,
+      },
     ],
   },
 ];
@@ -77,7 +88,7 @@ export const privateRoutesUser = [
     layout: Fragment,
     subRoutes: [
       {
-        path: rootPathUser,
+        path: rootPath,
         exact: true,
         component: ThemedSuspense, // preloader TODO
       },
@@ -110,6 +121,16 @@ export const privateRoutesUser = [
         path: privatePath.profile,
         exact: true,
         component: Profile,
+      },
+      {
+        path: privatePath.messages,
+        exact: true,
+        component: Messages,
+      },
+      {
+        path: privatePath.messageByUserId(),
+        exact: true,
+        component: Messages,
       },
     ],
   },

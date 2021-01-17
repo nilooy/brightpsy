@@ -7,7 +7,7 @@ const Logo = ({ link }) => {
       className="flex ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
       href={link}
     >
-      <img src="/img/logo.png" className="w-32" />
+      <img src="/img/logo.png" className="w-32 h-16" />
     </a>
   );
 

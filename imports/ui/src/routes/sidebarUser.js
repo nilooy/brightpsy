@@ -16,6 +16,11 @@ const sidebarUser = [
     name: "Search", // name that appear in Sidebar
     icon: "SearchIcon", // the component being exported from icons/index.js
   },
+  {
+    path: privatePath.messages, // the url
+    name: "Message", // name that appear in Sidebar
+    icon: "BellIcon", // the component being exported from icons/index.js
+  },
 ];
 
 export default sidebarUser;

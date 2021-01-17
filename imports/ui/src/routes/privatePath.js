@@ -10,4 +10,6 @@ export const privatePath = {
   packagesCreate: rootPath + "/package/create",
   search: rootPath + "/search",
   studioById: (id = ":id") => rootPath + "/studio/" + id,
+  messages: rootPath + "/messages",
+  messageByUserId: (id = ":id") => rootPath + "/messages/" + id,
 };
