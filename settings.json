@@ -6,5 +6,11 @@
   "google": {
     "clientId": "170622820218-1fh9ehb4v9oedpss2mkp7vh1t5h4ondh.apps.googleusercontent.com",
     "secret": "D7Wh9V8rxq4PfzYxwARpVuea"
+  },
+  "cloudinary": {
+    "cloud_name": "dgt5wymx5",
+    "api_key": "751893586821183",
+    "api_secret": "fuzhNlfT3yWlPgH0NA1BvE9LSNg",
+    "env": "cloudinary://751893586821183:fuzhNlfT3yWlPgH0NA1BvE9LSNg@dgt5wymx5"
   }
 }
