@@ -36,9 +36,12 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
   };
 
   useEffect(() => {
-    if (!Meteor.userId) return null;
-
+    setMessages([]);
+    setLoading(true);
+    let client;
     const setTwilloChat = async () => {
+      if (!Meteor.userId || !userId) return null;
+
       let token = "";
 
       try {
@@ -48,7 +51,12 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
         throw new Error("Unable to get token, please reload this page");
       }
 
-      const client = await Chat.Client.create(token);
+      client = await Chat.Client.create(token);
+      client.removeAllListeners();
+      if (channel) {
+        channel.removeAllListeners();
+        channel.leave();
+      }
 
       client.on("tokenAboutToExpire", async () => {
         const data = await methodCall("twilio.tokenGen", { id: userId });
@@ -64,14 +72,16 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
 
       client.on("channelJoined", async (channel) => {
         // getting list of all messages since this is an existing channel
+        console.log("channel", channel);
         const res = await channel.getMessages();
-        console.log("22", res);
         setMessages(res.items);
+        setLoading(false);
         if (onChannelJoin) onChannelJoin();
       });
 
       try {
         const room = await methodCall("room.find", { to: userId });
+        console.log("room", room);
         const channel = await client.getChannelByUniqueName(room._id);
         joinChannel(channel);
       } catch (err) {
@@ -79,11 +89,13 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
           const room = await methodCall("room.create", {
             participants: [Meteor.userId(), userId],
           });
+
+          console.log("roomCreated", room);
+
           const channel = await client.createChannel({
             uniqueName: room,
             friendlyName: room,
           });
-
           joinChannel(channel);
         } catch {
           throw new Error("Unable to create channel, please reload this page");
@@ -92,7 +104,7 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
     };
 
     setTwilloChat();
-  }, []);
+  }, [userId]);
 
   const sendMessage = () => {
     if (text) {
@@ -103,5 +115,5 @@ export const useTwilloChat = ({ userId, onChannelJoin }) => {
     }
   };
 
-  return { text, setText, messages, sendMessage };
+  return { loading, text, setText, messages, sendMessage };
 };

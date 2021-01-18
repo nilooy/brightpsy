@@ -16,7 +16,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
     messageBoxContainer.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   };
 
-  const { text, setText, messages, sendMessage } = useTwilloChat({
+  const { loading, text, setText, messages, sendMessage } = useTwilloChat({
     userId,
     onChannelJoin: scrollToBottom,
   });
@@ -26,7 +26,16 @@ const MessageSingle = ({ userId, selectedUser }) => {
     sendMessage();
   };
 
-  console.log(messages);
+  const Loading = () => (
+    <div className="flex flex-col justify-center" style={{ height: "90vh" }}>
+      <span className="flex h-64 w-64 relative justify-center flex-col">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 m-auto"></span>
+      </span>
+    </div>
+  );
+
+  if (loading) return <Loading />;
 
   return (
     <div
@@ -48,7 +57,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
       >
         {/* Messages */}
 
-        {messages &&
+        {messages.length &&
           messages.map((msg) => (
             <MessageBox
               key={msg.sid}

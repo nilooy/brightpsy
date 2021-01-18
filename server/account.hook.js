@@ -16,6 +16,10 @@ Accounts.onCreateUser((options, user) => {
 
     user.username = data?.email; // to avoid duplicate email
     Roles.addUsersToRoles(user._id, "user");
+
+    const cloudinaryUpload = Meteor.wrapAsync(cloudinary.v2.uploader.upload);
+    const res = cloudinaryUpload(user.profile.imageUrl);
+    user.profile.imageUrl = res.secure_url;
   }
 
   if (user.services.facebook) {
@@ -29,13 +33,11 @@ Accounts.onCreateUser((options, user) => {
 
     user.username = data?.email; // to avoid duplicate email
     Roles.addUsersToRoles(user._id, "user");
+
+    const cloudinaryUpload = Meteor.wrapAsync(cloudinary.v2.uploader.upload);
+    const res = cloudinaryUpload(user.profile.imageUrl);
+    user.profile.imageUrl = res.secure_url;
   }
-
-  const cloudinaryUpload = Meteor.wrapAsync(cloudinary.v2.uploader.upload);
-
-  const res = cloudinaryUpload(user.profile.imageUrl);
-
-  user.profile.imageUrl = res.secure_url;
 
   return user;
 });

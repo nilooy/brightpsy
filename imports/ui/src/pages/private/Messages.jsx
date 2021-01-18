@@ -12,8 +12,14 @@ const Messages = () => {
   const { id: userId } = useParams();
   const selectedUser = users?.find((user) => user._id === userId)?.profile;
 
-  const UserCard = ({ name, imageUrl, onClick }) => (
-    <div onClick={onClick} className="flex my-5 p-4 shadow-md rounded-2xl">
+  const UserCard = ({ id, name, imageUrl, onClick }) => (
+    <div
+      onClick={onClick}
+      className={
+        "flex my-5 p-4 shadow-md rounded-2xl " +
+        (id === userId ? "bg-green-300 pointer-events-none" : "cursor-pointer")
+      }
+    >
       <Avatar src={imageUrl} alt="George" />
       <p className="ml-5">{name}</p>
       <div className="ml-2 w-2 h-2 align-middle rounded-full bg-green-400"></div>
@@ -21,7 +27,7 @@ const Messages = () => {
   );
 
   useEffect(() => {
-    if (users && !userId)
+    if (users && users?.length && !userId)
       history.push(privatePath.messageByUserId(users?.[0]?._id));
   }, [users]);
 
@@ -33,6 +39,7 @@ const Messages = () => {
             <UserCard
               onClick={() => history.push(privatePath.messageByUserId(_id))}
               key={_id}
+              id={_id}
               name={profile?.firstName}
               imageUrl={profile?.imageUrl}
             />
