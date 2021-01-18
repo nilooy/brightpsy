@@ -3,23 +3,26 @@ import { Studios } from "../models/StudioCollection";
 
 Meteor.methods({
   "studio.getAll"() {
-    const query = Studios.rawCollection().aggregate([
-      {
-        $lookup: {
-          from: "addresses",
-          localField: "_id",
-          foreignField: "studioId",
-          as: "address",
+    const query = Studios.rawCollection().aggregate(
+      [
+        {
+          $lookup: {
+            from: "addresses",
+            localField: "_id",
+            foreignField: "studioId",
+            as: "address",
+          },
         },
-
-        $lookup: {
-          from: "users",
-          localField: "_id",
-          foreignField: "userId",
-          as: "user",
-        },
-      },
-    ]);
+        {
+            $lookup: {
+            from: "users",
+            localField: "userId",
+            foreignField: "_id",
+            as: "user",
+          },
+        }
+      ]
+    );
 
     return query.toArray();
   },
