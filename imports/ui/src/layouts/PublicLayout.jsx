@@ -8,7 +8,7 @@ export default function PublicLayout({ children }) {
     <div className="flex flex-col h-screen justify-between">
       <Navbar transparent />
       <main>{children}</main>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
