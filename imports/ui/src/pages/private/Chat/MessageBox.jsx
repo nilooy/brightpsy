@@ -9,7 +9,7 @@ const MessageBox = ({ right, text, dateTime }) => (
     >
       <p>{text}</p>
       {dateTime && (
-        <p className="text-right text-xs">
+        <p className="text-right text-xs font-thin">
           {new Date().toLocaleString(dateTime)}
         </p>
       )}
