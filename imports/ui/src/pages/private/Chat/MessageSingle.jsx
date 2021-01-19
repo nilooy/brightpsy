@@ -1,0 +1,134 @@
+import React, { useEffect, useRef, useState } from "react";
+
+import { Input, Label, Avatar } from "@windmill/react-ui";
+import { GrSend } from "@react-icons/all-files/gr/GrSend";
+import MessageBox from "./MessageBox";
+import { Chat } from "../../../../../api/services/chat/model/ChatCollection";
+import { useTracker } from "meteor/react-meteor-data";
+import { methodCall } from "../../../utils/asyncMeteorMethod";
+import { useStudioByUser } from "../../../apiHooks/studio";
+
+const MessageSingle = ({ userId, selectedUser }) => {
+  const messageBoxContainer = useRef();
+
+  const scrollToBottom = () => {
+    if (!messageBoxContainer.current) return null;
+    const scrollHeight = messageBoxContainer.current.scrollHeight;
+    const height = messageBoxContainer.current.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    messageBoxContainer.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  };
+
+  const [room, setRoom] = useState();
+  const [text, setText] = useState();
+
+  useEffect(() => {
+    const checkRoom = async () => {
+      if (!userId) return null;
+      let room = null;
+      room = await methodCall("room.find", { to: userId })?._id;
+      if (!room) {
+        room = await methodCall("room.create", {
+          members: [Meteor.userId(), userId],
+          studioId: "GAWMx7A8Z4eehsSm2",
+          userId: Meteor.userId(),
+        });
+      }
+
+      setRoom(room);
+    };
+
+    checkRoom();
+  }, [userId]);
+
+  const { messages, isLoading } = useTracker(() => {
+    const noDataAvailable = { messages: [] };
+    if (!Meteor.user() || !room) {
+      return noDataAvailable;
+    }
+    const handler = Meteor.subscribe("chat.getChatByRoom", { roomId: room });
+
+    if (!handler.ready()) {
+      return { ...noDataAvailable, isLoading: true };
+    }
+
+    const messages = Chat.find().fetch();
+
+    console.log("messages", messages);
+
+    return { messages };
+  }, [room]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMessage();
+  };
+
+  const Loading = () => (
+    <div className="flex flex-col justify-center" style={{ height: "90vh" }}>
+      <span className="flex h-64 w-64 relative justify-center flex-col">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 m-auto"></span>
+      </span>
+    </div>
+  );
+
+  if (isLoading) return <Loading />;
+
+  return (
+    <div
+      className="flex justify-between flex-col w-full"
+      style={{ height: "90vh" }}
+    >
+      {selectedUser && (
+        <div className="bg-gray-700 text-white text-xl p-3 flex">
+          <Avatar src={selectedUser?.imageUrl} alt="user avatar" />
+          <p className="ml-3">
+            {selectedUser?.firstName + " " + selectedUser?.lastName}
+          </p>
+          <div className="ml-2 w-2 h-2 align-middle rounded-full bg-green-400"></div>
+        </div>
+      )}
+      <div
+        ref={messageBoxContainer}
+        className="flex-1 bg-gray-200 p-5 overflow-y-scroll"
+      >
+        {/* Messages */}
+
+        {messages.length &&
+          messages.map((msg) => (
+            <MessageBox
+              key={msg.sid}
+              text={msg.body}
+              dateTime={msg.dateUpdated}
+              right={Meteor.userId() === msg.author}
+            />
+          ))}
+
+        {/* Messages */}
+      </div>
+      <div className="">
+        <form onSubmit={handleSubmit}>
+          <Label className="mt-4 flex">
+            <Input
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              value={text}
+              className="mt-1 rounded-2xl text-lg mr-3"
+              placeholder="Scrivi qui"
+              type="text"
+              name=""
+              required
+            />
+            <button type="submit">
+              <GrSend className="text-3xl mt-2" />
+            </button>
+          </Label>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default MessageSingle;
