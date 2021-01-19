@@ -6,11 +6,12 @@ import { useStudios } from "../../apiHooks/studio";
 const SearchResult = () => {
   const history = useHistory();
   const { data: studios } = useStudios();
-
+  console.log(studios);
   return (
     <>
-      <div className="lg:px-72">
-        <div className="">
+    
+      <div className="lg:px-72  ">
+        <div className=" m-6">
           {studios &&
             studios.map((studio) => (
               <StudioCard
@@ -23,11 +24,12 @@ const SearchResult = () => {
                 imageUrl={studio.imageUrl}
                 online={studio.online}
                 physical={studio.physical}
-                doctor={studio.doctor}
+                doctor={studio.user[0].profile}
               />
             ))}
         </div>
       </div>
+      
     </>
   );
 };

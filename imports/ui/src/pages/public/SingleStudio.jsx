@@ -20,9 +20,9 @@ const SingleStudio = () => {
 
   return (
     <div>
-      <section className="relative block" style={{ height: "500px" }}>
+      <section className="relative block h-96 ">
         <div
-          className="absolute top-0 w-full h-full bg-center bg-cover"
+          className="absolute top-0 w-full h-64 lg:w-full lg:h-full   bg-center bg-cover"
           style={{
             backgroundImage: `url('${studio.imageUrl}')`,
           }}
@@ -52,7 +52,7 @@ const SingleStudio = () => {
           </svg>
         </div>
       </section>
-      <section className="relative py-16 bg-gray-300">
+      <section className="relative py-16 ">
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
@@ -72,9 +72,9 @@ const SingleStudio = () => {
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                  <div className="flex py-6 px-3 mt-32 sm:mt-0">
+                  <div className="flex justify-around lg:py-6 lg:px-3 mt-28 sm:mt-0">
                     <button
-                      className="bg-blue-500 active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                      className="bg-blue-500 active:bg-blue-600 uppercase lg:text-base text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 lg:py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                       type="button"
                       style={{ transition: "all .15s ease" }}
                       onClick={() => history.push("/login")}
@@ -82,7 +82,7 @@ const SingleStudio = () => {
                       Message
                     </button>
                     <button
-                      className="bg-blue-500 active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                      className="bg-blue-500 active:bg-blue-600 uppercase lg:text-base text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 lg:py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                       type="button"
                       style={{ transition: "all .15s ease" }}
                       onClick={() => history.push("/login")}
@@ -92,78 +92,78 @@ const SingleStudio = () => {
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                  <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                  <div className="flex justify-center py-2 lg:pt-4 pt-4">
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                      <span className="text-base lg:text-2xl font-bold block uppercase tracking-wide text-gray-700">
                         22
                       </span>
-                      <span className="text-sm text-gray-500">Anni</span>
+                      <span className="text-sm lg:text-base text-gray-500">Anni</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                      <span className="text-base lg:text-2xl font-bold block uppercase tracking-wide text-gray-700">
                         10
                       </span>
-                      <span className="text-sm text-gray-500">Psicologi</span>
+                      <span className="text-sm lg:text-base text-gray-500">Psicologi</span>
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                      <span className="text-base lg:text-2xl font-bold block uppercase tracking-wide text-gray-700">
                         5
                       </span>
-                      <span className="text-sm text-gray-500">Star</span>
+                      <span className="text-sm lg:text-base text-gray-500">Star</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="text-center mt-12">
-                <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+              <div className="text-center mt-1 lg:mt-12">
+                <h3 className="text-2xl lg:text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
                   {studio.name}
                 </h3>
                 {studio.address && (
-                  <div className="text-sm leading-normal mt-0 mb-1 text-gray-500 ">
+                  <div className="text-xs lg:text-base leading-normal mt-0 mb-1 text-gray-500 ">
                     Indirizzo: {studio.address.formatted_address}
                   </div>
                 )}
                 {studio.email && (
-                  <div className="text-sm leading-normal mt-0 mb-1 text-gray-500 ">
+                  <div className="text-xs lg:text-base leading-normal mt-0 mb-1 text-gray-500 ">
                     Email: {studio.email}
                   </div>
                 )}
                 {studio.tel && (
-                  <div className="text-sm leading-normal mt-0 mb-1 text-gray-500 ">
+                  <div className="text-xs lg:text-base leading-normal mt-0 mb-1 text-gray-500 ">
                     Tel: {studio.tel}
                   </div>
                 )}
-                <div className="mb-2 text-gray-700">
-                  <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                </div>
+                {/* <div className="mb-2 text-gray-700">
+                  <i className="fas fa-briefcase mr-2 text-lg text-gray-500">hello</i>
+                </div> */}
                 <div className="mb-2 text-gray-700">
                   {studio.online ? "online" : ""}
                   {" - "}
                   {studio.physical ? "In presenza" : ""}
                 </div>
-                <div className="px-3 pb-4">
+                <div className="px-3 pb-2 ">
                   {studio.tags &&
                     studio.tags.map((tag) => (
                       <p
                         key={tag.id}
-                        className="inline-block px-3 py-1 my-1 mr-2 text-xs font-semibold text-white bg-teal-400 rounded-full"
+                        className="inline-block px-3 py-1 my-1 mr-2 text-xs lg:text-base font-semibold text-white bg-teal-400 rounded-full"
                       >
                         #{tag.text}
                       </p>
                     ))}
                 </div>
               </div>
-              <div className="mt-10 py-10 border-t border-gray-300 text-center ">
+              <div className="mt-5 lg:mt-10 py-5 lg:py-10 border-t border-gray-300 text-center ">
                 <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-9/12 px-4 bg-gray-100">
-                    <p className="mb-4 text-sm leading-relaxed text-gray-800">
+                  <div className="w-full lg:w-9/12 pt-1 px-4 bg-gray-100">
+                    <p className="mb-4 text-sm lg:text-xl  leading-relaxed text-gray-800">
                       <b>Descrizione: </b> {" " + studio.desc}
                     </p>
                   </div>
                 </div>
 
                 <div>
-                  <h1 className="text-gray-600 text-3xl text-center my-2">
+                  <h1 className="text-gray-600 text-3xl text-center my-3 lg:my-5">
                     Packages
                   </h1>
 
@@ -175,16 +175,16 @@ const SingleStudio = () => {
                           className="flex h-full bg-gray-100 shadow-lg"
                         >
                           <CardBody>
-                            <p className="mb-4 font-semibold text-gray-600 text-3xl dark:text-gray-300">
+                            <p className="mb-1 lg:mb-4 font-semibold text-gray-600 text-2xl lg:text-3xl dark:text-gray-300">
                               {item.title}
                             </p>
-                            <p className="text-gray-600 dark:text-gray-400 p-2">
+                            <p className="text-gray-600 text-sm lg:text-xl dark:text-gray-400 p-2">
                               {item.desc}
                             </p>
-                            <p className="text-gray-600 dark:text-gray-400 mt-1">
+                            <p className="text-gray-600 text-sm lg:text-xl dark:text-gray-400 mt-1">
                               {item.quantity} Sedute
                             </p>
-                            <p className="text-gray-600 dark:text-gray-400 mt-1">
+                            <p className="text-gray-600 text-sm lg:text-xl dark:text-gray-400 mt-1">
                               {item.hours} Ore
                             </p>
                             <p className="dark:text-gray-400 text-3xl text-green-400">

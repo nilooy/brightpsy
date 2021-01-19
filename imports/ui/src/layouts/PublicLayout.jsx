@@ -5,10 +5,10 @@ import Footer from "../components/shared/Footer/FooterPublic";
 
 export default function PublicLayout({ children }) {
   return (
-    <>
+    <div className="flex flex-col h-screen justify-between">
       <Navbar transparent />
       <main>{children}</main>
-      <Footer />
-    </>
+      <Footer/>
+    </div>
   );
 }
