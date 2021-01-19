@@ -9,7 +9,6 @@ const SearchResult = () => {
   console.log(studios);
   return (
     <>
-    
       <div className="lg:px-72  ">
         <div className=" m-6">
           {studios &&
@@ -22,14 +21,13 @@ const SearchResult = () => {
                 desc={studio?.desc?.substring(0, 100) + " ..."}
                 tags={studio.tags}
                 imageUrl={studio.imageUrl}
-                online={studio.online}
-                physical={studio.physical}
-                doctor={studio.user[0].profile}
+                online={studio?.online}
+                physical={studio?.physical}
+                doctor={studio?.user[0]?.profile}
               />
             ))}
         </div>
       </div>
-      
     </>
   );
 };
