@@ -1,5 +1,6 @@
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
+import { activitySchema } from "../../../utils/activitySchema";
 
 const Studios = new Mongo.Collection("studios");
 
@@ -27,6 +28,7 @@ const StudioSchema = new SimpleSchema({
   "tags.$.text": { type: String, optional: true },
   imageUrl: { type: String, optional: true },
   userId: { type: String },
+  ...activitySchema,
 });
 
 Studios.attachSchema(StudioSchema);

@@ -13,6 +13,7 @@ import { privatePath, rootPath, rootPathUser } from "./privatePath";
 import UserDashboard from "../pages/private/UserDashboard";
 import UserSearch from "../pages/private/UserSearch";
 import UserSingleStudio from "../pages/private/UserSingleStudio";
+import Inbox from "../pages/private/Chat/Inbox";
 
 export const privateRoutes = [
   {
@@ -68,6 +69,16 @@ export const privateRoutes = [
         exact: true,
         component: CreatePricePackage,
       },
+      {
+        path: privatePath.inbox,
+        exact: true,
+        component: Inbox,
+      },
+      {
+        path: privatePath.inboxById(),
+        exact: true,
+        component: Inbox,
+      },
     ],
   },
 ];
@@ -110,6 +121,16 @@ export const privateRoutesUser = [
         path: privatePath.profile,
         exact: true,
         component: Profile,
+      },
+      {
+        path: privatePath.inbox,
+        exact: true,
+        component: Inbox,
+      },
+      {
+        path: privatePath.inboxById(),
+        exact: true,
+        component: Inbox,
       },
     ],
   },

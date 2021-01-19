@@ -1,3 +1,5 @@
+import cloudinary from "cloudinary";
+
 ServiceConfiguration.configurations.upsert(
   {
     service: "facebook",
@@ -23,3 +25,10 @@ ServiceConfiguration.configurations.upsert(
     },
   }
 );
+
+// for image upload
+cloudinary.v2.config({
+  cloud_name: Meteor.settings.cloudinary.cloud_name,
+  api_key: Meteor.settings.cloudinary.api_key,
+  api_secret: Meteor.settings.cloudinary.api_secret,
+});
