@@ -6,7 +6,6 @@ import MessageBox from "./MessageBox";
 import { Chat } from "../../../../../api/services/chat/model/ChatCollection";
 import { useTracker } from "meteor/react-meteor-data";
 import { methodCall } from "../../../utils/asyncMeteorMethod";
-import { useStudioByUser } from "../../../apiHooks/studio";
 
 const MessageSingle = ({ userId, selectedUser }) => {
   const messageBoxContainer = useRef();
@@ -19,26 +18,22 @@ const MessageSingle = ({ userId, selectedUser }) => {
     messageBoxContainer.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   };
 
-  const [room, setRoom] = useState();
-  const [text, setText] = useState();
+  const [text, setText] = useState("");
+  const [room, setRoom] = useState("");
 
   useEffect(() => {
     const checkRoom = async () => {
-      if (!userId) return null;
-      let room = null;
-      room = await methodCall("room.find", { to: userId })?._id;
-      if (!room) {
-        room = await methodCall("room.create", {
-          members: [Meteor.userId(), userId],
-          studioId: "GAWMx7A8Z4eehsSm2",
-          userId: Meteor.userId(),
-        });
-      }
+      const roomId = await methodCall("room.findOrCreate", {
+        to: userId,
+        members: [Meteor.userId(), userId],
+        studioId: "GAWMx7A8Z4eehsSm2",
+        userId: Meteor.userId(),
+      });
 
-      setRoom(room);
+      setRoom(roomId);
     };
 
-    checkRoom();
+    if (userId) checkRoom();
   }, [userId]);
 
   const { messages, isLoading } = useTracker(() => {
@@ -59,9 +54,10 @@ const MessageSingle = ({ userId, selectedUser }) => {
     return { messages };
   }, [room]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    sendMessage();
+    const sentMsg = await methodCall("chat.create", { text, roomId: room });
+    if (sentMsg) setText("");
   };
 
   const Loading = () => (
@@ -73,7 +69,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
     </div>
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading || !room) return <Loading />;
 
   return (
     <div
@@ -95,15 +91,20 @@ const MessageSingle = ({ userId, selectedUser }) => {
       >
         {/* Messages */}
 
-        {messages.length &&
+        {messages.length ? (
           messages.map((msg) => (
             <MessageBox
-              key={msg.sid}
-              text={msg.body}
-              dateTime={msg.dateUpdated}
-              right={Meteor.userId() === msg.author}
+              key={msg._id}
+              text={msg.text}
+              dateTime={msg.createdAt}
+              right={Meteor.userId() === msg.createdBy}
             />
-          ))}
+          ))
+        ) : (
+          <p className="bg-green-200 p-3 text-gray-400 text-center text-sm">
+            Nessun messaggio disponibile
+          </p>
+        )}
 
         {/* Messages */}
       </div>
@@ -113,6 +114,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
             <Input
               onChange={(e) => {
                 setText(e.target.value);
+                console.log();
               }}
               value={text}
               className="mt-1 rounded-2xl text-lg mr-3"

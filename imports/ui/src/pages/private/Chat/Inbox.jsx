@@ -46,7 +46,7 @@ const Inbox = () => {
         {users &&
           users.map(({ _id, profile }) => (
             <UserCard
-              onClick={() => history.push(privatePath.messageByUserId(_id))}
+              onClick={() => history.push(privatePath.inboxById(_id))}
               key={_id}
               id={_id}
               name={profile?.firstName}
