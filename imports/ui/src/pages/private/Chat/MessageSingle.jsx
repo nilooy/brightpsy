@@ -6,6 +6,11 @@ import MessageBox from "./MessageBox";
 import { Chat } from "../../../../../api/services/chat/model/ChatCollection";
 import { useTracker } from "meteor/react-meteor-data";
 import { methodCall } from "../../../utils/asyncMeteorMethod";
+import Loading from "./Loading";
+
+import { BiArrowBack } from "@react-icons/all-files/bi/BiArrowBack";
+import { Link } from "react-router-dom";
+import { privatePath } from "../../../routes/privatePath";
 
 const MessageSingle = ({ userId, selectedUser }) => {
   const messageBoxContainer = useRef();
@@ -49,8 +54,6 @@ const MessageSingle = ({ userId, selectedUser }) => {
 
     const messages = Chat.find().fetch();
 
-    console.log("messages", messages);
-
     return { messages };
   }, [room]);
 
@@ -60,24 +63,17 @@ const MessageSingle = ({ userId, selectedUser }) => {
     if (sentMsg) setText("");
   };
 
-  const Loading = () => (
-    <div className="flex flex-col justify-center" style={{ height: "90vh" }}>
-      <span className="flex h-64 w-64 relative justify-center flex-col">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 m-auto"></span>
-      </span>
-    </div>
-  );
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-  if (isLoading || !room) return <Loading />;
-
-  return (
-    <div
-      className="flex justify-between flex-col w-full"
-      style={{ height: "90vh" }}
-    >
+  return !isLoading || room ? (
+    <div className="flex justify-between flex-col w-full">
       {selectedUser && (
         <div className="bg-gray-700 text-white text-xl p-3 flex">
+          <Link className="text-white mr-3" to={privatePath.inbox}>
+            <BiArrowBack />
+          </Link>
           <Avatar src={selectedUser?.imageUrl} alt="user avatar" />
           <p className="ml-3">
             {selectedUser?.firstName + " " + selectedUser?.lastName}
@@ -87,7 +83,8 @@ const MessageSingle = ({ userId, selectedUser }) => {
       )}
       <div
         ref={messageBoxContainer}
-        className="flex-1 bg-gray-200 p-5 overflow-y-scroll"
+        className="bg-gray-200 p-5 overflow-y-scroll"
+        style={{ height: "70vh" }}
       >
         {/* Messages */}
 
@@ -108,7 +105,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
 
         {/* Messages */}
       </div>
-      <div className="">
+      <div className="flex-1 p-3">
         <form onSubmit={handleSubmit}>
           <Label className="mt-4 flex">
             <Input
@@ -130,6 +127,8 @@ const MessageSingle = ({ userId, selectedUser }) => {
         </form>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 
