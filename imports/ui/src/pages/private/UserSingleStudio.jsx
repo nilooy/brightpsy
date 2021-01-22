@@ -4,6 +4,7 @@ import { Studios } from "../../../../api/services/studio/models/StudioCollection
 import { PricePackages } from "../../../../api/services/pricePackages/models/PricePackageCollection";
 import { useHistory, useParams } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
+import Container from "../../components/shared/Container";
 
 const UserSingleStudio = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const UserSingleStudio = () => {
   if (!studio) return null;
 
   return (
-    <div>
+    <Container>
       <section className="relative block" style={{ height: "500px" }}>
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -211,7 +212,7 @@ const UserSingleStudio = () => {
           </div>
         </div>
       </section>
-    </div>
+    </Container>
   );
 };
 

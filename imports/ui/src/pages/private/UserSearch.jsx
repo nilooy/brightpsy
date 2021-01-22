@@ -4,6 +4,7 @@ import StudioCard from "../../components/shared/Cards/StudioCard";
 import { useHistory } from "react-router-dom";
 import { privatePath } from "../../routes/privatePath";
 import { useStudios } from "../../apiHooks/studio";
+import Container from "../../components/shared/Container";
 
 const UserSearch = () => {
   const history = useHistory();
@@ -11,7 +12,7 @@ const UserSearch = () => {
   const { data: studios } = useStudios();
 
   return (
-    <>
+    <Container>
       <div className="flex justify-between mt-3 mb-2">
         <PageTitle>Studios</PageTitle>
       </div>
@@ -35,7 +36,7 @@ const UserSearch = () => {
             ))}
         </div>
       </div>
-    </>
+    </Container>
   );
 };
 
