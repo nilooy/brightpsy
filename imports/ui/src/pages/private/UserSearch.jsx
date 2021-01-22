@@ -17,7 +17,7 @@ const UserSearch = () => {
       </div>
 
       <div className="lg:px-20">
-        <div className="">
+        <div className="m-6">
           {studios &&
             studios.map((studio) => (
               <StudioCard

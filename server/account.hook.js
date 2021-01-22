@@ -1,4 +1,4 @@
-import { roles } from "../imports/api/utils/authorization";
+import cloudinary from "cloudinary";
 
 Accounts.onCreateUser((options, user) => {
   if (user.services.password) {
@@ -28,6 +28,12 @@ Accounts.onCreateUser((options, user) => {
 
     user.username = data?.email; // to avoid duplicate email
     Roles.addUsersToRoles(user._id, "user");
+  }
+
+  if (!user.services.password) {
+    const cloudinaryUpload = Meteor.wrapAsync(cloudinary.v2.uploader.upload);
+    const res = cloudinaryUpload(user.profile.imageUrl);
+    user.profile.imageUrl = res.secure_url;
   }
 
   return user;
