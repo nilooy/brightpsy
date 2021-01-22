@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
       <div className="flex flex-col flex-1 w-full">
         <Header />
         <main className="h-full overflow-y-auto">
-          <div className="container grid px-6 mx-auto">{children}</div>
+          <div className="container grid lg:px-6 mx-auto">{children}</div>
         </main>
       </div>
     </div>
