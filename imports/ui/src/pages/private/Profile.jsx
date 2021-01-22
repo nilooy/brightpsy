@@ -5,6 +5,7 @@ import { MdEdit } from "@react-icons/all-files/md/MdEdit";
 import { storage } from "../../../firebase";
 import { Meteor } from "meteor/meteor";
 import { useTracker } from "meteor/react-meteor-data";
+import Container from "../../components/shared/Container";
 
 function Profile() {
   const fileInput = useRef();
@@ -48,7 +49,7 @@ function Profile() {
     : "https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82";
 
   return (
-    <>
+    <Container>
       <PageTitle>Profile</PageTitle>
 
       <div
@@ -74,7 +75,7 @@ function Profile() {
         {user?.profile?.firstName + " " + user?.profile?.lastName}
       </p>
       <p className="text-2xl">{user?.username}</p>
-    </>
+    </Container>
   );
 }
 

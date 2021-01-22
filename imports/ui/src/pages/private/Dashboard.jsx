@@ -10,10 +10,11 @@ import {
   StudioIcon,
 } from "../../assets/icons";
 import RoundIcon from "../../components/shared/RoundIcon";
+import Container from "../../components/shared/Container";
 
 function Dashboard() {
   return (
-    <>
+    <Container>
       <PageTitle>Dashboard</PageTitle>
 
       <CTA />
@@ -56,7 +57,7 @@ function Dashboard() {
           />
         </InfoCard>
       </div>
-    </>
+    </Container>
   );
 }
 
