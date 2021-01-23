@@ -9,7 +9,6 @@ const PricePackageSchema = new SimpleSchema({
   quantity: { type: String },
   hours: { type: String },
   cost: { type: String },
-  studioId: { type: String },
   userId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,

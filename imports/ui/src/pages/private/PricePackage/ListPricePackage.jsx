@@ -4,33 +4,12 @@ import { useHistory } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { privatePath } from "../../../routes/privatePath";
 import { usePricePackages } from "../../../apiHooks/pricePackage";
-import { useStudioByUser } from "../../../apiHooks/studio";
 
 const ListPricePackage = () => {
   const history = useHistory();
+  const userId = Meteor.userId();
 
-  const { data: studio } = useStudioByUser();
-  const { data: pricePackages } = usePricePackages(studio?._id);
-
-  if (!studio) {
-    return (
-      <div className="mt-3">
-        <PageTitle>Pacchetti</PageTitle>
-        <div className="flex justify-between shadow-lg bg-green-200 p-3">
-          <h1 className="text-4xl text-gray-600">
-            Devi creare il studio prima di creare i pacchetti
-          </h1>
-          <Button
-            onClick={() => history.push(privatePath.studioCreate)}
-            aria-label="Create Studio"
-            aria-haspopup="true"
-          >
-            Crea Studio +
-          </Button>
-        </div>
-      </div>
-    );
-  }
+  const { data: pricePackages } = usePricePackages(userId);
 
   return (
     <>
@@ -38,7 +17,7 @@ const ListPricePackage = () => {
         <PageTitle>Pacchetti</PageTitle>
         <Button
           onClick={() => history.push(privatePath.packagesCreate)}
-          aria-label="Select Studio"
+          aria-label="Crea Pacchetti"
           aria-haspopup="true"
         >
           Crea Pacchetti +

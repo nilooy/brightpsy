@@ -14,16 +14,14 @@ export const createOrUpdatePricePackage = new ValidatedMethod({
     quantity: { type: String },
     hours: { type: String },
     cost: { type: String },
-    studioId: { type: String },
   }).validator(),
-  run({ title, desc, quantity, hours, cost, studioId }) {
+  run({ title, desc, quantity, hours, cost }) {
     return PricePackages.insert({
       title,
       desc,
       quantity,
       hours,
       cost,
-      studioId,
       userId: this.userId,
       createdAt: new Date(),
     });

@@ -15,8 +15,6 @@ import "./account.hook";
 Meteor.startup(() => {
   // Create accepted roles
   createRoles(() => console.log("@=> Roles created"));
-  // import migration
-  // import "./migration";
 });
 
 process.on("unhandledRejection", (reason, promise) => {});
