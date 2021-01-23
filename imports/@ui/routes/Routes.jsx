@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Page404 from "@ui/routes/Page404";
 import { privateRoutes, privateRoutesUser } from "./private";
 import auth from "./auth";
-import { SecurityContext } from "../context/SecurityContext";
+import { SecurityContext } from "@ui/context/SecurityContext";
 
 const Routes = () => {
   const { isDoctor } = useContext(SecurityContext);

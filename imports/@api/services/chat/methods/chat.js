@@ -9,7 +9,6 @@ Meteor.methods({
     const from = Meteor.userId();
     let roomId = null;
     roomId = Rooms.findOne({ members: { $all: [from, to] } })?._id;
-    console.log("room", { members: { $all: [from, to] } });
     if (!roomId) {
       roomId = Rooms.insert({ members, userId });
     }
