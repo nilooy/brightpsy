@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "paths": {
+      "@api/*": ["./imports/@api/*"],
+      "@ui/*": ["./imports/@ui/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}

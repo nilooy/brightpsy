@@ -29,6 +29,7 @@
     "faker": "4.1.0",
     "firebase": "^8.2.0",
     "imports": "^1.0.0",
+    "meteor-babel": "^7.10.6",
     "meteor-node-stubs": "^1.0.1",
     "postcss-import": "^14.0.0",
     "react": "^16.13.1",
@@ -51,15 +52,16 @@
     "uninstall": "0.0.0"
   },
   "devDependencies": {
-    "mup": "^1.5.3",
     "@babel/runtime": "^7.11.2",
     "@svgr/webpack": "5.4.0",
     "autoprefixer": "^10.1.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "commitizen": "4.1.2",
     "cross-env": "7.0.2",
     "cssnano": "4.1.10",
     "cz-conventional-changelog": "3.2.0",
     "meteor-node-stubs": "^1.0.1",
+    "mup": "^1.5.3",
     "postcss": "^8.2.1",
     "postcss-load-config": "^3.0.0",
     "tailwindcss": "^2.0.2"
