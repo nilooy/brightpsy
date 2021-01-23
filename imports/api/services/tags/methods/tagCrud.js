@@ -17,7 +17,7 @@ export const createOrUpdateTag = new ValidatedMethod({
 
     if (findTag) return findTag._id;
 
-    // for update we need studioId as id and addressId
+    // FIXME: for update we need studioId as id and addressId
     const savedTag = Tags.upsert(id, {
       $set: {
         text,

@@ -5,7 +5,6 @@ import { Input, Label, Button, Textarea } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
 import { createOrUpdatePricePackage } from "../../../../../api/services/pricePackages/methods/createPricePackage";
 import { privatePath } from "../../../routes/privatePath";
-import { useStudioByUser } from "../../../apiHooks/studio";
 
 const initialState = {
   title: "",
@@ -17,8 +16,6 @@ const initialState = {
 
 const CreatePricePackage = () => {
   const [form, setForm] = useState(initialState);
-
-  const { data: studio } = useStudioByUser();
 
   const history = useHistory();
 
@@ -34,7 +31,7 @@ const CreatePricePackage = () => {
 
     const { title, desc, quantity, hours, cost } = form;
     createOrUpdatePricePackage.call(
-      { title, desc, quantity, hours, cost, studioId: studio._id },
+      { title, desc, quantity, hours, cost },
       (error, result) => {
         if (error) {
           console.error(error);

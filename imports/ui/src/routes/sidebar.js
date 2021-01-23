@@ -7,11 +7,6 @@ const sidebar = [
     icon: "HomeIcon", // the component being exported from icons/index.js
   },
   {
-    path: privatePath.studio, // the url
-    name: "Studios", // name that appear in Sidebar
-    icon: "StudioIcon", // the component being exported from icons/index.js
-  },
-  {
     path: privatePath.packages, // the url
     name: "Pachetti", // name that appear in Sidebar
     icon: "PriceIcon", // the component being exported from icons/index.js

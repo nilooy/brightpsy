@@ -31,7 +31,6 @@ const MessageSingle = ({ userId, selectedUser }) => {
       const roomId = await methodCall("room.findOrCreate", {
         to: userId,
         members: [Meteor.userId(), userId],
-        studioId: "GAWMx7A8Z4eehsSm2",
         userId: Meteor.userId(),
       });
 

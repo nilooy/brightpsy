@@ -7,7 +7,6 @@ const Rooms = new Mongo.Collection("rooms");
 const RoomSchema = new SimpleSchema({
   members: { type: Array, optional: true },
   "members.$": { type: String, optional: true },
-  studioId: { type: String },
   userId: { type: String },
   ...activitySchema,
 });

@@ -54,8 +54,8 @@ function SidebarContent() {
         )}
       </ul>
       <div className="px-6 my-6">
-        <Button onClick={() => history.push(privatePath.studioCreate)}>
-          Create Studio
+        <Button onClick={() => history.push(privatePath.packagesCreate)}>
+          Crea pacchetti
           <span className="ml-2" aria-hidden="true">
             +
           </span>
