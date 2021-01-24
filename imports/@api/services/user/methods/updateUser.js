@@ -26,3 +26,17 @@ Meteor.methods({
     );
   },
 });
+
+Meteor.methods({
+  "user.updatePhoto"({ imageUrl, field }) {
+    check(imageUrl, String);
+    check(field, String);
+
+    const profile = {};
+    profile[field] = imageUrl;
+
+    Meteor.users.update(Meteor.userId(), {
+      $set: { profile },
+    });
+  },
+});

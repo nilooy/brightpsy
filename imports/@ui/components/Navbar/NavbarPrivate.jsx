@@ -19,11 +19,14 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
-import { useTracker } from "meteor/react-meteor-data";
+import UserAvatar from "../Avatar/UserAvatar";
+import { useUserData } from "@ui/api-hooks/user";
 
 function Header() {
   const history = useHistory();
-  const user = useTracker(() => Meteor.user());
+
+  const user = useUserData();
+
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
 
@@ -37,10 +40,6 @@ function Header() {
   function handleProfileClick() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
-
-  const avatar = user
-    ? user?.profile?.imageUrl
-    : "https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82";
 
   return (
     <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
@@ -123,11 +122,10 @@ function Header() {
               aria-label="Account"
               aria-haspopup="true"
             >
-              <Avatar
-                className="align-middle"
-                src={avatar}
-                alt="avatar"
-                aria-hidden="true"
+              <UserAvatar
+                imageUrl={user.profile?.profileImg}
+                firstName={user.profile?.firstName}
+                lastName={user.profile?.lastName}
               />
             </button>
             <Dropdown

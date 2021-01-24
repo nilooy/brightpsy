@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiEdit3 } from "@react-icons/all-files/fi/FiEdit3";
+import { useImage } from "@ui/api-hooks/file";
+import { useUserData } from "@ui/api-hooks/user";
 
 const ProfileImageUpload = () => {
-  useEffect(() => {}, []);
+  const coverImgInput = useRef();
+  const profileImgInput = useRef();
 
-  const [coverImg, setCoverImg] = useState(null);
-  const [profileImg, setProfileImg] = useState(null);
+  const user = useUserData();
+
+  const imageMutation = useImage();
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    file.field = e.target.name;
+    const res = imageMutation.mutate(file);
+  };
+
+  const coverImgUrl = user.profile?.coverImg;
+  const profileImgUrl = user.profile?.profileImg;
 
   return (
     <div className="mt-5">
@@ -33,25 +46,46 @@ const ProfileImageUpload = () => {
           <div className="xl:w-full m-auto">
             <div className="bg-center bg-cover bg-no-repeat rounded relative mt-8 h-48">
               <img
-                src="https://cdn.tuk.dev/assets/photo-1519252161722-1d52d47ac7df.jpg"
-                alt
+                src={coverImgUrl}
+                alt={user.profile?.firstName + "-cover"}
                 className="w-full h-full object-cover overflow-hidden rounded shadow"
               />
-              <div className="flex bg-white items-center px-3 py-2 shadow rounded absolute right-0 mr-4 mt-4 cursor-pointer top-0">
+              <input
+                name="profileImg"
+                onChange={handleImageUpload}
+                ref={coverImgInput}
+                type="file"
+                className="hidden"
+              />
+              <button
+                onClick={() => coverImgInput.current.click()}
+                className="flex bg-white items-center px-3 py-2 shadow rounded absolute right-0 mr-4 mt-4 cursor-pointer top-0"
+              >
                 <p className="text-xs text-gray-600">Change Cover Photo</p>
+
                 <div className="ml-2 text-gray-600">
                   <FiEdit3 />
                 </div>
-              </div>
-              <div className="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow">
+              </button>
+              <input
+                name="coverImg"
+                onChange={handleImageUpload}
+                ref={profileImgInput}
+                type="file"
+                className="hidden"
+              />
+              <div
+                onClick={() => profileImgInput.current.click()}
+                className="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow"
+              >
                 <img
-                  src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form2.jpg"
-                  alt
+                  src={profileImgUrl}
+                  alt={user.profile?.firstName + "-avatar"}
                   className="w-full h-full object-cover overflow-hidden absolute z-0 rounded-full shadow"
                 />
-                <div className="bg-white h-6 w-6 rounded-full flex items-center justify-center right-0 absolute cursor-pointer text-gray-600">
+                <span className="bg-white h-6 w-6 rounded-full flex items-center justify-center right-0 absolute cursor-pointer text-gray-600">
                   <FiEdit3 />
-                </div>
+                </span>
               </div>
             </div>
           </div>

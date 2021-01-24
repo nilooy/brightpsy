@@ -31,8 +31,6 @@ const ProfileEditForm = () => {
 
   const { profile } = useTracker(() => Meteor.user());
 
-  const savedLanguages = profile?.languages;
-
   const {
     register,
     handleSubmit,
@@ -48,9 +46,10 @@ const ProfileEditForm = () => {
       const res = await methodCall("user.updateProfile", { data });
       toast("Profile updated successfully", { autoClose: 2000 });
     } catch (error) {
-      toast.error("SSomething went wrong", { autoClose: 2000 });
+      toast.error("Something went wrong", { autoClose: 2000 });
     }
 
+    // TODO: add better error handling
     // setError('username', 'validate');
   };
 
