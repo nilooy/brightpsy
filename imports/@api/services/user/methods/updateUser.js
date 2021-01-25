@@ -14,29 +14,22 @@
 
 Meteor.methods({
   "user.updateProfile"({ data }) {
-    Meteor.users.update(
-      { _id: Meteor.userId() },
-      {
-        $set: {
-          profile: {
-            ...data,
-          },
-        },
-      }
-    );
-  },
-});
-
-Meteor.methods({
-  "user.updatePhoto"({ imageUrl, field }) {
-    check(imageUrl, String);
-    check(field, String);
-
-    const profile = {};
-    profile[field] = imageUrl;
-
     Meteor.users.update(Meteor.userId(), {
-      $set: { profile },
+      $set: {
+        "profile.firstName": data.firstName,
+        "profile.lastName": data.lastName,
+        "profile.bio": data.bio,
+        "profile.experience": data.experience,
+        "profile.identity_numb": data.identity_numb,
+        "profile.isPhysical": data.isPhysical,
+        "profile.isVirtual": data.isVirtual,
+        "profile.tel": data.tel,
+        "profile.facebook": data.facebook,
+        "profile.instagram": data.instagram,
+        "profile.twitter": data.twitter,
+        "profile.youtube": data.youtube,
+        "profile.languages": data.languages,
+      },
     });
   },
 });
