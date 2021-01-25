@@ -130,6 +130,7 @@ const ProfileEditForm = () => {
 
             <Controller
               as={Select}
+              id="languages"
               name="languages"
               isMulti
               getOptionLabel={(x) => x.language}
@@ -138,7 +139,6 @@ const ProfileEditForm = () => {
               className="basic-multi-select"
               classNamePrefix="select"
               control={control}
-              // value={savedLanguages}
             />
           </div>
 

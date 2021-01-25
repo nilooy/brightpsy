@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextAvatar = ({ firstName, lastName, size }) => {
-  const nameAbbr = firstName[0].toUpperCase() + lastName[0].toUpperCase();
+  const nameAbbr = firstName?.[0].toUpperCase() + lastName?.[0].toUpperCase();
 
   return (
     <div
@@ -18,11 +18,13 @@ const TextAvatar = ({ firstName, lastName, size }) => {
 const ImageAvatar = ({ imageUrl, alt, size }) => (
   <div
     className={
-      "mb-4 lg:mb-0 mr-4 " + (size ? "w-" + size + " " + "h-" + size : "")
+      "lg:mb-0 mr-2 bg-cover " + (size ? "w-" + size + " " + "h-" + size : "")
     }
   >
     <img
-      className="h-full w-full rounded-full overflow-hidden shadow bg-white "
+      className={
+        "rounded-full overflow-hidden shadow bg-white object-cover w-full h-full"
+      }
       src={imageUrl}
       alt={alt}
     />
