@@ -123,6 +123,7 @@ function Header() {
               aria-haspopup="true"
             >
               <UserAvatar
+                size={12}
                 imageUrl={user.profile?.profileImg}
                 firstName={user.profile?.firstName}
                 lastName={user.profile?.lastName}
