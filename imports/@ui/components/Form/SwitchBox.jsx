@@ -11,11 +11,13 @@ const SwitchBox = (props) => {
       </div>
       <div
         className="cursor-pointer rounded-full relative shadow-sm"
-        onClick={() =>
-          (document.querySelector(
+        onClick={() => {
+          document.querySelector(
             `[data-input='${name}']`
-          ).checked = !document.querySelector(`[data-input='${name}']`).checked)
-        }
+          ).checked = !document.querySelector(`[data-input='${name}']`).checked;
+
+          document.querySelector(`[data-input='${name}']`).click();
+        }}
       >
         <input
           {...props}

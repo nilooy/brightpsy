@@ -28,6 +28,7 @@
     "cloudinary": "^1.23.0",
     "faker": "4.1.0",
     "firebase": "^8.2.0",
+    "holdmyui": "^1.0.9",
     "imports": "^1.0.0",
     "language-list": "0.0.3",
     "meteor-babel": "^7.10.6",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.11.2",
+    "@hookform/devtools": "^2.2.1",
     "@svgr/webpack": "5.4.0",
     "autoprefixer": "^10.1.0",
     "babel-plugin-module-resolver": "^4.1.0",

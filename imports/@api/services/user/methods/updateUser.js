@@ -14,15 +14,22 @@
 
 Meteor.methods({
   "user.updateProfile"({ data }) {
-    Meteor.users.update(
-      { _id: Meteor.userId() },
-      {
-        $set: {
-          profile: {
-            ...data,
-          },
-        },
-      }
-    );
+    Meteor.users.update(Meteor.userId(), {
+      $set: {
+        "profile.firstName": data.firstName,
+        "profile.lastName": data.lastName,
+        "profile.bio": data.bio,
+        "profile.experience": data.experience,
+        "profile.identity_numb": data.identity_numb,
+        "profile.isPhysical": data.isPhysical,
+        "profile.isVirtual": data.isVirtual,
+        "profile.tel": data.tel,
+        "profile.facebook": data.facebook,
+        "profile.instagram": data.instagram,
+        "profile.twitter": data.twitter,
+        "profile.youtube": data.youtube,
+        "profile.languages": data.languages,
+      },
+    });
   },
 });

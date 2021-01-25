@@ -10,7 +10,7 @@ Accounts.onCreateUser((options, user) => {
     user.profile = {
       firstName: data?.given_name,
       lastName: data?.family_name,
-      imageUrl: data?.picture,
+      profileImg: data?.picture,
     };
 
     user.username = data?.email; // to avoid duplicate email
@@ -23,7 +23,7 @@ Accounts.onCreateUser((options, user) => {
     user.profile = {
       firstName: data?.first_name,
       lastName: data?.last_name,
-      imageUrl: data?.picture?.data?.url,
+      profileImg: data?.picture?.data?.url,
     };
 
     user.username = data?.email; // to avoid duplicate email
@@ -32,9 +32,13 @@ Accounts.onCreateUser((options, user) => {
 
   if (!user.services.password) {
     const cloudinaryUpload = Meteor.wrapAsync(cloudinary.v2.uploader.upload);
-    const res = cloudinaryUpload(user.profile.imageUrl);
-    user.profile.imageUrl = res.secure_url;
+    const res = cloudinaryUpload(user.profile.profileImg);
+    user.profile.profileImg = res.secure_url;
   }
+
+  user.profile.coverImg = `https://storage.googleapis.com/brightpsy/predefinedCoverImages/${
+    Math.floor(Math.random() * (10 - 1 + 1)) + 1
+  }.jpg`;
 
   return user;
 });
