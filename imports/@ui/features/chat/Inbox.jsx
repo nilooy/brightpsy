@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useUsers } from "@ui/api-hooks/user";
-import { Avatar } from "@windmill/react-ui";
 import { useHistory, useParams } from "react-router-dom";
 import { privatePath } from "@ui/routes/privatePath";
 import MessageSingle from "./MessageSingle";
 import useMediaQuery from "@ui/utils/useMediaQuery";
+import UserAvatar from "@ui/components/Avatar/UserAvatar";
 
 const Inbox = () => {
   const { data: users } = useUsers();
@@ -15,17 +15,22 @@ const Inbox = () => {
 
   const { screenXs } = useMediaQuery();
 
-  const UserCard = ({ id, name, imageUrl, onClick }) => (
+  const UserCard = ({ id, profileImg, firstName, lastName, onClick }) => (
     <div
       onClick={onClick}
       className={
-        "flex my-5 p-4 shadow-md rounded-2xl " +
+        "flex my-5 p-1 shadow-md rounded-2xl relative " +
         (id === userId ? "bg-green-300 pointer-events-none" : "cursor-pointer")
       }
     >
-      <Avatar src={imageUrl} alt="George" />
-      <p className="ml-5">{name}</p>
-      <div className="ml-2 w-2 h-2 align-middle rounded-full bg-green-400"></div>
+      <UserAvatar
+        size={12}
+        imageUrl={profileImg}
+        firstName={firstName}
+        lastName={lastName}
+      />
+      <p className="text-xs self-center">{`${firstName}`}</p>
+      <div className=" ml-2 w-2 h-2 rounded-full bg-green-400 absolute right-2 top-2 z-10"></div>
     </div>
   );
 
@@ -41,15 +46,14 @@ const Inbox = () => {
   return (
     <div className="mt-2 flex h-screen 2xl:mx-40">
       {(screenXs && !userId) || !screenXs ? (
-        <div className="flex-grow rounded-md text-gray-500 font-semibold  py-3 px-6">
+        <div className="flex-grow rounded-md text-gray-500 font-semibold  py-3 px-2 2xl:w-3/12">
           {users &&
-            users.map(({ _id, profile }) => (
+            users.map((user) => (
               <UserCard
-                onClick={() => history.push(privatePath.inboxById(_id))}
-                key={_id}
-                id={_id}
-                name={profile?.firstName + " " + profile?.lastName}
-                imageUrl={profile?.imageUrl}
+                {...user.profile}
+                id={user._id}
+                key={user._id}
+                onClick={() => history.push(privatePath.inboxById(user._id))}
               />
             ))}
         </div>

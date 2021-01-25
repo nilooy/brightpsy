@@ -11,6 +11,7 @@ import Loading from "./Loading";
 import { BiArrowBack } from "@react-icons/all-files/bi/BiArrowBack";
 import { Link } from "react-router-dom";
 import { privatePath } from "@ui/routes/privatePath";
+import UserAvatar from "@ui/components/Avatar/UserAvatar";
 
 const MessageSingle = ({ userId, selectedUser }) => {
   const messageBoxContainer = useRef();
@@ -69,12 +70,20 @@ const MessageSingle = ({ userId, selectedUser }) => {
   return !isLoading || room ? (
     <div className="flex justify-between flex-col w-full">
       {selectedUser && (
-        <div className="bg-gray-700 text-white text-xl p-3 flex">
-          <Link className="text-white mr-3" to={privatePath.inbox}>
+        <div className="bg-gray-700 text-white text-xl p-3 flex ">
+          <Link
+            className="text-white mr-3 lg:hidden self-center"
+            to={privatePath.inbox}
+          >
             <BiArrowBack />
           </Link>
-          <Avatar src={selectedUser?.imageUrl} alt="user avatar" />
-          <p className="ml-3">
+          <UserAvatar
+            size={12}
+            imageUrl={selectedUser?.profileImg}
+            firstName={selectedUser?.firstName}
+            lastName={selectedUser?.lastName}
+          />
+          <p className="ml-3 self-center">
             {selectedUser?.firstName + " " + selectedUser?.lastName}
           </p>
           <div className="ml-2 w-2 h-2 align-middle rounded-full bg-green-400"></div>
