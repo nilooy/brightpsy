@@ -1,29 +1,33 @@
 import { PricePackages } from "../models/PricePackageCollection";
 
-import { ValidatedMethod } from "meteor/mdg:validated-method";
-
-import SimpleSchema from "simpl-schema";
-
-// TODO: Confirm if this can be risky as imported on client
-
-export const createOrUpdatePricePackage = new ValidatedMethod({
-  name: "pricePackage.create",
-  validate: new SimpleSchema({
-    title: { type: String },
-    desc: { type: String },
-    quantity: { type: String },
-    hours: { type: String },
-    cost: { type: String },
-  }).validator(),
-  run({ title, desc, quantity, hours, cost }) {
+Meteor.methods({
+  "pricePackage.create"({
+    title,
+    desc,
+    isPhysical,
+    isVirtual,
+    tags,
+    visits,
+    duration,
+    freeMins,
+  }) {
+    check(title, String);
+    check(desc, String);
+    check(isPhysical, Boolean);
+    check(isVirtual, Boolean);
+    check(tags, Array);
+    check(visits, Array);
+    check(duration, Number);
+    check(freeMins, Number);
     return PricePackages.insert({
       title,
       desc,
-      quantity,
-      hours,
-      cost,
-      userId: this.userId,
-      createdAt: new Date(),
+      isPhysical,
+      isVirtual,
+      tags,
+      visits,
+      duration,
+      freeMins,
     });
   },
 });
