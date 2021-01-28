@@ -1,8 +1,10 @@
 import Input from "@ui/components/Form/Input";
 import TextArea from "@ui/components/Form/TextArea";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineInfoCircle } from "@react-icons/all-files/ai/AiOutlineInfoCircle";
 import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCircle";
+import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
+import { CgSpinnerTwoAlt } from "@react-icons/all-files/cg/CgSpinnerTwoAlt";
 import FormCard from "@ui/components/Cards/FormCard";
 import Creatable from "react-select/creatable";
 import SwitchBox from "@ui/components/Form/SwitchBox";
@@ -20,8 +22,10 @@ import {
   TableCell,
 } from "@windmill/react-ui";
 import Select from "@ui/components/Form/Select";
+import { usePackageImage } from "@ui/api-hooks/file";
 
 const CreatePricePackage = () => {
+  const uploadInput = useRef();
   const { data: savedTags } = useTags();
 
   const tagsSuggestion = savedTags?.map((tag) => ({
@@ -37,10 +41,37 @@ const CreatePricePackage = () => {
     formState: { isDirty, isSubmitting },
     setValue,
     getValues,
-  } = useForm();
+    watch,
+  } = useForm({
+    defaultValues: {
+      freeMins: 15,
+      duration: 40,
+      isPhysical: false,
+      isVirtual: true,
+    },
+  });
+
+  const [images, setImages] = useState([]);
+
+  console.log(images);
+
+  const setImagesOnUpload = (image) => {
+    setImages([image, ...images]);
+    uploadInput.current.value = [];
+  };
+
+  const imageMutation = usePackageImage(setImagesOnUpload);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    file.field = e.target.name;
+    imageMutation.mutate(file);
+    console.log(imageMutation);
+  };
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    console.log(data);
+    data.images = images;
     try {
       const res = await methodCall("pricePackage.create", { data });
       toast("Package created successfully", { autoClose: 2000 });
@@ -137,7 +168,6 @@ const CreatePricePackage = () => {
               isMulti
               options={tagsSuggestion?.length ? tagsSuggestion : undefined}
               control={control}
-              defaultValue={undefined}
             />
           </div>
 
@@ -175,15 +205,16 @@ const CreatePricePackage = () => {
                         Minuti gratis
                       </p>
                       <Input
-                        name="freeMinuit"
+                        name="freeMins"
                         type="number"
                         placeholder="Minuti"
-                        error={errors.firstName?.message}
+                        error={errors.freeMins?.message}
                         suffix={
                           <div className="p-2 bg-green-200">
                             <AiOutlineClockCircle className="text-3xl  flex flex-col justify-center" />
                           </div>
                         }
+                        register={register}
                       />
                     </div>
                   </TableCell>
@@ -198,7 +229,8 @@ const CreatePricePackage = () => {
                         name="duration"
                         type="number"
                         placeholder="Minuti"
-                        error={errors.firstName?.message}
+                        error={errors.duration?.message}
+                        register={register}
                         suffix={
                           <div className="p-2 bg-green-200">
                             <AiOutlineClockCircle className="text-3xl  flex flex-col justify-center" />
@@ -214,7 +246,7 @@ const CreatePricePackage = () => {
                       name="visits[0].price"
                       placeholder="Prezzo"
                       register={register({ required: true })}
-                      error={errors.firstName?.message}
+                      error={errors.price?.message}
                       suffix="&euro;"
                       prefix={
                         <Select
@@ -235,7 +267,7 @@ const CreatePricePackage = () => {
                       name="visits[1].price"
                       placeholder="Prezzo"
                       register={register}
-                      error={errors.firstName?.message}
+                      error={errors.price?.message}
                       suffix="&euro;"
                       register={register({ required: true })}
                       prefix={
@@ -256,7 +288,7 @@ const CreatePricePackage = () => {
                       name="visits[2].price"
                       placeholder="Prezzo"
                       register={register}
-                      error={errors.firstName?.message}
+                      error={errors.price?.message}
                       suffix="&euro;"
                       register={register({ required: true })}
                       prefix={
@@ -274,6 +306,56 @@ const CreatePricePackage = () => {
               </TableBody>
             </Table>
           </TableContainer>
+        </FormCard>
+        <FormCard
+          className="p-4 bg-green-100"
+          title="Foto"
+          TitleIcon={AiOutlineInfoCircle}
+        >
+          <p className="text-gray-400 ml-3">Si può caricare max 3 foto</p>
+          <div id="upload-box">
+            {images.length !== 3 && (
+              <button
+                className="bg-blue-600 transition duration-150 ease-in-out hover:bg-green-300 rounded text-white font-medium px-8 py-2 text-xl focus:outline-none flex"
+                type="button"
+                onClick={() => uploadInput.current.click()}
+              >
+                {imageMutation.isLoading && (
+                  <CgSpinnerTwoAlt className="self-center mr-2 animate-spin" />
+                )}
+                Carica Foto
+              </button>
+            )}
+            <input
+              type="file"
+              className="hidden"
+              ref={uploadInput}
+              onChange={handleImageUpload}
+            />
+            <input ref={register} name="images" className="hidden" />
+          </div>
+          <div className="container w-11/12 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-12 gap-8">
+            {images.length ? (
+              images.map(
+                (img, index) =>
+                  img && (
+                    <div className="relative border-4 border-gray-300 p-2">
+                      <img key={img} src={img} alt={img + "-packages"} />
+                      <AiFillMinusCircle
+                        className="bg-gray-100 text-red-500 text-3xl absolute top-0 right-0 shadow-lg rounded-full cursor-pointer hover:text-3xl"
+                        onClick={() =>
+                          setImages(images.filter((i) => i !== img))
+                        }
+                      />
+                    </div>
+                  )
+              )
+            ) : (
+              <div className="border-6 rounded-2xl shadow-lg border-white bg-gray-300 w-64 h-64 flex justify-center flex-col text-2xl p-2 text-gray-600 text-center">
+                <p>Nessun foto caricate</p>
+              </div>
+            )}
+          </div>
         </FormCard>
         <FormFooter isDirty={isDirty} />
       </form>

@@ -4,12 +4,15 @@ import { useHistory } from "react-router-dom";
 import { Card, CardBody, Button } from "@windmill/react-ui";
 import { privatePath } from "@ui/routes/privatePath";
 import { usePricePackages } from "@ui/api-hooks/price-package";
+import PackageCard from "@ui/components/Cards/PackageCard";
 
 const ListPricePackage = () => {
   const history = useHistory();
   const userId = Meteor.userId();
 
   const { data: pricePackages } = usePricePackages(userId);
+
+  console.log(pricePackages);
 
   return (
     <>
@@ -23,29 +26,9 @@ const ListPricePackage = () => {
           Crea Pacchetti +
         </Button>
       </div>
-      <div className="grid gap-6 mb-8 md:grid-cols-2">
+      <div class="container w-11/12 mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-12 gap-8">
         {pricePackages &&
-          pricePackages.map((item) => (
-            <Card key={item._id} className="flex h-full bg-gray-100 shadow-lg">
-              <CardBody>
-                <p className="mb-4 font-semibold text-gray-600 text-3xl dark:text-gray-300">
-                  {item.title}
-                </p>
-                <p className="text-gray-600 dark:text-gray-400 p-2">
-                  {item.desc}
-                </p>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
-                  {item.quantity} Sedute
-                </p>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
-                  {item.hours} Ore
-                </p>
-                <p className="dark:text-gray-400 text-3xl text-green-400">
-                  {item.cost} €
-                </p>
-              </CardBody>
-            </Card>
-          ))}
+          pricePackages.map((item) => <PackageCard key={item._id} {...item} />)}
       </div>
     </>
   );
