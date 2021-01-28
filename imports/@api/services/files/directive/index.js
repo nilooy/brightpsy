@@ -1,3 +1,5 @@
+const { getUniqueId } = require("@ui/utils/helpers");
+
 const {
   bucket,
   GoogleAccessId,
@@ -29,7 +31,9 @@ Slingshot.createDirective(directiveName, Slingshot.GoogleCloud, {
   key: function (file) {
     //Store file into a directory by the user's username.
     var user = Meteor.users.findOne(this.userId);
-    return user.username + "/" + file.name.replace(/\s/g, "");
+    return (
+      user.username + "/" + file.name.replace(/\s/g, "") + "-" + getUniqueId()
+    );
   },
 });
 
