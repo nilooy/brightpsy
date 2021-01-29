@@ -8,15 +8,14 @@ import languages from "language-list";
 import SwitchBox from "@ui/components/Form/SwitchBox";
 import { Controller, useForm } from "react-hook-form";
 import { methodCall } from "@ui/utils/asyncMeteorMethod";
+import { useTracker } from "meteor/react-meteor-data";
 import { toast } from "react-toastify";
 import HoldMyUi from "holdmyui";
-import { useUserData } from "@ui/api-hooks/user";
 
 const ProfileEditForm = () => {
   const languageOptions = languages().getData();
 
-  const { profile, username } = useUserData();
-  profile.email = username;
+  const { profile } = useTracker(() => Meteor.user());
 
   const {
     register,
@@ -24,9 +23,8 @@ const ProfileEditForm = () => {
     errors,
     control,
     formState: { isDirty, isSubmitting },
-    reset,
   } = useForm({
-    defaultValues: profile,
+    defaultValues: { ...profile },
   });
 
   const onSubmit = async (data) => {
@@ -99,81 +97,6 @@ const ProfileEditForm = () => {
 
         <FormCard
           className="mt-12 p-4"
-          title="Professional Information"
-          TitleIcon={AiOutlineInfoCircle}
-        >
-          <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-            <Input
-              type="number"
-              name="experience"
-              label="Anni di Esperienza"
-              placeholder="Lascia vuoto se non hai esperienza"
-              register={register}
-              error={errors.experience?.message}
-            />
-
-            <Input
-              type="number"
-              name="identity_numb"
-              label="Alma ID"
-              placeholder="Numero registrato a Alma"
-              register={register({ required: true, maxLength: 5 })}
-              error={errors.identity_numb?.message}
-            />
-          </div>
-
-          <div className="flex flex-col w-full my-3">
-            <label
-              htmlFor={"languages"}
-              className="pb-4 text-sm font-bold text-gray-800"
-            >
-              Languages
-            </label>
-
-            <Controller
-              as={Select}
-              id="languages"
-              name="languages"
-              isMulti
-              getOptionLabel={(x) => x.language}
-              getOptionValue={(x) => x.code}
-              options={languageOptions}
-              className="basic-multi-select"
-              classNamePrefix="select"
-              control={control}
-            />
-          </div>
-
-          <div>
-            <label htmlFor={"mode"} className="text-sm font-bold text-gray-800">
-              Modalita
-            </label>
-
-            <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 mt-3">
-              <div className="border p-2">
-                <SwitchBox
-                  name="isPhysical"
-                  label="In presenza"
-                  helpText="Sedute in studio"
-                  register={register}
-                  error={errors.isPhysical?.message}
-                />
-              </div>
-              <div className="border p-2">
-                <SwitchBox
-                  name="isVirtual"
-                  label="Virtuale"
-                  helpText="Sedute online"
-                  register={register}
-                  error={errors.isVirtual?.message}
-                />
-              </div>
-            </div>
-          </div>
-        </FormCard>
-
-        <FormCard
-          className="mt-12 p-4"
           title="Contact Information"
           TitleIcon={AiOutlineInfoCircle}
         >
@@ -183,7 +106,6 @@ const ProfileEditForm = () => {
               name="email"
               label="Email"
               placeholder="Email"
-              register={register}
             />
             <Input
               type="number"
@@ -196,40 +118,6 @@ const ProfileEditForm = () => {
           </div>
         </FormCard>
 
-        <FormCard
-          className="mt-12 p-4"
-          title="Social Informations"
-          TitleIcon={AiOutlineInfoCircle}
-        >
-          <Input
-            name="facebook"
-            label="Facebook"
-            placeholder="Facebook page or id link"
-            register={register}
-            error={errors.facebook?.message}
-          />
-          <Input
-            name="instagram"
-            label="Instagram"
-            placeholder="Instagram link"
-            register={register}
-            error={errors.instagram?.message}
-          />
-          <Input
-            name="twitter"
-            label="Twitter"
-            placeholder="Twitter link"
-            register={register}
-            error={errors.twitter?.message}
-          />
-          <Input
-            name="youtube"
-            label="Youtube"
-            placeholder="Youtube channel link"
-            register={register}
-            error={errors.youtube?.message}
-          />
-        </FormCard>
         <FormFooter isDirty={isDirty} />
         <div className="my-32"></div>
       </form>

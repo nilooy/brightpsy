@@ -21,6 +21,7 @@ import {
 import { useHistory } from "react-router-dom";
 import UserAvatar from "../Avatar/UserAvatar";
 import { useUserData } from "@ui/api-hooks/user";
+import UserGlobalSearchInput from "@ui/features/price-package/UserGlobalSearchInput";
 
 function Header() {
   const history = useHistory();
@@ -53,21 +54,10 @@ function Header() {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
 
-        <div className="flex justify-center flex-1 lg:mr-32">
-          <div className="relative w-full max-w-xl mr-6 focus-within:text-blue-500">
-            <div className="absolute inset-y-0 flex items-center pl-2">
-              <SearchIcon className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <Input
-              className="pl-8 text-gray-700"
-              placeholder="Di a noi il tuo problema"
-              aria-label="Search"
-            />
-          </div>
-        </div>
-        <ul className="flex items-center flex-shrink-0 space-x-6">
+        <ul className="flex items-center flex-shrink-0 space-x-6 justify-end w-full">
+          <UserGlobalSearchInput />
           {/* <!-- Theme toggler --> */}
-          <li className="flex">
+          {/* <li className="flex">
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-blue"
               onClick={toggleMode}
@@ -79,7 +69,7 @@ function Header() {
                 <MoonIcon className="w-5 h-5" aria-hidden="true" />
               )}
             </button>
-          </li>
+          </li> */}
           {/* <!-- Notifications menu --> */}
           <li className="relative">
             <button

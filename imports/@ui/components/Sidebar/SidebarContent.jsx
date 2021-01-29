@@ -8,6 +8,7 @@ import { Button } from "@windmill/react-ui";
 import Logo from "@ui/components/Basic/Logo";
 import { privatePath } from "@ui/routes/privatePath";
 import { SecurityContext } from "@ui/context/SecurityContext";
+import { useUserRole } from "@ui/api-hooks/user";
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -17,7 +18,7 @@ function Icon({ icon, ...props }) {
 function SidebarContent() {
   const history = useHistory();
 
-  const { isDoctor } = useContext(SecurityContext);
+  const { isDoctor } = useUserRole();
 
   const routes = isDoctor ? sidebar : sidebarUser;
 
