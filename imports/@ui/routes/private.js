@@ -2,6 +2,7 @@ import { Fragment } from "react";
 
 import MainLayout from "@ui/layouts/MainLayout";
 import CreatePricePackage from "@ui/features/price-package/CreatePricePackage";
+import EditPricePackage from "@ui/features/price-package/EditPricePackage";
 import ListPricePackage from "@ui/features/price-package/ListPricePackage";
 import Dashboard from "@ui/features/dashboard/Dashboard";
 import Profile from "@ui/features/profile/Profile";
@@ -48,6 +49,11 @@ export const privateRoutes = [
         path: privatePath.packagesCreate,
         exact: true,
         component: CreatePricePackage,
+      },
+      {
+        path: privatePath.packagesEditById(),
+        exact: true,
+        component: EditPricePackage,
       },
       {
         path: privatePath.inbox,

@@ -18,7 +18,6 @@ const PricePackageSchema = new SimpleSchema({
   "visits.$": { type: Object },
   "visits.$.numOfVisits": { type: Number },
   "visits.$.price": { type: Number },
-  freeMins: { type: Number, optional: true },
   duration: { type: Number },
   published: { type: Boolean, defaultValue: false },
   userId: {

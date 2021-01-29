@@ -1,6 +1,6 @@
 import Input from "@ui/components/Form/Input";
 import TextArea from "@ui/components/Form/TextArea";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineInfoCircle } from "@react-icons/all-files/ai/AiOutlineInfoCircle";
 import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCircle";
 import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
@@ -23,15 +23,20 @@ import {
 } from "@windmill/react-ui";
 import Select from "@ui/components/Form/Select";
 import { usePackageImage } from "@ui/api-hooks/file";
+import { usePricePackageById } from "@ui/api-hooks/price-package";
+import { useParams } from "react-router-dom";
 
-const CreatePricePackage = () => {
+const EditPricePackage = () => {
   const uploadInput = useRef();
+  const { id: packageId } = useParams();
+  const { data: packageData } = usePricePackageById(packageId);
   const { data: savedTags } = useTags();
 
   const tagsSuggestion = savedTags?.map((tag) => ({
     value: tag?.text,
     label: tag?.text,
   }));
+  const [images, setImages] = useState([]);
 
   const {
     register,
@@ -39,20 +44,18 @@ const CreatePricePackage = () => {
     errors,
     control,
     formState: { isDirty, isSubmitting },
-    setValue,
-    getValues,
-    watch,
+    reset,
   } = useForm({
-    defaultValues: {
-      duration: 40,
-      isPhysical: false,
-      isVirtual: true,
-    },
+    defaultValues: packageData,
   });
 
-  const [images, setImages] = useState([]);
-
-  console.log(images);
+  useEffect(() => {
+    if (packageData) {
+      console.log(packageData);
+      reset(packageData);
+      setImages(packageData.images);
+    }
+  }, [packageData]);
 
   const setImagesOnUpload = (image) => {
     setImages([image, ...images]);
@@ -93,11 +96,7 @@ const CreatePricePackage = () => {
         type="button"
         onClick={handleSubmit(onSubmit)}
       >
-        Salva
-      </button>
-      {/* Submit button */}
-      <button className="bg-orange-300 transition duration-150 ease-in-out hover:bg-orange-500 rounded text-gray-600 font-medium px-8 py-2 text-sm focus:outline-none ml-2">
-        Crea e pubblica
+        Aggiorna
       </button>
     </div>
   );
@@ -342,4 +341,4 @@ const CreatePricePackage = () => {
   );
 };
 
-export default CreatePricePackage;
+export default EditPricePackage;

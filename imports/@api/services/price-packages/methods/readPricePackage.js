@@ -1,6 +1,9 @@
 import { PricePackages } from "../models/PricePackageCollection";
 
 Meteor.methods({
+  "pricePackage.getById"({ _id }) {
+    return PricePackages.findOne({ _id });
+  },
   "pricePackage.getAllByUser"({}) {
     return PricePackages.find({ userId: this.userId }).fetch();
   },
