@@ -4,9 +4,10 @@ import Page404 from "@ui/routes/Page404";
 import { privateRoutes, privateRoutesUser } from "./private";
 import auth from "./auth";
 import { SecurityContext } from "@ui/context/SecurityContext";
+import { useUserRole } from "@ui/api-hooks/user";
 
 const Routes = () => {
-  const { isDoctor } = useContext(SecurityContext);
+  const { isDoctor } = useUserRole();
   const privateRoutesBasedOnRole = isDoctor ? privateRoutes : privateRoutesUser;
 
   const routes = [...privateRoutesBasedOnRole, ...auth];

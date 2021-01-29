@@ -1,4 +1,7 @@
-import { PricePackages } from "../models/PricePackageCollection";
+import {
+  PricePackages,
+  PricePackageSchema,
+} from "../models/PricePackageCollection";
 
 Meteor.methods({
   "pricePackage.getById"({ _id }) {
@@ -9,7 +12,7 @@ Meteor.methods({
   },
 
   "pricePackage.getAll"({}) {
-    return PricePackageSchema.rawCollection().aggregate([
+    return PricePackages.rawCollection().aggregate([
       {
         $lookup: {
           from: "users",
@@ -19,5 +22,25 @@ Meteor.methods({
         },
       },
     ]);
+  },
+
+  "pricePackage.search"({ searchValue }) {
+    check(searchValue, String);
+
+    console.log(
+      "search",
+      searchValue,
+      PricePackages.rawCollection()
+        .find({
+          $text: { $search: searchValue },
+        })
+        .toArray()
+    );
+
+    return PricePackages.rawCollection()
+      .find({
+        $text: { $search: searchValue },
+      })
+      .toArray();
   },
 });

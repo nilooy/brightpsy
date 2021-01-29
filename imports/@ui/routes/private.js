@@ -6,10 +6,12 @@ import EditPricePackage from "@ui/features/price-package/EditPricePackage";
 import ListPricePackage from "@ui/features/price-package/ListPricePackage";
 import Dashboard from "@ui/features/dashboard/Dashboard";
 import Profile from "@ui/features/profile/Profile";
+import UserProfileEditForm from "@ui/features/profile/UserProfileEditForm";
 import ThemedSuspense from "@ui/components/Basic/ThemedSuspense";
 import { privatePath, rootPath, rootPathUser } from "@ui/routes/privatePath";
 import UserDashboard from "@ui/features/dashboard/UserDashboard";
 import Inbox from "@ui/features/chat/Inbox";
+import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
 
 export const privateRoutes = [
   {
@@ -96,7 +98,7 @@ export const privateRoutesUser = [
       {
         path: privatePath.profile,
         exact: true,
-        component: Profile,
+        component: UserProfileEditForm,
       },
       {
         path: privatePath.inbox,
@@ -107,6 +109,11 @@ export const privateRoutesUser = [
         path: privatePath.inboxById(),
         exact: true,
         component: Inbox,
+      },
+      {
+        path: privatePath.search,
+        exact: true,
+        component: UserSearchPricePackage,
       },
     ],
   },

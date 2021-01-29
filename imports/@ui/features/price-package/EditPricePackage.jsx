@@ -24,9 +24,12 @@ import {
 import Select from "@ui/components/Form/Select";
 import { usePackageImage } from "@ui/api-hooks/file";
 import { usePricePackageById } from "@ui/api-hooks/price-package";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import Confirmation from "@ui/components/Modal/Confirmation";
+import { privatePath } from "@ui/routes/privatePath";
 
 const EditPricePackage = () => {
+  const history = useHistory();
   const uploadInput = useRef();
   const { id: packageId } = useParams();
   const { data: packageData } = usePricePackageById(packageId);
@@ -36,6 +39,8 @@ const EditPricePackage = () => {
     value: tag?.text,
     label: tag?.text,
   }));
+
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
   const [images, setImages] = useState([]);
 
   const {
@@ -45,6 +50,7 @@ const EditPricePackage = () => {
     control,
     formState: { isDirty, isSubmitting },
     reset,
+    watch,
   } = useForm({
     defaultValues: packageData,
   });
@@ -77,6 +83,7 @@ const EditPricePackage = () => {
     try {
       const res = await methodCall("pricePackage.create", { data });
       toast("Package created successfully", { autoClose: 2000 });
+      history.push(privatePath.packages);
     } catch (error) {
       toast.error("Something went wrong", { autoClose: 2000 });
     }
@@ -85,9 +92,33 @@ const EditPricePackage = () => {
     // setError('username', 'validate');
   };
 
+  const onDeleteConfirm = async () => {
+    try {
+      const res = await methodCall("pricePackage.remove", {
+        id: packageData._id,
+      });
+      history.push(privatePath.packages);
+      toast.warning("Package Deleted", { autoClose: 2000 });
+    } catch (error) {
+      toast.error("Something went wrong", { autoClose: 2000 });
+    }
+  };
+
+  console.log({ packageData });
+
   const FormFooter = ({ isDirty }) => (
     <div className="fixed z-10 bottom-0 left-0 w-full py-4 sm:px-12 px-4 bg-gray-100 mt-6 flex justify-end rounded-bl rounded-br">
-      <button className="btn text-sm focus:outline-none text-gray-600 border border-gray-300 py-2 px-6 mr-4 rounded hover:bg-gray-200 transition duration-150 ease-in-out">
+      <button
+        onClick={() => setDeleteConfirmationOpen(true)}
+        className="btn text-sm focus:outline-none text-red-600 border py-2 px-6 mr-4 rounded hover:bg-gray-200 transition duration-150 ease-in-out"
+        type="button"
+      >
+        Remove
+      </button>
+      <button
+        type="button"
+        className="btn text-sm focus:outline-none text-gray-600 border border-gray-300 py-2 px-6 mr-4 rounded hover:bg-gray-200 transition duration-150 ease-in-out"
+      >
         Draft
       </button>
       {/* Submit button */}
@@ -98,6 +129,13 @@ const EditPricePackage = () => {
       >
         Aggiorna
       </button>
+
+      <Confirmation
+        onConfirm={onDeleteConfirm}
+        isOpen={deleteConfirmationOpen}
+        setOpen={setDeleteConfirmationOpen}
+        title="Sei sicuro di remuovere"
+      />
     </div>
   );
 
@@ -113,7 +151,7 @@ const EditPricePackage = () => {
       <form className="xl:w-9/12 m-auto">
         <FormCard
           className="mt-12 p-4"
-          title="Crea il pachetto"
+          title={"Modifica il pachetto"}
           TitleIcon={AiOutlineInfoCircle}
         >
           <Input

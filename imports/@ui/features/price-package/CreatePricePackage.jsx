@@ -23,8 +23,11 @@ import {
 } from "@windmill/react-ui";
 import Select from "@ui/components/Form/Select";
 import { usePackageImage } from "@ui/api-hooks/file";
+import { useHistory } from "react-router-dom";
+import { privatePath } from "@ui/routes/privatePath";
 
 const CreatePricePackage = () => {
+  const history = useHistory();
   const uploadInput = useRef();
   const { data: savedTags } = useTags();
 
@@ -73,6 +76,7 @@ const CreatePricePackage = () => {
     data.images = images;
     try {
       const res = await methodCall("pricePackage.create", { data });
+      history.push(privatePath.packages);
       toast("Package created successfully", { autoClose: 2000 });
     } catch (error) {
       toast.error("Something went wrong", { autoClose: 2000 });
