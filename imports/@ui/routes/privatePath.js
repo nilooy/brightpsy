@@ -6,7 +6,7 @@ export const privatePath = {
   packages: rootPath + "/packages",
   packagesCreate: rootPath + "/package/create",
   packagesEditById: (id = ":id") => rootPath + "/package/edit/" + id,
-  packagesById: (id = ":id") => rootPath + "/package/" + id,
+  packageById: (id = ":id") => rootPath + "/package/" + id,
   search: rootPath + "/search",
   inbox: rootPath + "/inbox",
   inboxById: (id = ":id") => rootPath + "/inbox/" + id,

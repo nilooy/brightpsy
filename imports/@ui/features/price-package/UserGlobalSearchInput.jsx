@@ -21,13 +21,13 @@ const UserGlobalSearchInput = () => {
           <SearchIcon className="w-4 h-4" aria-hidden="true" />
         </div>
         <Input
-          className="pl-8 text-gray-700 border"
+          className="pl-8 text-gray-700 border text-xl"
           placeholder="Di a noi il tuo problema"
           aria-label="Search"
           onChange={(e) => {
             history.replace(privatePath.search + "?q=" + e.target.value);
           }}
-          value={searchValue}
+          value={searchValue ? searchValue : ""}
         />
       </div>
     </div>

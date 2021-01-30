@@ -23,9 +23,7 @@ const UserSearchPricePackage = () => {
   console.log(pricePackages);
 
   useEffect(() => {
-    if (searchValue) {
-      refetch();
-    }
+    refetch();
   }, [searchValue, refetch]);
 
   return (
@@ -38,9 +36,7 @@ const UserSearchPricePackage = () => {
         {pricePackages &&
           pricePackages.map((item) => (
             <PackageCard
-              onClick={() =>
-                history.push(privatePath.packagesEditById(item._id))
-              }
+              onClick={() => history.push(privatePath.packageById(item._id))}
               key={item._id}
               {...item}
             />
