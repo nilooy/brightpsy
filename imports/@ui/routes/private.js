@@ -12,6 +12,7 @@ import { privatePath, rootPath, rootPathUser } from "@ui/routes/privatePath";
 import UserDashboard from "@ui/features/dashboard/UserDashboard";
 import Inbox from "@ui/features/chat/Inbox";
 import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
+import UserSinglePricePackage from "@ui/features/price-package/UserSinglePricePackage";
 
 export const privateRoutes = [
   {
@@ -114,6 +115,11 @@ export const privateRoutesUser = [
         path: privatePath.search,
         exact: true,
         component: UserSearchPricePackage,
+      },
+      {
+        path: privatePath.packageById(),
+        exact: true,
+        component: UserSinglePricePackage,
       },
     ],
   },

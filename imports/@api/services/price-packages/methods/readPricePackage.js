@@ -27,15 +27,9 @@ Meteor.methods({
   "pricePackage.search"({ searchValue }) {
     check(searchValue, String);
 
-    console.log(
-      "search",
-      searchValue,
-      PricePackages.rawCollection()
-        .find({
-          $text: { $search: searchValue },
-        })
-        .toArray()
-    );
+    if (!searchValue) {
+      return PricePackages.find({}).fetch();
+    }
 
     return PricePackages.rawCollection()
       .find({
