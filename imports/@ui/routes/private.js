@@ -2,13 +2,17 @@ import { Fragment } from "react";
 
 import MainLayout from "@ui/layouts/MainLayout";
 import CreatePricePackage from "@ui/features/price-package/CreatePricePackage";
+import EditPricePackage from "@ui/features/price-package/EditPricePackage";
 import ListPricePackage from "@ui/features/price-package/ListPricePackage";
 import Dashboard from "@ui/features/dashboard/Dashboard";
 import Profile from "@ui/features/profile/Profile";
+import UserProfileEditForm from "@ui/features/profile/UserProfileEditForm";
 import ThemedSuspense from "@ui/components/Basic/ThemedSuspense";
 import { privatePath, rootPath, rootPathUser } from "@ui/routes/privatePath";
 import UserDashboard from "@ui/features/dashboard/UserDashboard";
 import Inbox from "@ui/features/chat/Inbox";
+import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
+import UserSinglePricePackage from "@ui/features/price-package/UserSinglePricePackage";
 
 export const privateRoutes = [
   {
@@ -48,6 +52,11 @@ export const privateRoutes = [
         path: privatePath.packagesCreate,
         exact: true,
         component: CreatePricePackage,
+      },
+      {
+        path: privatePath.packagesEditById(),
+        exact: true,
+        component: EditPricePackage,
       },
       {
         path: privatePath.inbox,
@@ -90,7 +99,7 @@ export const privateRoutesUser = [
       {
         path: privatePath.profile,
         exact: true,
-        component: Profile,
+        component: UserProfileEditForm,
       },
       {
         path: privatePath.inbox,
@@ -101,6 +110,16 @@ export const privateRoutesUser = [
         path: privatePath.inboxById(),
         exact: true,
         component: Inbox,
+      },
+      {
+        path: privatePath.search,
+        exact: true,
+        component: UserSearchPricePackage,
+      },
+      {
+        path: privatePath.packageById(),
+        exact: true,
+        component: UserSinglePricePackage,
       },
     ],
   },
