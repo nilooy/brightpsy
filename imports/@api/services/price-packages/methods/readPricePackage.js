@@ -5,7 +5,12 @@ import {
 
 Meteor.methods({
   "pricePackage.getById"({ _id }) {
-    return PricePackages.findOne({ _id });
+    const package = PricePackages.findOne({ _id });
+    const user = Meteor.users.findOne(package.userId);
+
+    Object.assign(package, { user });
+
+    return package;
   },
   "pricePackage.getAllByUser"({}) {
     return PricePackages.find({ userId: this.userId }).fetch();
@@ -25,11 +30,11 @@ Meteor.methods({
   },
 
   "pricePackage.search"({ searchValue }) {
-    check(searchValue, String);
-
     if (!searchValue) {
       return PricePackages.find({}).fetch();
     }
+
+    check(searchValue, String);
 
     return PricePackages.rawCollection()
       .find({
