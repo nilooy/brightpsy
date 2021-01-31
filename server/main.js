@@ -8,10 +8,10 @@ import "../imports/@api/register-api";
 import "../imports/client";
 
 // Service config
-import "./service.config";
+import "./helpers/service.config";
 
 // Account Hooks
-import "./account.hook";
+import "./helpers/account.hook";
 
 Meteor.startup(() => {
   // Create accepted roles

@@ -8,9 +8,7 @@ export const usePricePackages = () => {
 
 export const usePricePackagesSearch = (searchValue) => {
   const name = "pricePackage.search";
-  return useQuery(name, async () => await methodCall(name, { searchValue }), {
-    enabled: !!searchValue,
-  });
+  return useQuery(name, async () => await methodCall(name, { searchValue }));
 };
 
 export const usePricePackageById = (id) => {
