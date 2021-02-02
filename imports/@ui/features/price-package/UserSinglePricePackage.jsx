@@ -2,15 +2,18 @@ import React from "react";
 import Container from "@ui/components/Basic/Container";
 import { Carousel } from "react-responsive-carousel";
 import DotBg from "@ui/assets/svg/DotBg";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { usePricePackageById } from "@ui/api-hooks/price-package";
 import UserAvatar from "@ui/components/Avatar/UserAvatar";
 import Grid from "@ui/components/Grid/Grid";
 import PackagePricing from "@ui/components/Pricing/PackagePricing";
 import { BiCheckShield } from "@react-icons/all-files/bi/BiCheckShield";
 import Reviews from "./Reviews";
+import { privatePath } from "@ui/routes/privatePath";
 
 const UserSinglePricePackage = () => {
+  const history = useHistory();
+
   const { id: packageId } = useParams();
 
   const { data: packageData = {} } = usePricePackageById(packageId);
@@ -137,7 +140,12 @@ const UserSinglePricePackage = () => {
                         <button className="text-xs mr-2 font-medium leading-3 text-blue-700 py-3 px-4 rounded bg-blue-200 focus:outline-none hover:opacity-90">
                           Visita il profilo
                         </button>
-                        <button className="text-xs font-medium leading-3 text-green-700 py-3 px-4 rounded bg-green-200 focus:outline-none hover:opacity-90">
+                        <button
+                          onClick={() =>
+                            history.push(privatePath.inboxById(user._id))
+                          }
+                          className="text-xs font-medium leading-3 text-green-700 py-3 px-4 rounded bg-green-200 focus:outline-none hover:opacity-90"
+                        >
                           Scrivi a psicologo
                         </button>
                       </div>
