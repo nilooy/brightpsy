@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "@ui/components/Basic/Container";
 import { Carousel } from "react-responsive-carousel";
-import DotBg from "@ui/assets/svg/DotBg";
 import { useHistory, useParams } from "react-router-dom";
 import { usePricePackageById } from "@ui/api-hooks/price-package";
 import UserAvatar from "@ui/components/Avatar/UserAvatar";
@@ -22,6 +21,30 @@ const UserSinglePricePackage = () => {
   const { title, desc, images, duration, visits, tags, user } = packageData;
 
   const profile = user?.profile;
+
+  const createStripeCheckoutSession = (visit) => {
+    const stripe = window.Stripe(
+      "pk_test_51IH6SNAN9EUGaE4Pv5GqWybzZaFKmNNgqElE2NGvb9wJISwZ5ZJmQxzaUWLNgCpf5VuECMfJilkws4XsktY4GE4n00DTd4dyOS"
+    );
+    Meteor.call(
+      "stripe.checkOutSession",
+      {
+        itemTitle: title,
+        amount: visit.price,
+        quantity: visit.numOfVisits,
+        toStripeId: user?.stripe?.id,
+      },
+      (err, data) => {
+        if (err) console.log(err);
+
+        console.log({ data });
+
+        stripe.redirectToCheckout({
+          sessionId: data.id,
+        });
+      }
+    );
+  };
 
   return (
     packageData && (
@@ -95,16 +118,19 @@ const UserSinglePricePackage = () => {
                     title="Basic"
                     color="gray"
                     visits={visits[0]}
+                    onBuy={() => createStripeCheckoutSession(visits[0])}
                   />
                   <PackagePricing
                     title="Standard"
                     color="green"
                     visits={visits[1]}
+                    onBuy={() => createStripeCheckoutSession(visits[1])}
                   />
                   <PackagePricing
                     title="Premium"
                     color="orange"
                     visits={visits[2]}
+                    onBuy={() => createStripeCheckoutSession(visits[2])}
                   />
                 </Grid>
               )}

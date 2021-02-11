@@ -14,7 +14,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ContextProvider>
       {/* usePreferences */}
-      <Windmill theme={theme} usePreferences>
+      <Windmill theme={theme}>
         <Routes />
       </Windmill>
       <ToastContainer />
