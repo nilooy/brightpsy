@@ -12,6 +12,11 @@ const sidebar = [
     icon: "PriceIcon", // the component being exported from icons/index.js
   },
   {
+    path: privatePath.accounts, // the url
+    name: "Account", // name that appear in Sidebar
+    icon: "MoneyIcon", // the component being exported from icons/index.js
+  },
+  {
     path: privatePath.profile, // the url
     name: "Profile", // name that appear in Sidebar
     icon: "PeopleIcon", // the component being exported from icons/index.js

@@ -4,4 +4,4 @@ import "./services/tags";
 import "./services/user";
 import "./services/chat";
 import "./services/files/directive";
-import "./services/braintree/config";
+import "./services/stripe";

@@ -11,7 +11,7 @@ const Grid = ({
 }) => {
   return (
     <div
-      class={`container mx-auto grid grid-flow-row auto-rows-min sm:grid-cols-${sm} md:grid-cols-${md} lg:grid-cols-${lg} xl:grid-cols-${xl} gap-${gap} ${
+      className={`container mx-auto grid grid-flow-row auto-rows-min sm:grid-cols-${sm} md:grid-cols-${md} lg:grid-cols-${lg} xl:grid-cols-${xl} gap-${gap} ${
         className ? className : ""
       }`}
     >

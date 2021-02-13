@@ -79,6 +79,7 @@ const EditPricePackage = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    data._id = packageData._id;
     data.images = images;
     try {
       const res = await methodCall("pricePackage.create", { data });

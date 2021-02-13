@@ -5,6 +5,6 @@ import {
 
 Meteor.methods({
   "pricePackage.create"({ data }) {
-    return PricePackages.insert(data);
+    return PricePackages.upsert(data?._id, { $set: data });
   },
 });

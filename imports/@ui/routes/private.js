@@ -13,6 +13,7 @@ import UserDashboard from "@ui/features/dashboard/UserDashboard";
 import Inbox from "@ui/features/chat/Inbox";
 import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
 import UserSinglePricePackage from "@ui/features/price-package/UserSinglePricePackage";
+import Accounts from "@ui/features/accounts/Accounts";
 
 export const privateRoutes = [
   {
@@ -42,6 +43,11 @@ export const privateRoutes = [
         path: privatePath.profile,
         exact: true,
         component: Profile,
+      },
+      {
+        path: privatePath.accounts,
+        exact: true,
+        component: Accounts,
       },
       {
         path: privatePath.packages,

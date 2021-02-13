@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineCheckCircle } from "@react-icons/all-files/ai/AiOutlineCheckCircle";
 
-const PackagePricing = ({ title, visits, color }) => {
+const PackagePricing = ({ title, visits, color, onBuy }) => {
   const { price, numOfVisits } = visits;
 
   const perVisits =
@@ -33,7 +33,10 @@ const PackagePricing = ({ title, visits, color }) => {
         <span className="text-xl font-semibold">{price}</span>
         <span className="font-light text-lg">&euro;</span>
       </p>
-      <button className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-${color}-700 px-8 py-3 text-base font-semibold">
+      <button
+        onClick={onBuy}
+        className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-${color}-700 px-8 py-3 text-base font-semibold"
+      >
         Acquista
       </button>
     </div>
