@@ -3,6 +3,7 @@ export const rootPath = "/app";
 export const privatePath = {
   dashboard: rootPath + "/dashboard",
   profile: rootPath + "/profile",
+  accounts: rootPath + "/accounts",
   packages: rootPath + "/packages",
   packagesCreate: rootPath + "/package/create",
   packagesEditById: (id = ":id") => rootPath + "/package/edit/" + id,
