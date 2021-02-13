@@ -56,8 +56,7 @@ Meteor.methods({
       stripe.accounts
     );
 
-    const account = getAccount(user?.stripe?.id);
-    return account;
+    return user?.stripe?.id ? getAccount(user?.stripe?.id) : {};
   },
   "stripe.getLoginLink"() {
     const user = Meteor.user();
@@ -67,7 +66,7 @@ Meteor.methods({
       stripe.accounts
     );
 
-    return createLoginLink(user?.stripe?.id);
+    return user?.stripe?.id ? createLoginLink(user?.stripe?.id) : {};
   },
   "stripe.getUserBalance"() {
     const user = Meteor.user();
