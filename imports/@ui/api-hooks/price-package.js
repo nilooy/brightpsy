@@ -13,5 +13,7 @@ export const usePricePackagesSearch = (searchValue) => {
 
 export const usePricePackageById = (id) => {
   const name = "pricePackage.getById";
-  return useQuery(name, async () => await methodCall(name, { _id: id }));
+  return useQuery(name, async () => await methodCall(name, { _id: id }), {
+    enabled: !!id,
+  });
 };

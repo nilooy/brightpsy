@@ -3,6 +3,7 @@
 /* @import "../imports/ui/src/components/features/TagManager/tag_manager.css"; */
 @import "react-toastify/dist/ReactToastify.css";
 @import "react-responsive-carousel/lib/styles/carousel.min.css";
+@import "react-day-picker/lib/style.css";
 @import "tailwindcss/utilities";
 
 .switch-wrapper {
