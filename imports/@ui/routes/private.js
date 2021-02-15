@@ -14,6 +14,9 @@ import Inbox from "@ui/features/chat/Inbox";
 import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
 import UserSinglePricePackage from "@ui/features/price-package/UserSinglePricePackage";
 import Accounts from "@ui/features/accounts/Accounts";
+import PaymentSuccess from "@ui/features/payment/PaymentSuccess";
+import Appointments from "@ui/features/appointments/Appointments";
+import SingleAppointment from "@ui/features/appointments/SingleAppointment";
 
 export const privateRoutes = [
   {
@@ -74,6 +77,16 @@ export const privateRoutes = [
         exact: true,
         component: Inbox,
       },
+      {
+        path: privatePath.appointments,
+        exact: true,
+        component: Appointments,
+      },
+      {
+        path: privatePath.appointmentById(),
+        exact: true,
+        component: SingleAppointment,
+      },
     ],
   },
 ];
@@ -126,6 +139,11 @@ export const privateRoutesUser = [
         path: privatePath.packageById(),
         exact: true,
         component: UserSinglePricePackage,
+      },
+      {
+        path: privatePath.paymentSuccess,
+        exact: true,
+        component: PaymentSuccess,
       },
     ],
   },

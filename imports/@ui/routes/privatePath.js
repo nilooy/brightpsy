@@ -11,4 +11,7 @@ export const privatePath = {
   search: rootPath + "/search",
   inbox: rootPath + "/inbox",
   inboxById: (id = ":id") => rootPath + "/inbox/" + id,
+  paymentSuccess: rootPath + "/payment/success",
+  appointments: rootPath + "/appointments",
+  appointmentById: (id = ":id") => rootPath + "/appointments/" + id,
 };
