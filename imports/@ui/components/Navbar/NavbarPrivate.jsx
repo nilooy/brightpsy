@@ -22,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import UserAvatar from "../Avatar/UserAvatar";
 import { useUserData } from "@ui/api-hooks/user";
 import UserGlobalSearchInput from "@ui/features/price-package/UserGlobalSearchInput";
+import { privatePath } from "@ui/routes/privatePath";
 
 function Header() {
   const history = useHistory();
@@ -126,7 +127,7 @@ function Header() {
             >
               <DropdownItem
                 tag="button"
-                onClick={() => history.push("/profile")}
+                onClick={() => history.push(privatePath.profile)}
               >
                 <OutlinePersonIcon
                   className="w-4 h-4 mr-3"
@@ -134,9 +135,13 @@ function Header() {
                 />
                 <span>Profile</span>
               </DropdownItem>
-              <DropdownItem tag="a" href="#">
+              <DropdownItem
+                onClick={() => history.push(privatePath.accounts)}
+                tag="a"
+                href="#"
+              >
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Settings</span>
+                <span>Accounts</span>
               </DropdownItem>
               <DropdownItem
                 onClick={() => Meteor.logout(() => history.push("/login"))}
