@@ -5,3 +5,4 @@ import "./services/user";
 import "./services/chat";
 import "./services/files/directive";
 import "./services/stripe";
+import "./services/appointment";
