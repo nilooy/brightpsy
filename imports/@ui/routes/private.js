@@ -17,6 +17,8 @@ import Accounts from "@ui/features/accounts/Accounts";
 import PaymentSuccess from "@ui/features/payment/PaymentSuccess";
 import Appointments from "@ui/features/appointments/Appointments";
 import SingleAppointment from "@ui/features/appointments/SingleAppointment";
+import Doctor from "@ui/features/user/Doctor";
+import CreateAvailability from "@ui/features/appointments/CreateAvailability";
 
 export const privateRoutes = [
   {
@@ -87,6 +89,11 @@ export const privateRoutes = [
         exact: true,
         component: SingleAppointment,
       },
+      {
+        path: privatePath.availabilityCreate,
+        exact: true,
+        component: CreateAvailability,
+      },
     ],
   },
 ];
@@ -144,6 +151,11 @@ export const privateRoutesUser = [
         path: privatePath.paymentSuccess,
         exact: true,
         component: PaymentSuccess,
+      },
+      {
+        path: privatePath.doctor,
+        exact: true,
+        component: Doctor,
       },
     ],
   },
