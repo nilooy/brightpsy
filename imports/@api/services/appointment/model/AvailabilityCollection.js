@@ -31,6 +31,7 @@ const AvailabilitySchema = new SimpleSchema({
   ...constructAvailabilitySchema,
   userId: { type: String }, // doctor
   ...activitySchema,
+  timeZone: { type: String, optional: true },
 });
 
 Availabilities.attachSchema(AvailabilitySchema);
