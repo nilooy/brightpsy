@@ -5,33 +5,51 @@ import { activitySchema } from "../../../utils/activitySchema";
 const Availabilities = new Mongo.Collection("availabilities");
 
 // Following english week
-const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+export const availabilityDays = [
+  "sun",
+  "mon",
+  "tue",
+  "wed",
+  "thu",
+  "fri",
+  "sat",
+];
 
 let constructAvailabilitySchema = {};
 
 // Create schema by days in this format
 /* =================================================================>
-sun: {from: String, to: String, dayIndex: 1},
-mon: {from: String, to: String, dayIndex: 2},
+sun: {dayIndex: Number,  timeSlots: (Array) [{_id: String, from: String, to: String}]},
+mon: {dayIndex: Number, timeZone: String, userId: String, timeSlots: (Array) [{_id: String, from: String, to: String}]},
 ...
+timeZone: String, 
+userId: String,
 =================================================================>
 */
-days.forEach((day, index) => {
-  constructAvailabilitySchema[day] = { type: String, optional: true };
-  constructAvailabilitySchema[`${day}.$`] = { type: Object };
-  constructAvailabilitySchema[`${day}.$.from`] = { type: String };
-  constructAvailabilitySchema[`${day}.$.to`] = { type: String };
-  constructAvailabilitySchema[`${day}.$.dayIndex`] = {
+availabilityDays.forEach((day, index) => {
+  constructAvailabilitySchema[day] = {
+    type: Object,
+    optional: true,
+    maxCount: 4,
+  };
+  constructAvailabilitySchema[`${day}.dayIndex`] = {
     type: Number,
     autoValue: index, // Set index automically || Used english day code
   };
+  constructAvailabilitySchema[`${day}.timeSlots`] = { type: Array };
+  constructAvailabilitySchema[`${day}.timeSlots.$`] = { type: Object };
+  constructAvailabilitySchema[`${day}.timeSlots.$._id`] = {
+    type: SimpleSchema.RegEx.Id, // having a individual timeslot id make the process simpler
+  };
+  constructAvailabilitySchema[`${day}.timeSlots.$.from`] = { type: String };
+  constructAvailabilitySchema[`${day}.timeSlots.$.to`] = { type: String };
 });
 
 const AvailabilitySchema = new SimpleSchema({
   ...constructAvailabilitySchema,
   userId: { type: String }, // doctor
-  ...activitySchema,
   timeZone: { type: String, optional: true },
+  ...activitySchema,
 });
 
 Availabilities.attachSchema(AvailabilitySchema);

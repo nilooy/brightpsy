@@ -1,7 +1,8 @@
 import FormCard from "@ui/components/Cards/FormCard";
 import Input from "@ui/components/Form/Input";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCircle";
+import { AiOutlineDelete } from "@react-icons/all-files/ai/AiOutlineDelete";
 import { GrAdd } from "@react-icons/all-files/gr/GrAdd";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import Grid from "@ui/components/Grid/Grid";
@@ -9,6 +10,19 @@ import { TimePicker } from "@material-ui/pickers";
 import SwitchBox from "@ui/components/Form/SwitchBox";
 import Container from "@ui/components/Basic/Container";
 import { format } from "date-fns";
+import { getUniqueId } from "@ui/utils/helpers";
+
+const initialState = [
+  { label: "Domenica", name: "sun", fields: [getUniqueId()] },
+  { label: "Lunedì", name: "mon", fields: [getUniqueId()] },
+  { label: "Martedi", name: "tue", fields: [getUniqueId()] },
+  { label: "Mercoledi", name: "wed", fields: [getUniqueId()] },
+  { label: "Giovedi", name: "thu", fields: [getUniqueId()] },
+  { label: "Venerdi", name: "fri", fields: [getUniqueId()] },
+  { label: "Sabato", name: "sat", fields: [getUniqueId()] },
+];
+
+const MAX_ALLOWED_FIELDS = 4;
 
 const CreateAvailability = () => {
   const {
@@ -21,20 +35,11 @@ const CreateAvailability = () => {
     watch,
   } = useForm();
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "test",
-  });
+  const [days, setDays] = useState(initialState);
 
-  const days = [
-    { label: "Domenica", name: "sun" },
-    { label: "Lunedì", name: "mon" },
-    { label: "Martedi", name: "tue" },
-    { label: "Mercoledi", name: "wed" },
-    { label: "Giovedi", name: "thu" },
-    { label: "Venerdi", name: "fri" },
-    { label: "Sabato", name: "sat" },
-  ];
+  useEffect(() => {
+    createDefaultTimeslot();
+  }, []);
 
   const onSubmit = async (data) => {
     let formattedData = {};
@@ -61,7 +66,40 @@ const CreateAvailability = () => {
     }); */
   };
 
-  console.log({ ss: watch() });
+  const createDefaultTimeslot = () => {
+    Meteor.call("availability.createDefault", {}, (err, data) => {
+      if (err) console.log(err);
+
+      console.log(data);
+    });
+  };
+
+  const addTimeSlot = (name) => {
+    setDays(
+      days.map((day) =>
+        day.name === name && day.fields.length < MAX_ALLOWED_FIELDS
+          ? { ...day, fields: [...day.fields, getUniqueId()] }
+          : day
+      )
+    );
+  };
+
+  const removeTimeSlot = (name, index) => {
+    setDays(
+      days.map((day) => {
+        console.log(
+          day.name === name
+            ? { ...day, fields: day.fields.filter((field) => field === index) }
+            : day
+        );
+        return day.name === name
+          ? { ...day, fields: day.fields.filter((field) => field === index) }
+          : day;
+      })
+    );
+  };
+
+  console.log({ days });
 
   const FormFooter = ({ isDirty }) => (
     <div className="fixed z-10 bottom-0 left-0 w-full py-4 sm:px-12 px-4 bg-gray-100 mt-6 flex justify-end rounded-bl rounded-br">
@@ -90,22 +128,23 @@ const CreateAvailability = () => {
           title="Disponibiltà"
           TitleIcon={AiOutlineClockCircle}
         >
-          {days.map(({ label, name }) => (
+          {days.map(({ label, name, fields }) => (
             <>
-              <Grid lg={3} xl={3} className="mt-4">
-                <SwitchBox
-                  name={`${name}.isEnabled`}
-                  label={label}
-                  register={register}
-                />
+              <Grid lg={4} xl={4} className="mt-4 border p-2">
+                <div className="col-start-1 col-span-1 flex flex-col justify-center">
+                  <SwitchBox
+                    name={`${name}.isEnabled`}
+                    label={label}
+                    register={register}
+                  />
+                </div>
 
-                <Grid>
-                  {fields.map((field, index) => (
-                    <span key={field.id}>
+                <div className="col-start-2 col-span-2">
+                  {fields.map((index) => (
+                    <div className="flex" key={name + index} id={name + index}>
                       <Controller
                         control={control}
                         name={`${name}[${{ index }}].from`}
-                        defaultValue={field.from}
                         render={({ ref, ...rest }) => (
                           <TimePicker
                             clearable
@@ -121,7 +160,6 @@ const CreateAvailability = () => {
                       <Controller
                         control={control}
                         name={`${name}[${{ index }}].to`}
-                        defaultValue={field.to}
                         render={({ ref, ...rest }) => (
                           <TimePicker
                             clearable
@@ -135,18 +173,26 @@ const CreateAvailability = () => {
                           />
                         )}
                       />
-                    </span>
-                  ))}
-                </Grid>
 
-                <div className="m-auto">
-                  <button
-                    onClick={() => append({ from: "", to: "" })}
-                    type="button"
-                  >
-                    <GrAdd />
-                  </button>
+                      <span className="self-center">
+                        <button
+                          onClick={() => removeTimeSlot(name, index)}
+                          type="button"
+                          className="ml-2 text-xl"
+                        >
+                          <AiOutlineDelete />
+                        </button>
+                      </span>
+                    </div>
+                  ))}
                 </div>
+                {fields.length < MAX_ALLOWED_FIELDS && (
+                  <div className="m-auto">
+                    <button onClick={() => addTimeSlot(name)} type="button">
+                      <GrAdd />
+                    </button>
+                  </div>
+                )}
               </Grid>
             </>
           ))}
