@@ -4,13 +4,17 @@ import { defaultAvailabilityData } from "../model/defaultAvailabilities";
 Meteor.methods({
   "availability.createDefault"({ data }) {
     if (Availabilities.findOne({ userId: Meteor.userId() })) {
-      return Meteor.Error("User already have availability");
+      return Availabilities.findOne({ userId: Meteor.userId() });
     }
 
-    return Availabilities.insert({
+    const availabilityId = Availabilities.insert({
       ...defaultAvailabilityData,
       userId: Meteor.userId(),
     });
+
+    if (availabilityId) return Availabilities.findOne(availabilityId);
+
+    return Meteor.Error("server-error", "Something went wrong");
   },
 
   "availability.resetToDefault"({ data }) {

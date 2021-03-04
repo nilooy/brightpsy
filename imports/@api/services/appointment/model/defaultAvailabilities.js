@@ -14,6 +14,7 @@ availabilityDays.forEach((day, index) => {
   defaultAvailabilityData[day] = {
     dayIndex: index,
     timeSlots: defaultTimeSlot(),
+    isEnabled: true,
   };
 });
 
