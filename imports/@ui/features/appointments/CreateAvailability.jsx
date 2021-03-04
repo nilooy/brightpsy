@@ -38,8 +38,14 @@ const CreateAvailability = () => {
   const [days, setDays] = useState(initialState);
 
   useEffect(() => {
-    createDefaultTimeslot();
+    createDefaultTimeslot((err, data) => {
+      if (err) console.log(err);
+
+      console.log(data);
+    });
   }, []);
+
+  console.log(watch());
 
   const onSubmit = async (data) => {
     let formattedData = {};
@@ -66,12 +72,8 @@ const CreateAvailability = () => {
     }); */
   };
 
-  const createDefaultTimeslot = () => {
-    Meteor.call("availability.createDefault", {}, (err, data) => {
-      if (err) console.log(err);
-
-      console.log(data);
-    });
+  const createDefaultTimeslot = (callback) => {
+    Meteor.call("availability.createDefault", {}, callback);
   };
 
   const addTimeSlot = (name) => {

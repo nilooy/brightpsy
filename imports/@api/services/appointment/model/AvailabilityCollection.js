@@ -36,6 +36,10 @@ availabilityDays.forEach((day, index) => {
     type: Number,
     autoValue: index, // Set index automically || Used english day code
   };
+  constructAvailabilitySchema[`${day}.isEnabled`] = {
+    type: Boolean,
+    defaultValue: false,
+  };
   constructAvailabilitySchema[`${day}.timeSlots`] = { type: Array };
   constructAvailabilitySchema[`${day}.timeSlots.$`] = { type: Object };
   constructAvailabilitySchema[`${day}.timeSlots.$._id`] = {
