@@ -10,32 +10,43 @@ import { TimePicker } from "@material-ui/pickers";
 import SwitchBox from "@ui/components/Form/SwitchBox";
 import Container from "@ui/components/Basic/Container";
 import { format } from "date-fns";
-import { getUniqueId } from "@ui/utils/helpers";
-
-const initialState = [
-  { label: "Domenica", name: "sun", fields: [getUniqueId()] },
-  { label: "Lunedì", name: "mon", fields: [getUniqueId()] },
-  { label: "Martedi", name: "tue", fields: [getUniqueId()] },
-  { label: "Mercoledi", name: "wed", fields: [getUniqueId()] },
-  { label: "Giovedi", name: "thu", fields: [getUniqueId()] },
-  { label: "Venerdi", name: "fri", fields: [getUniqueId()] },
-  { label: "Sabato", name: "sat", fields: [getUniqueId()] },
-];
+import {
+  getFieldState,
+  tranformTimeToDateObject,
+} from "./availabilityFormHelper";
+import { useAvailability } from "@ui/api-hooks/availability";
 
 const MAX_ALLOWED_FIELDS = 4;
 
 const CreateAvailability = () => {
+  const { data: availabilities = {} } = useAvailability();
+
+  // This one for the fieldArray
   const {
-    register,
     handleSubmit,
-    errors,
+    register,
     control,
     formState: { isDirty, isSubmitting },
     reset,
-    watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: availabilities,
+  });
 
-  const [days, setDays] = useState(initialState);
+  useEffect(() => {
+    reset(tranformTimeToDateObject(availabilities));
+  }, [availabilities]);
+
+  const fieldState = getFieldState(control);
+
+  // Will update the mainForm data when fieldArray changed
+  /*   useEffect(() => {
+    if (fieldValues) {
+      Object.keys(fieldValues).forEach((item) => {
+        register({ name: `${item}.timeSlots` });
+        setValue(`${item}.timeSlots`, fieldValues[item]);
+      });
+    }
+  }, [fieldValues]); */
 
   useEffect(() => {
     createDefaultTimeslot((err, data) => {
@@ -45,10 +56,8 @@ const CreateAvailability = () => {
     });
   }, []);
 
-  console.log(watch());
-
   const onSubmit = async (data) => {
-    let formattedData = {};
+    /*    let formattedData = {};
 
     Object.keys(data).forEach((key) => {
       console.log(data[key].isEnabled);
@@ -63,45 +72,14 @@ const CreateAvailability = () => {
         };
     });
 
-    console.log({ formattedData });
+    console.log({ formattedData }); */
 
-    /*    Meteor.call("availability.create", { data: formattedData }, (err, data) => {
-      if (err) console.log(err);
-
-      console.log({ success: data });
-    }); */
+    console.log({ data });
   };
 
   const createDefaultTimeslot = (callback) => {
     Meteor.call("availability.createDefault", {}, callback);
   };
-
-  const addTimeSlot = (name) => {
-    setDays(
-      days.map((day) =>
-        day.name === name && day.fields.length < MAX_ALLOWED_FIELDS
-          ? { ...day, fields: [...day.fields, getUniqueId()] }
-          : day
-      )
-    );
-  };
-
-  const removeTimeSlot = (name, index) => {
-    setDays(
-      days.map((day) => {
-        console.log(
-          day.name === name
-            ? { ...day, fields: day.fields.filter((field) => field === index) }
-            : day
-        );
-        return day.name === name
-          ? { ...day, fields: day.fields.filter((field) => field === index) }
-          : day;
-      })
-    );
-  };
-
-  console.log({ days });
 
   const FormFooter = ({ isDirty }) => (
     <div className="fixed z-10 bottom-0 left-0 w-full py-4 sm:px-12 px-4 bg-gray-100 mt-6 flex justify-end rounded-bl rounded-br">
@@ -119,6 +97,8 @@ const CreateAvailability = () => {
     </div>
   );
 
+  console.log({ fieldState });
+
   return (
     <Container>
       <form
@@ -130,7 +110,7 @@ const CreateAvailability = () => {
           title="Disponibiltà"
           TitleIcon={AiOutlineClockCircle}
         >
-          {days.map(({ label, name, fields }) => (
+          {fieldState.map(({ label, name, fieldArr }) => (
             <>
               <Grid lg={4} xl={4} className="mt-4 border p-2">
                 <div className="col-start-1 col-span-1 flex flex-col justify-center">
@@ -142,11 +122,12 @@ const CreateAvailability = () => {
                 </div>
 
                 <div className="col-start-2 col-span-2">
-                  {fields.map((index) => (
-                    <div className="flex" key={name + index} id={name + index}>
+                  {fieldArr.fields.map((field, index) => (
+                    <div className="flex" key={field.id}>
                       <Controller
                         control={control}
-                        name={`${name}[${{ index }}].from`}
+                        name={`${name}.timeSlots[${index}].from`}
+                        defaultValue={field.from}
                         render={({ ref, ...rest }) => (
                           <TimePicker
                             clearable
@@ -161,7 +142,8 @@ const CreateAvailability = () => {
                       />
                       <Controller
                         control={control}
-                        name={`${name}[${{ index }}].to`}
+                        name={`${name}.timeSlots[${index}].to`}
+                        defaultValue={field.to}
                         render={({ ref, ...rest }) => (
                           <TimePicker
                             clearable
@@ -177,20 +159,29 @@ const CreateAvailability = () => {
                       />
 
                       <span className="self-center">
-                        <button
-                          onClick={() => removeTimeSlot(name, index)}
-                          type="button"
-                          className="ml-2 text-xl"
-                        >
-                          <AiOutlineDelete />
-                        </button>
+                        {index ? (
+                          <button
+                            onClick={() => fieldArr.remove(index)}
+                            type="button"
+                            className="ml-2 text-xl"
+                          >
+                            <AiOutlineDelete />
+                          </button>
+                        ) : (
+                          <div className="ml-6"></div>
+                        )}
                       </span>
                     </div>
                   ))}
                 </div>
-                {fields.length < MAX_ALLOWED_FIELDS && (
+                {fieldArr.fields.length < MAX_ALLOWED_FIELDS && (
                   <div className="m-auto">
-                    <button onClick={() => addTimeSlot(name)} type="button">
+                    <button
+                      onClick={() => {
+                        fieldArr.append({ from: new Date(), to: new Date() });
+                      }}
+                      type="button"
+                    >
                       <GrAdd />
                     </button>
                   </div>
