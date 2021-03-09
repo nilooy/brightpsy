@@ -16,3 +16,8 @@ export const userOrdersWithPackagesByDoctor = ({ appointmentExist }) => {
     async () => await methodCall(name, { appointmentExist })
   );
 };
+
+export const userOrdersWithPackagesByUser = () => {
+  const name = "stripe.getOrdersWithPackageByUser";
+  return useQuery(name, async () => await methodCall(name));
+};

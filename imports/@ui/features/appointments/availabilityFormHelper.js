@@ -1,4 +1,5 @@
 import { useFieldArray } from "react-hook-form";
+import { format } from "date-fns";
 
 export const initialState = [
   { label: "Domenica", name: "sun" },
@@ -28,6 +29,21 @@ export const tranformTimeToDateObject = (availabilitiesData) => {
     ]?.timeSlots?.map((timeSlot) => ({
       from: new Date(new Date().toLocaleDateString() + " " + timeSlot.from),
       to: new Date(new Date().toLocaleDateString() + " " + timeSlot.to),
+    }));
+  });
+
+  return availabilities;
+};
+
+export const tranformDateObjectToTimeString = (availabilitiesData) => {
+  let availabilities = availabilitiesData;
+  Object.keys(availabilitiesData).forEach((item) => {
+    availabilities[item] = availabilitiesData[item];
+    availabilities[item]["timeSlots"] = availabilitiesData[
+      item
+    ]?.timeSlots?.map((timeSlot) => ({
+      from: format(new Date(timeSlot.from), "kk:mm"),
+      to: format(new Date(timeSlot.to), "kk:mm"),
     }));
   });
 

@@ -2,11 +2,11 @@ import React from "react";
 import UserAvatar from "../../components/Avatar/UserAvatar";
 import { RiWechatLine } from "@react-icons/all-files/ri/RiWechatLine";
 import { BiCalendarHeart } from "@react-icons/all-files/bi/BiCalendarHeart";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { privatePath } from "@ui/routes/privatePath";
-const AppointmentCard = ({ data, onClick }) => {
+const AppointmentCard = ({ data, onClick, isDoctor }) => {
   const {
-    package: { title, images = [] },
+    package: { _id: packageId, title, images = [] },
     user: {
       profile: { firstName, lastName, profileImg },
       _id: userId,
@@ -42,9 +42,12 @@ const AppointmentCard = ({ data, onClick }) => {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium leading-4 text-gray-700 dark:text-gray-100">
+          <Link
+            to={privatePath.packageById(packageId)}
+            className="text-sm font-medium leading-4 text-gray-700 dark:text-gray-100"
+          >
             {title}
-          </p>
+          </Link>
           <p className="text-xs font-semibold leading-3 text-gray-400 dark:text-gray-200">
             {new Date(createdAt).toLocaleString()}
           </p>
@@ -64,7 +67,7 @@ const AppointmentCard = ({ data, onClick }) => {
         </div>
         <div className="mt-2 sm:flex items-center justify-between">
           <p className="text-xs sm:mb-0 mb-4 font-medium leading-3 text-gray-400 dark:text-gray-200">
-            Cliente:
+            {isDoctor ? "" : "Cliente"}
             <span className="text-sm font-medium leading-4 text-gray-700 dark:text-gray-100">
               {" "}
               {fullName}

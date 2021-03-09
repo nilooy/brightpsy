@@ -79,4 +79,33 @@ Meteor.methods({
       ])
       .toArray();
   },
+  "stripe.getOrdersWithPackageByUser"() {
+    return Orders.rawCollection()
+      .aggregate([
+        {
+          $match: {
+            userId: Meteor.userId(),
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "doctorId",
+            foreignField: "_id",
+            as: "user",
+          },
+        },
+        { $unwind: "$user" },
+        {
+          $lookup: {
+            from: "price_packages",
+            localField: "packageId",
+            foreignField: "_id",
+            as: "package",
+          },
+        },
+        { $unwind: "$package" },
+      ])
+      .toArray();
+  },
 });
