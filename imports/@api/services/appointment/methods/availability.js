@@ -16,7 +16,15 @@ Meteor.methods({
     });
   },
 
+  "availability.update"({ data }) {
+    console.log({ data });
+    return Availabilities.update(data._id, {
+      $set: { ...data, userId: Meteor.userId() },
+    });
+  },
+
   "availability.resetToDefault"({ data }) {
+    console.log({ data });
     return Availabilities.update(data._id, {
       $set: { ...defaultAvailabilityData, userId: Meteor.userId() },
     });
@@ -24,5 +32,10 @@ Meteor.methods({
 
   "availability.getByUser"({}) {
     return Availabilities.findOne({ userId: Meteor.userId() });
+  },
+  "availability.getByUserId"({ userId }) {
+    console.log(userId);
+    check(userId, String);
+    return Availabilities.findOne({ userId });
   },
 });

@@ -1,14 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 
-const SwitchBox = (props) => {
-  const { label, name, id, helpText, register } = props;
-
+const SwitchBox = ({ label, name, id, helpText, register, ...props }) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     setChecked(document.querySelector(`[data-input='${name}']`).checked);
-  }, []);
+  }, [props]);
 
   return (
     <div className="flex justify-between items-center my-3">

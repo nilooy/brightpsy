@@ -1,6 +1,7 @@
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
 import { activitySchema } from "../../../utils/activitySchema";
+import { Random } from "meteor/random";
 
 const Availabilities = new Mongo.Collection("availabilities");
 
@@ -34,7 +35,7 @@ availabilityDays.forEach((day, index) => {
   };
   constructAvailabilitySchema[`${day}.dayIndex`] = {
     type: Number,
-    autoValue: index, // Set index automically || Used english day code
+    autoValue: () => index, // Set index automically || Used english day code
   };
   constructAvailabilitySchema[`${day}.isEnabled`] = {
     type: Boolean,
@@ -44,6 +45,12 @@ availabilityDays.forEach((day, index) => {
   constructAvailabilitySchema[`${day}.timeSlots.$`] = { type: Object };
   constructAvailabilitySchema[`${day}.timeSlots.$._id`] = {
     type: SimpleSchema.RegEx.Id, // having a individual timeslot id make the process simpler
+    optional: true,
+    autoValue: function () {
+      if (this.isInsert) {
+        return Random.id();
+      }
+    },
   };
   constructAvailabilitySchema[`${day}.timeSlots.$.from`] = { type: String };
   constructAvailabilitySchema[`${day}.timeSlots.$.to`] = { type: String };

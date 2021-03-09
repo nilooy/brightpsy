@@ -19,6 +19,7 @@ import Appointments from "@ui/features/appointments/Appointments";
 import SingleAppointment from "@ui/features/appointments/SingleAppointment";
 import Doctor from "@ui/features/user/Doctor";
 import CreateAvailability from "@ui/features/appointments/CreateAvailability";
+import UserAppointments from "@ui/features/appointments/UserAppointments";
 
 export const privateRoutes = [
   {
@@ -156,6 +157,16 @@ export const privateRoutesUser = [
         path: privatePath.doctor,
         exact: true,
         component: Doctor,
+      },
+      {
+        path: privatePath.appointments,
+        exact: true,
+        component: UserAppointments,
+      },
+      {
+        path: privatePath.appointmentById(),
+        exact: true,
+        component: SingleAppointment,
       },
     ],
   },
