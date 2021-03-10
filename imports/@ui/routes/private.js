@@ -20,6 +20,7 @@ import SingleAppointment from "@ui/features/appointments/SingleAppointment";
 import Doctor from "@ui/features/user/Doctor";
 import CreateAvailability from "@ui/features/appointments/CreateAvailability";
 import UserAppointments from "@ui/features/appointments/UserAppointments";
+import AppointmentCalender from "@ui/features/appointments/AppointmentCalender";
 
 export const privateRoutes = [
   {
@@ -94,6 +95,11 @@ export const privateRoutes = [
         path: privatePath.availabilityCreate,
         exact: true,
         component: CreateAvailability,
+      },
+      {
+        path: privatePath.calender,
+        exact: true,
+        component: AppointmentCalender,
       },
     ],
   },

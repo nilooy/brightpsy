@@ -5,6 +5,7 @@
 @import "react-responsive-carousel/lib/styles/carousel.min.css";
 @import "react-modern-calendar-datepicker/lib/DatePicker.css";
 @import "tailwindcss/utilities";
+@import "react-big-calendar/lib/css/react-big-calendar.css";
 
 .switch-wrapper {
   position: relative;

@@ -27,9 +27,19 @@ const sidebar = [
     icon: "PeopleIcon", // the component being exported from icons/index.js
   },
   {
-    path: privatePath.appointments, // the url
     name: "Appointments", // name that appear in Sidebar
     icon: "SunIcon", // the component being exported from icons/index.js
+    routes: [
+      // submenu
+      {
+        path: privatePath.appointments,
+        name: "Nouvi",
+      },
+      {
+        path: privatePath.calender,
+        name: "Calendario",
+      },
+    ],
   },
 ];
 

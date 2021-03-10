@@ -12,6 +12,7 @@ export const useAvailabilityByUserId = ({ userId }) => {
   const name = "availability.getByUserId";
   return useQuery(name, async () => await methodCall(name, { userId }), {
     refetchOnWindowFocus: false,
+    enabled: !!userId,
   });
 };
 

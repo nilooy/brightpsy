@@ -10,8 +10,6 @@ import {
   ModalFooter,
   Button,
 } from "@windmill/react-ui";
-import { DateTimePicker } from "@material-ui/pickers";
-import Input from "@ui/components/Form/Input";
 import AppointmentBook from "./AppointmentBook";
 
 const UserAppointments = () => {
@@ -22,15 +20,15 @@ const UserAppointments = () => {
   console.log({ orders });
 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, handleDateChange] = useState(null);
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   function openAppointmentModal(order) {
     setSelectedAppointment(order);
-    setIsModalOpen(true);
+    setIsAppointmentModalOpen(true);
   }
   function closeAppointmentModal() {
-    setIsModalOpen(false);
+    setIsAppointmentModalOpen(false);
+    setSelectedAppointment({});
   }
 
   return (
@@ -51,32 +49,11 @@ const UserAppointments = () => {
       </Grid>
 
       {/* Appointment add or edit */}
-      <Modal
-        className="w-full h-full px-6 py-4 overflow-scroll bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-full relative"
-        isOpen={isModalOpen}
-        onClose={closeAppointmentModal}
-      >
-        <ModalHeader>{selectedAppointment?.package?.title}</ModalHeader>
-        <ModalBody className="pb-5">
-          <AppointmentBook doctorId={selectedAppointment?.doctorId} />
-        </ModalBody>
-        <ModalFooter>
-          <div className="fixed z-10 bottom-0 left-0 w-full py-4 sm:px-12 px-4 bg-gray-100 mt-6 flex justify-end rounded-bl rounded-br">
-            <button
-              onClick={closeAppointmentModal}
-              className="btn text-sm focus:outline-none text-gray-600 border border-gray-300 py-2 px-6 mr-4 rounded hover:bg-gray-200 transition duration-150 ease-in-out"
-            >
-              Annulla
-            </button>
-            <button
-              className="bg-green-200 transition duration-150 ease-in-out hover:bg-green-300 rounded text-gray-800 font-medium px-8 py-2 text-sm focus:outline-none"
-              type="submit"
-            >
-              Aggiorna
-            </button>
-          </div>
-        </ModalFooter>
-      </Modal>
+      <AppointmentBook
+        {...selectedAppointment}
+        isAppointmentModalOpen={isAppointmentModalOpen}
+        closeAppointmentModal={closeAppointmentModal}
+      />
     </Container>
   );
 };
