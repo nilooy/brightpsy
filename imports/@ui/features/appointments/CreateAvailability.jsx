@@ -111,6 +111,7 @@ const CreateAvailability = () => {
       preloaderTop="50vh"
       color="#4ac959"
       type="fixed"
+      padding="0px"
     >
       <Container>
         <form
