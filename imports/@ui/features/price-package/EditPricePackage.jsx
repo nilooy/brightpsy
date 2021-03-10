@@ -147,6 +147,7 @@ const EditPricePackage = () => {
       preloaderTop="50vh"
       color="#4ac959"
       type="fixed"
+      padding="0px"
     >
       {/* To prevent submit the form on pressing enter, adding onClick on the button instead of onSubmit form */}
       <form className="xl:w-9/12 m-auto">

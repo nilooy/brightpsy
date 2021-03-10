@@ -102,6 +102,7 @@ function ForgotPassword() {
         preloaderTop="10vh"
         color="#4ac959"
         type="absolute"
+        padding="0px"
       >
         <form onSubmit={handleForgetPassword}>
           <Label>
