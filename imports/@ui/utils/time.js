@@ -3,25 +3,25 @@ import { format, differenceInMinutes, addMinutes } from "date-fns";
 const TIME_FORMAT = "kk:mm";
 
 // convert time string to date object
-export const timeToDate = (time) =>
-  new Date(new Date().toLocaleDateString() + " " + time);
+export const timeToDate = (dateString, timeString) =>
+  new Date(dateString + " " + timeString);
 
 // convert date object to time string only
 export const dateToTime = (date) => format(new Date(date), TIME_FORMAT);
 
 //
-export const getEachMinInterval = ({ start, end, interval }) => {
+export const getEachMinInterval = ({ dateString, start, end, interval }) => {
   if (interval <= 0)
     throw new Warning("Interval should have a value more than zero");
 
-  const startTime = timeToDate(start);
-  const endTime = timeToDate(end);
+  const startTime = timeToDate(dateString, start);
+  const endTime = timeToDate(dateString, end);
 
   const timeSlotsArr = [];
 
   do {
     if (!timeSlotsArr.length) {
-      timeSlotsArr.push(addMinutes(startTime, interval));
+      timeSlotsArr.push(startTime);
     } else {
       let nextInterval = addMinutes(
         timeSlotsArr[timeSlotsArr.length - 1],
@@ -30,7 +30,8 @@ export const getEachMinInterval = ({ start, end, interval }) => {
       timeSlotsArr.push(nextInterval);
     }
   } while (
-    differenceInMinutes(endTime, timeSlotsArr[timeSlotsArr.length - 1]) > 0
+    differenceInMinutes(endTime, timeSlotsArr[timeSlotsArr.length - 1]) >
+    interval
   );
 
   return timeSlotsArr;

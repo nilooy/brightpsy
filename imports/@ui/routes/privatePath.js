@@ -16,4 +16,5 @@ export const privatePath = {
   appointmentById: (id = ":id") => rootPath + "/appointments/" + id,
   doctor: rootPath + "/psycologists",
   availabilityCreate: rootPath + "/availability/create",
+  calender: rootPath + "/calender",
 };
