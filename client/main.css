@@ -3,7 +3,9 @@
 /* @import "../imports/ui/src/components/features/TagManager/tag_manager.css"; */
 @import "react-toastify/dist/ReactToastify.css";
 @import "react-responsive-carousel/lib/styles/carousel.min.css";
+@import "react-modern-calendar-datepicker/lib/DatePicker.css";
 @import "tailwindcss/utilities";
+@import "react-big-calendar/lib/css/react-big-calendar.css";
 
 .switch-wrapper {
   position: relative;
@@ -11,4 +13,8 @@
 
 .switch-wrapper > div {
   position: absolute;
+}
+
+.rbc-calendar {
+  height: 85vh !important;
 }

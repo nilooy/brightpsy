@@ -39,6 +39,11 @@ const authRoutes = [
         exact: true,
         component: ForgotPassword,
       },
+      {
+        path: "/forgot-password/:token",
+        exact: true,
+        component: ForgotPassword,
+      },
     ],
   },
 ];

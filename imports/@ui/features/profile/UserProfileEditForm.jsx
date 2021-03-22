@@ -62,6 +62,7 @@ const ProfileEditForm = () => {
       preloaderTop="50vh"
       color="#4ac959"
       type="fixed"
+      padding="0px"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="xl:w-9/12 m-auto">
         <FormCard

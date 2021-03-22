@@ -29,6 +29,7 @@ const ProfileImageUpload = () => {
       preloader="Ripple"
       preloaderTop="50%"
       color="#4ac959"
+      padding="0px"
     >
       <div className="mt-5">
         <div className="container mx-auto shadow bg-white rounded xl:w-9/12 p-4">

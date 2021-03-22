@@ -5,4 +5,11 @@ Meteor.methods({
 
     return Meteor.users.find().fetch();
   },
+  "user.getAllDoctor"() {
+    return Meteor.users
+      .find({
+        "profile.identity_numb": { $exists: true },
+      })
+      .fetch();
+  },
 });

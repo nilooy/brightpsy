@@ -11,4 +11,10 @@ export const privatePath = {
   search: rootPath + "/search",
   inbox: rootPath + "/inbox",
   inboxById: (id = ":id") => rootPath + "/inbox/" + id,
+  paymentSuccess: rootPath + "/payment/success",
+  appointments: rootPath + "/appointments",
+  appointmentById: (id = ":id") => rootPath + "/appointments/" + id,
+  doctor: rootPath + "/psycologists",
+  availabilityCreate: rootPath + "/availability/create",
+  calender: rootPath + "/calender",
 };
