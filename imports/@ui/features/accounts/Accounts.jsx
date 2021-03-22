@@ -50,6 +50,7 @@ const Accounts = () => {
       preloaderTop="50vh"
       color="#4ac959"
       type="fixed"
+      padding="0px"
     >
       {isAccountExist && (
         <div className="bg-green-200 p-3 mt-2">

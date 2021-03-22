@@ -54,14 +54,34 @@ function SidebarContent() {
           )
         )}
       </ul>
-      <div className="px-6 my-6">
-        <Button onClick={() => history.push(privatePath.packagesCreate)}>
-          Crea pacchetti
-          <span className="ml-2" aria-hidden="true">
-            +
-          </span>
-        </Button>
-      </div>
+      {isDoctor && (
+        <>
+          <div className="px-6 my-6">
+            <Button onClick={() => history.push(privatePath.packagesCreate)}>
+              Crea pacchetti
+              <span className="ml-2" aria-hidden="true">
+                +
+              </span>
+            </Button>
+
+            <div className="flex justify-start mt-5">
+              <span className="relative inline-flex rounded-md shadow-sm">
+                <button
+                  type="button"
+                  className="inline-flex items-center px-4 py-2 border border-green-400 hover:bg-green-200 text-base leading-6 font-medium rounded-md text-green-800 bg-white hover:text-green-700 focus:border-green-300 transition ease-in-out duration-150"
+                  onClick={() => history.push(privatePath.availabilityCreate)}
+                >
+                  Disponibilità
+                </button>
+                <span className="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -21,6 +21,16 @@ const sidebarUser = [
     name: "Chat", // name that appear in Sidebar
     icon: "PeopleIcon", // the component being exported from icons/index.js
   },
+  {
+    path: privatePath.doctor, // the url
+    name: "Psicologi", // name that appear in Sidebar
+    icon: "PeopleIcon", // the component being exported from icons/index.js
+  },
+  {
+    path: privatePath.appointments, // the url
+    name: "Appointments", // name that appear in Sidebar
+    icon: "SunIcon", // the component being exported from icons/index.js
+  },
 ];
 
 export default sidebarUser;

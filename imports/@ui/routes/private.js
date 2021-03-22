@@ -14,6 +14,13 @@ import Inbox from "@ui/features/chat/Inbox";
 import UserSearchPricePackage from "@ui/features/price-package/UserSearchPricePackage";
 import UserSinglePricePackage from "@ui/features/price-package/UserSinglePricePackage";
 import Accounts from "@ui/features/accounts/Accounts";
+import PaymentSuccess from "@ui/features/payment/PaymentSuccess";
+import Appointments from "@ui/features/appointments/Appointments";
+import SingleAppointment from "@ui/features/appointments/SingleAppointment";
+import Doctor from "@ui/features/user/Doctor";
+import CreateAvailability from "@ui/features/appointments/CreateAvailability";
+import UserAppointments from "@ui/features/appointments/UserAppointments";
+import AppointmentCalender from "@ui/features/appointments/AppointmentCalender";
 
 export const privateRoutes = [
   {
@@ -74,6 +81,26 @@ export const privateRoutes = [
         exact: true,
         component: Inbox,
       },
+      {
+        path: privatePath.appointments,
+        exact: true,
+        component: Appointments,
+      },
+      {
+        path: privatePath.appointmentById(),
+        exact: true,
+        component: SingleAppointment,
+      },
+      {
+        path: privatePath.availabilityCreate,
+        exact: true,
+        component: CreateAvailability,
+      },
+      {
+        path: privatePath.calender,
+        exact: true,
+        component: AppointmentCalender,
+      },
     ],
   },
 ];
@@ -126,6 +153,26 @@ export const privateRoutesUser = [
         path: privatePath.packageById(),
         exact: true,
         component: UserSinglePricePackage,
+      },
+      {
+        path: privatePath.paymentSuccess,
+        exact: true,
+        component: PaymentSuccess,
+      },
+      {
+        path: privatePath.doctor,
+        exact: true,
+        component: Doctor,
+      },
+      {
+        path: privatePath.appointments,
+        exact: true,
+        component: UserAppointments,
+      },
+      {
+        path: privatePath.appointmentById(),
+        exact: true,
+        component: SingleAppointment,
       },
     ],
   },

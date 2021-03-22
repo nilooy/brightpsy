@@ -22,17 +22,22 @@ const UserSinglePricePackage = () => {
 
   const profile = user?.profile;
 
-  const createStripeCheckoutSession = (visit) => {
+  const createStripeCheckoutSession = (visit, perVisits) => {
+    console.log(perVisits);
     const stripe = window.Stripe(
       "pk_test_51IH6SNAN9EUGaE4Pv5GqWybzZaFKmNNgqElE2NGvb9wJISwZ5ZJmQxzaUWLNgCpf5VuECMfJilkws4XsktY4GE4n00DTd4dyOS"
     );
     Meteor.call(
       "stripe.checkOutSession",
       {
+        itemId: packageId,
         itemTitle: title,
-        amount: visit.price,
+        itemImages: images,
+        amount: perVisits,
         quantity: visit.numOfVisits,
         toStripeId: user?.stripe?.id,
+        cancelUrl: Meteor.absoluteUrl(privatePath.packageById(packageId)),
+        doctorId: user._id,
       },
       (err, data) => {
         if (err) console.log(err);
@@ -118,19 +123,25 @@ const UserSinglePricePackage = () => {
                     title="Basic"
                     color="gray"
                     visits={visits[0]}
-                    onBuy={() => createStripeCheckoutSession(visits[0])}
+                    onBuy={(perVisits) =>
+                      createStripeCheckoutSession(visits[0], perVisits)
+                    }
                   />
                   <PackagePricing
                     title="Standard"
                     color="green"
                     visits={visits[1]}
-                    onBuy={() => createStripeCheckoutSession(visits[1])}
+                    onBuy={(perVisits) =>
+                      createStripeCheckoutSession(visits[1], perVisits)
+                    }
                   />
                   <PackagePricing
                     title="Premium"
                     color="orange"
                     visits={visits[2]}
-                    onBuy={() => createStripeCheckoutSession(visits[2])}
+                    onBuy={(perVisits) =>
+                      createStripeCheckoutSession(visits[2], perVisits)
+                    }
                   />
                 </Grid>
               )}

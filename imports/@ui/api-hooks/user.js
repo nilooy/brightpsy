@@ -19,3 +19,8 @@ export const useUsers = () => {
     async () => await methodCall(name, { excludeMe: true })
   );
 };
+
+export const useDoctors = () => {
+  const name = "user.getAllDoctor";
+  return useQuery(name, async () => await methodCall(name));
+};

@@ -3,13 +3,19 @@ import { AutocompleteProvider } from "@ui/components/AutocompleteAddress/AutoCom
 import { TagProvider } from "@ui/components/TagManager/TagContext";
 import { SidebarProvider } from "./SidebarContext";
 import { SecurityProvider } from "./SecurityContext";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const ContextProvider = ({ children }) => {
   return (
     <SecurityProvider>
       <SidebarProvider>
         <AutocompleteProvider>
-          <TagProvider>{children}</TagProvider>
+          <TagProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              {children}
+            </MuiPickersUtilsProvider>
+          </TagProvider>
         </AutocompleteProvider>
       </SidebarProvider>
     </SecurityProvider>
