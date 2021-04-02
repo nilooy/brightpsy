@@ -17,7 +17,7 @@ import Accounts from "@ui/features/accounts/Accounts";
 import PaymentSuccess from "@ui/features/payment/PaymentSuccess";
 import Appointments from "@ui/features/appointments/Appointments";
 import SingleAppointment from "@ui/features/appointments/SingleAppointment";
-import Doctor from "@ui/features/user/Doctor";
+import Doctor from "@ui/features/doctor/Doctor";
 import CreateAvailability from "@ui/features/appointments/CreateAvailability";
 import UserAppointments from "@ui/features/appointments/UserAppointments";
 import AppointmentCalender from "@ui/features/appointments/AppointmentCalender";

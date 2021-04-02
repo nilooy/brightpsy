@@ -42,7 +42,7 @@ const ProfileEditForm = () => {
   const FormFooter = ({ isDirty }) => (
     <div className="fixed z-10 bottom-0 left-0 w-full py-4 sm:px-12 px-4 bg-gray-100 mt-6 flex justify-end rounded-bl rounded-br">
       <button className="btn text-sm focus:outline-none text-gray-600 border border-gray-300 py-2 px-6 mr-4 rounded hover:bg-gray-200 transition duration-150 ease-in-out">
-        Vedi come l'altri
+        Preview
       </button>
       {isDirty && (
         <button

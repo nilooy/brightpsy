@@ -118,6 +118,7 @@ const CreateAvailability = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="w-full xl:w-9/12 m-auto"
         >
+<<<<<<< Updated upstream
           <FormCard
             className="mt-12 p-4"
             title="Disponibiltà"
@@ -136,6 +137,19 @@ const CreateAvailability = () => {
                 <div className="col-start-2 col-span-2">
                   {fieldArr.fields.map((field, index) => (
                     <div className="flex" key={field.id}>
+=======
+          {days.map(({ label, name }) => (
+            <>
+              <Grid lg={3} xl={3} className="mt-4">
+                <SwitchBox
+                  name={`${name}.isEnabled`}
+                  label={label}
+                  register={register}
+                />
+                  <span>
+                  {fields.map((field, index) => (
+                    <Grid key={field.id}>
+>>>>>>> Stashed changes
                       <Controller
                         control={control}
                         name={`${name}.timeSlots[${index}].from`}
@@ -169,6 +183,7 @@ const CreateAvailability = () => {
                           />
                         )}
                       />
+<<<<<<< Updated upstream
 
                       <span className="self-center">
                         {index ? (
@@ -185,6 +200,19 @@ const CreateAvailability = () => {
                       </span>
                     </div>
                   ))}
+=======
+                    </Grid>
+                  ))}
+                  </span>
+
+                <div className="m-auto">
+                  <button
+                    onClick={() => append({ from: "", to: "" })}
+                    type="button"
+                  >
+                    <GrAdd />
+                  </button>
+>>>>>>> Stashed changes
                 </div>
                 {fieldArr.fields.length < MAX_ALLOWED_FIELDS && (
                   <div className="m-auto">
