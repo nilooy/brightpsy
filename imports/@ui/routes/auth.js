@@ -10,6 +10,11 @@ const authRoutes = [
     layout: AuthLayout,
     subRoutes: [
       {
+        path: "/",
+        exact: true,
+        component: AuthWelcome,
+      },
+      {
         path: "/welcome",
         exact: true,
         component: AuthWelcome,
