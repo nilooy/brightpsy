@@ -9,7 +9,7 @@
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
     "deploy": "cd .deploy && mup deploy --config=mup-local.js",
-    "deploy-prod": "cd .deploy && mup deploy",
+    "deploy-aws": "cd .deploy && mup deploy --config=mup-aws.js --settings settings.json",
     "predeploy-staging": "cd .deploy && mup setup --config=mup-staging.js --settings settings.json",
     "deploy-staging": "cd .deploy && mup deploy --config=mup-staging.js --settings settings.json"
   },
