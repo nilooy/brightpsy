@@ -4,11 +4,11 @@ module.exports = {
       // TODO: set host address, username, and authentication method
       host: "5.196.4.90",
       username: "ubuntu",
-      password: "4BZnz93WYhTx",
+      password: "7P9xxmTUA5Zf",
       // or neither for authenticate from ssh-agent
-      opts: {
+/*       opts: {
         port: 7798,
-      },
+      }, */
     },
   },
 
