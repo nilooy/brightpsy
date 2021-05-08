@@ -12,3 +12,5 @@ App.info({
 App.configurePlugin('cordova-plugin-googleplus', {
     REVERSED_CLIENT_ID: '599926406900-v6j208q5knqd3hiplasja62leerkv8ls.apps.googleusercontent.com'
 });
+
+App.setPreference('android-targetSdkVersion', '29')

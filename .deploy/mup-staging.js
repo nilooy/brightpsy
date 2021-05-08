@@ -2,19 +2,17 @@ module.exports = {
   servers: {
     one: {
       // TODO: set host address, username, and authentication method
-      host: "5.196.4.90",
-      username: "ubuntu",
-      password: "4BZnz93WYhTx",
+      host: "165.22.66.50",
+      username: "root",
+      pem: "~/.ssh/server_studiamo",
+      // password: 'server-password'
       // or neither for authenticate from ssh-agent
-      opts: {
-        port: 7798,
-      },
     },
   },
 
   app: {
     // TODO: change app name and path
-    name: "staging",
+    name: "app",
     path: "../",
 
     servers: {
@@ -28,7 +26,7 @@ module.exports = {
     env: {
       // TODO: Change to your app's url
       // If you are using ssl, it needs to start with https://
-      ROOT_URL: "https://brightpsy.ovh",
+      ROOT_URL: "https://progboy.com",
       MONGO_URL: "mongodb://mongodb/meteor",
       MONGO_OPLOG_URL: "mongodb://mongodb/local",
     },
@@ -57,7 +55,7 @@ module.exports = {
   // app when there are several apps
 
   proxy: {
-    domains: "brightpsy.ovh ,www.brightpsy.ovh",
+    domains: "progboy.com,www.progboy.com",
 
     ssl: {
       // Enable Let's Encrypt
