@@ -3,12 +3,15 @@ import { Link, Redirect, useLocation } from "react-router-dom";
 import { privatePath } from "../routes/privatePath";
 import Logo from "@ui/components/Basic/Logo";
 import { BiArrowBack } from "@react-icons/all-files/bi/BiArrowBack";
+import {useUserData} from "@ui/api-hooks/user";
 
 const ImageLight = "/img/login-office.jpeg";
 const ImageDark = "/img/login-office-dark.jpeg";
 
 const AuthLayout = ({ children }) => {
-  if (Meteor.userId()) return <Redirect to={privatePath.dashboard} />;
+  const user = useUserData()
+
+  if (user?._id) return <Redirect to={privatePath.dashboard} />;
 
   const { pathname } = useLocation();
 
