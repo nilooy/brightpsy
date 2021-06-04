@@ -34,8 +34,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8e3eb2b-653c-45f5-b325-ae5033b89793" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.meteor/packages" beforeDir="false" afterPath="$PROJECT_DIR$/.meteor/packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meteor/versions" beforeDir="false" afterPath="$PROJECT_DIR$/.meteor/versions" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cordova-build-override/GoogleService-Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/@ui/layouts/AuthLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/layouts/AuthLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/@ui/routes/Page404.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/routes/Page404.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/@ui/routes/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/routes/Routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/mobile-config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +48,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1ro7WrGvM88AY07Ymn3Lo4qcj0L" />
   <component name="ProjectViewState">
@@ -67,6 +79,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cordova-build-override" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,21 +112,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1246" y="298" width="738" height="680" key="find.popup" timestamp="1620488413479">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1246" y="298" width="738" height="680" key="find.popup/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1620488413479" />
-    <state x="898" y="391" width="763" height="680" key="find.popup/-1920.23.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1619637848477" />
-    <state x="854" y="341" width="851" height="1032" key="search.everywhere.popup" timestamp="1619637836893">
-      <screen x="0" y="23" width="2560" height="1417" />
-    </state>
-    <state x="854" y="341" width="851" height="1032" key="search.everywhere.popup/-1920.23.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1619637836893" />
-    <state x="-1203" y="402" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1620488657172">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1203" y="402" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1620488657172" />
-    <state x="956" y="531" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/-1920.23.1920.1057/0.23.2560.1417@0.23.2560.1417" timestamp="1619644112830" />
   </component>
 </project>
