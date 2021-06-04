@@ -13,7 +13,6 @@ const Routes = () => {
   const routes = [...privateRoutesBasedOnRole, ...auth];
 
   return (
-    <BrowserRouter>
       <Switch>
         {routes.map((route, i) => (
           <Route
@@ -32,7 +31,6 @@ const Routes = () => {
           <Page404 />
         </Route>
       </Switch>
-    </BrowserRouter>
   );
 };
 
