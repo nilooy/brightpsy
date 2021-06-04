@@ -1,6 +1,8 @@
 import React from "react";
 
 import { ForbiddenIcon } from "@ui/assets/icons";
+import {Link} from "react-router-dom";
+import {privatePath} from "@ui/routes/privatePath";
 
 function Page404() {
   return (
@@ -14,12 +16,12 @@ function Page404() {
       </h1>
       <p className="text-gray-700 dark:text-gray-300">
         Page not found. Check the address or{" "}
-        <a
+        <Link
           className="text-purple-600 hover:underline dark:text-purple-300"
-          href="../index.html"
+          to={privatePath.dashboard}
         >
           go back
-        </a>
+        </Link>
         .
       </p>
     </div>

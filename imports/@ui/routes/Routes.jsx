@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Route, Switch } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Page404 from "@ui/routes/Page404";
 import { privateRoutes, privateRoutesUser } from "./private";
 import auth from "./auth";
@@ -13,7 +13,7 @@ const Routes = () => {
   const routes = [...privateRoutesBasedOnRole, ...auth];
 
   return (
-    <>
+    <BrowserRouter>
       <Switch>
         {routes.map((route, i) => (
           <Route
@@ -32,7 +32,7 @@ const Routes = () => {
           <Page404 />
         </Route>
       </Switch>
-    </>
+    </BrowserRouter>
   );
 };
 

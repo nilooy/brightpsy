@@ -10,7 +10,15 @@ App.info({
 });
 
 App.configurePlugin('cordova-plugin-googleplus', {
-    REVERSED_CLIENT_ID: '599926406900-v6j208q5knqd3hiplasja62leerkv8ls.apps.googleusercontent.com'
+    REVERSED_CLIENT_ID: 'com.googleusercontent.apps.599926406900-v6j208q5knqd3hiplasja62leerkv8ls'
 });
 
-App.setPreference('android-targetSdkVersion', '29')
+App.appendToConfig(`
+<platform name="ios">
+  <resource-file target="GoogleService-Info.plist" src="../../../cordova-build-override/GoogleService-Info.plist"/>
+</platform>
+`)
+
+App.accessRule('https://*.cloudinary.com', { type: 'navigation' });
+App.accessRule('https://*.googleapis.com', { type: 'navigation' });
+App.accessRule('https://*.brightpsy.ovh', { type: 'navigation' });
