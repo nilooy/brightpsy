@@ -44,7 +44,7 @@ function Header() {
   }
 
   return (
-    <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
+    <header className="z-40 md:py-4 bg-white shadow-bottom dark:bg-gray-800 h-16">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300">
         {/* <!-- Mobile hamburger --> */}
         <button
@@ -58,19 +58,19 @@ function Header() {
         <ul className="flex items-center space-x-6 justify-end w-full">
           <UserGlobalSearchInput />
           {/* <!-- Theme toggler --> */}
-           <li className="flex">
-            <button
-              className="rounded-md focus:outline-none focus:shadow-outline-blue"
-              onClick={toggleMode}
-              aria-label="Toggle color mode"
-            >
-              {mode === "dark" ? (
-                <SunIcon className="w-5 h-5" aria-hidden="true" />
-              ) : (
-                <MoonIcon className="w-5 h-5" aria-hidden="true" />
-              )}
-            </button>
-          </li>
+          {/* <li className="flex">*/}
+          {/*  <button*/}
+          {/*    className="rounded-md focus:outline-none focus:shadow-outline-blue"*/}
+          {/*    onClick={toggleMode}*/}
+          {/*    aria-label="Toggle color mode"*/}
+          {/*  >*/}
+          {/*    {mode === "dark" ? (*/}
+          {/*      <SunIcon className="w-5 h-5" aria-hidden="true" />*/}
+          {/*    ) : (*/}
+          {/*      <MoonIcon className="w-5 h-5" aria-hidden="true" />*/}
+          {/*    )}*/}
+          {/*  </button>*/}
+          {/*</li>*/}
           {/* <!-- Notifications menu --> */}
           <li className="relative">
             <button
@@ -82,9 +82,9 @@ function Header() {
               <BellIcon className="w-5 h-5" aria-hidden="true" />
               {/* <!-- Notification badge --> */}
               <span
-                aria-hidden="true"
-                className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
-              ></span>
+    aria-hidden="true"
+    className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
+    />
             </button>
 
             <Dropdown
@@ -106,7 +106,7 @@ function Header() {
             </Dropdown>
           </li>
           {/* <!-- Profile menu --> */}
-          <li className="relative">
+          <li className="relative mt-2">
             <button
               className="rounded-full focus:shadow-outline-blue focus:outline-none"
               onClick={handleProfileClick}

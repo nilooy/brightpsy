@@ -1,13 +1,13 @@
 import React from "react";
 
-const TextAvatar = ({ firstName, lastName, size }) => {
+const TextAvatar = ({ firstName, lastName, size, className }) => {
   const nameAbbr = firstName?.[0].toUpperCase() + lastName?.[0].toUpperCase();
 
   return (
     <div
       className={
-        "mb-4 lg:mb-0 mr-4 bg-gray-100 shadow-lg flex justify-center items-center rounded-full " +
-        (size ? "w-" + size + " " + "h-" + size : "")
+        "mr-4 bg-gray-100 shadow-lg flex justify-center items-center rounded-full " +
+        (size ? "w-" + size + " " + "h-" + size : "") + ' ' +  className
       }
     >
       <p className="text-green-700 font-bold text-lg mt-1">{nameAbbr}</p>
@@ -15,10 +15,10 @@ const TextAvatar = ({ firstName, lastName, size }) => {
   );
 };
 
-const ImageAvatar = ({ imageUrl, alt, size }) => (
+const ImageAvatar = ({ imageUrl, alt, size, className }) => (
   <div
     className={
-      "lg:mb-0 mr-2 bg-cover " + (size ? "w-" + size + " " + "h-" + size : "")
+      "lg:mb-0 mr-2 bg-cover " + (size ? "w-" + size + " " + "h-" + size : "") + ' ' +  className
     }
   >
     <img

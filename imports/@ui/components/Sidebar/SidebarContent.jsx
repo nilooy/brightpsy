@@ -24,7 +24,7 @@ function SidebarContent() {
 
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
-      <Logo link="/app" />
+      <Logo link={privatePath.dashboard} />
       <ul className="mt-6">
         {routes.map((route) =>
           route.routes ? (

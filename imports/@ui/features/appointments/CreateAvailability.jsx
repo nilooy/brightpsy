@@ -124,7 +124,7 @@ const CreateAvailability = () => {
             TitleIcon={AiOutlineClockCircle}
           >
             {fieldState.map(({ label, name, fieldArr }) => (
-              <Grid key={name} lg={4} xl={4} className="mt-4 border p-2">
+              <Grid key={name} lg={4} xl={4} sm={2} md={2} gap={0} className="mt-4 border p-2 md:gap-8">
                 <div className="col-start-1 col-span-1 flex flex-col justify-center">
                   <SwitchBox
                     name={`${name}.isEnabled`}
@@ -133,7 +133,7 @@ const CreateAvailability = () => {
                   />
                 </div>
 
-                <div className="col-start-2 col-span-2">
+                <div className="col-span-full md:col-start-2 md:col-span-2">
                   {fieldArr.fields.map((field, index) => (
                     <div className="flex" key={field.id}>
                       <Controller

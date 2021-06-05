@@ -61,6 +61,8 @@ meteorhacks:picker@1.0.3
 minifier-css@1.5.3
 minifier-js@2.6.0
 minimongo@1.6.1
+mizzao:timesync@0.5.1
+mizzao:user-status@1.0.0
 mobile-experience@1.1.0
 mobile-status-bar@1.1.0
 modern-browsers@0.1.5
