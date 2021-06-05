@@ -15,6 +15,8 @@ Meteor.methods({
     return roomId;
   },
   "chat.create"({ text, roomId }) {
-    return Chat.insert({ text, roomId });
+
+    const chat = Chat.insert({ text, roomId });
+    if(chat) return Rooms.update({_id: roomId}, {$set: {updatedAt: new Date()}})
   },
 });

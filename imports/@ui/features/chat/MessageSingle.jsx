@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Input, Label, Avatar } from "@windmill/react-ui";
+import { Textarea, Label } from "@windmill/react-ui";
 import { GrSend } from "@react-icons/all-files/gr/GrSend";
 import MessageBox from "./MessageBox";
 import { Chat } from "@api/services/chat/model/ChatCollection";
@@ -67,8 +67,14 @@ const MessageSingle = ({ userId, selectedUser }) => {
     scrollToBottom();
   }, [messages]);
 
+  const autoGrow = (element) => {
+    element.target.style.height = "5px";
+    element.target.style.height = (element.target.scrollHeight)+"px";
+    console.log(element.target.style.height)
+  }
+
   return !isLoading || room ? (
-    <div className="flex justify-between flex-col w-full">
+    <div className="flex justify-between flex-col w-full overflow-y-hidden">
       {selectedUser && (
         <div className="bg-gray-700 text-white text-xl p-3 flex ">
           <Link
@@ -77,12 +83,12 @@ const MessageSingle = ({ userId, selectedUser }) => {
           >
             <BiArrowBack />
           </Link>
-          <UserAvatar
-            size={12}
-            imageUrl={selectedUser?.profileImg}
-            firstName={selectedUser?.firstName}
-            lastName={selectedUser?.lastName}
-          />
+            <UserAvatar
+                size={12}
+                imageUrl={selectedUser?.profileImg}
+                firstName={selectedUser?.firstName}
+                lastName={selectedUser?.lastName}
+            />
           <p className="ml-3 self-center">
             {selectedUser?.firstName + " " + selectedUser?.lastName}
           </p>
@@ -91,8 +97,7 @@ const MessageSingle = ({ userId, selectedUser }) => {
       )}
       <div
         ref={messageBoxContainer}
-        className="bg-gray-200 p-5 overflow-y-scroll"
-        style={{ height: "70vh" }}
+        className="bg-gray-200 p-5 overflow-y-scroll flex-auto"
       >
         {/* Messages */}
 
@@ -113,20 +118,21 @@ const MessageSingle = ({ userId, selectedUser }) => {
 
         {/* Messages */}
       </div>
-      <div className="flex-1 p-3">
+      <div className="flex-none px-2 pb-2">
         <form onSubmit={handleSubmit}>
-          <Label className="mt-4 flex">
-            <Input
+          <Label className="mt-1 flex">
+            <Textarea
               onChange={(e) => {
                 setText(e.target.value);
-                console.log();
+                autoGrow(e)
               }}
               value={text}
-              className="mt-1 rounded-2xl text-lg mr-3"
+              className="mt-1 rounded-2xl text-md mr-3 overflow-hidden resize-none max-h-24 min-h-12"
               placeholder="Scrivi qui"
               type="text"
               name=""
               required
+              rows="1"
             />
             <button type="submit">
               <GrSend className="text-3xl mt-2" />

@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { methodCall } from "../utils/asyncMeteorMethod";
 import { useTracker } from "meteor/react-meteor-data";
+import {useSubs} from "@ui/api-hooks/helper";
 
 export const useUserData = () => useTracker(() => Meteor.user());
 
@@ -24,3 +25,12 @@ export const useDoctors = () => {
   const name = "user.getAllDoctor";
   return useQuery(name, async () => await methodCall(name));
 };
+
+export const useOnlineUser = () => {
+  return useSubs('rooms.userOnline', Meteor.users, {}, {
+    query: {_id: { $ne: Meteor.userId() }}
+  })
+}
+
+
+

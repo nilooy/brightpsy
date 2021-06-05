@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useUsers } from "@ui/api-hooks/user";
+import {useOnlineUser, useUsers} from "@ui/api-hooks/user";
 import { useHistory, useParams } from "react-router-dom";
 import { privatePath } from "@ui/routes/privatePath";
 import MessageSingle from "./MessageSingle";
@@ -7,7 +7,7 @@ import useMediaQuery from "@ui/utils/useMediaQuery";
 import UserAvatar from "@ui/components/Avatar/UserAvatar";
 
 const Inbox = () => {
-  const { data: users } = useUsers();
+  const { data: users } = useOnlineUser();
 
   const history = useHistory();
   const { id: userId } = useParams();
@@ -44,10 +44,12 @@ const Inbox = () => {
   console.log(screenXs, history.location.pathname, privatePath.inbox);
 
   return (
-    <div className="mt-2 flex h-screen 2xl:mx-40">
+    <div className="md:mt-2 flex 2xl:mx-40 overflow-y-hidden" style={{
+      height: "calc(100vh - 4rem)"
+    }}>
       {(screenXs && !userId) || !screenXs ? (
         <div className="flex-grow rounded-md text-gray-500 font-semibold  py-3 px-2 2xl:w-3/12">
-          {users &&
+          {users?.length ?
             users.map((user) => (
               <UserCard
                 {...user.profile}
@@ -55,7 +57,11 @@ const Inbox = () => {
                 key={user._id}
                 onClick={() => history.push(privatePath.inboxById(user._id))}
               />
-            ))}
+            )) :
+              <p className="bg-green-200 p-3 text-gray-400 text-center text-sm">
+                Nessun contatto disponibile
+              </p>
+          }
         </div>
       ) : (
         ""

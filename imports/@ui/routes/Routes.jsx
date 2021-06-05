@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import React  from "react";
+import { Route, Switch} from "react-router-dom";
 import Page404 from "@ui/routes/Page404";
 import { privateRoutes, privateRoutesUser } from "./private";
 import auth from "./auth";
-import { SecurityContext } from "@ui/context/SecurityContext";
 import { useUserRole } from "@ui/api-hooks/user";
 
 const Routes = () => {
