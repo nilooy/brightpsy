@@ -1,0 +1,26 @@
+
+
+{
+  "facebook": {
+    "appId": "",
+    "secret": ""
+  },
+  "google": {
+    "clientId": "",
+    "secret": ""
+  },
+  "cloudinary": {
+    "cloud_name": "",
+    "api_key": "",
+    "api_secret": "",
+    "env": ""
+  },
+  "googleCloudBucket": {
+    "bucket": "",
+    "GoogleAccessId": "",
+    "GoogleSecretKey": ""
+  },
+  "stripe": {
+    "secretKey": ""
+  }
+}

@@ -1,5 +1,5 @@
 <div align="center">
- <img src="https://github.com/nilooy/brightpsy/assets/32486682/fef2c978-c9ca-40a4-87fe-30b856150a38" alt="Watch the video" width="200" height="80" border="10" />
+ <img src="/public/img/logo.png?raw=true" alt="Brightpsy Logo" width="200" height="80" border="10" />
 
 # Brightpsy - Online Psychologists Platform
 
