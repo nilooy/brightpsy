@@ -2,7 +2,7 @@
   "name": "psicologi",
   "private": true,
   "scripts": {
-    "start": "MONGO_URL=mongodb://localhost:27017/psicologi meteor run --settings settings.json --port 3050",
+    "start": "meteor run --settings settings.json --port 3050",
     "ios": "MONGO_URL=mongodb://localhost:27017/psicologi meteor run ios-device --settings settings.json --port 3060",
     "android": "MONGO_URL=mongodb://localhost:27017/psicologi meteor run android-device --settings settings.json --port 3060",
     "test": "meteor test --once --driver-package meteortesting:mocha",

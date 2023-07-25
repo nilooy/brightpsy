@@ -29,27 +29,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8e3eb2b-653c-45f5-b325-ae5033b89793" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/imports/@api/services/chat/publications/rooms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imports/@api/services/user/publications/presence.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meteor/packages" beforeDir="false" afterPath="$PROJECT_DIR$/.meteor/packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meteor/versions" beforeDir="false" afterPath="$PROJECT_DIR$/.meteor/versions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@api/services/chat/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@api/services/chat/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@api/services/chat/methods/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@api/services/chat/methods/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@api/services/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@api/services/user/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/api-hooks/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/api-hooks/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/api-hooks/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/api-hooks/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/components/Avatar/UserAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/components/Avatar/UserAvatar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/components/Basic/Logo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/components/Basic/Logo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/components/Navbar/NavbarPrivate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/components/Navbar/NavbarPrivate.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/components/Sidebar/SidebarContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/components/Sidebar/SidebarContent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/features/appointments/CreateAvailability.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/features/appointments/CreateAvailability.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/features/chat/Inbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/features/chat/Inbox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/features/chat/MessageBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/features/chat/MessageBox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/features/chat/MessageSingle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/features/chat/MessageSingle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/@ui/routes/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/@ui/routes/Routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,33 +51,24 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1ro7WrGvM88AY07Ymn3Lo4qcj0L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="HbShouldOpenHtmlAsHb" value="enabled" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js.meteor.library.cached" value="$PROJECT_DIR$/.meteor" />
-    <property name="js.meteor.library.was.enabled" value="true" />
-    <property name="js.meteor.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="run.prettier.on.save" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "/Users/rezwanferdousniloy/code/open-source/brightpsy",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/cordova-build-override" />
@@ -116,6 +91,7 @@
       <workItem from="1622834343836" duration="102000" />
       <workItem from="1622834450925" duration="102000" />
       <workItem from="1622834638874" duration="125000" />
+      <workItem from="1690302241951" duration="2648000" />
     </task>
     <servers />
   </component>
@@ -132,28 +108,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1920" y="23" key="MergeDialog" timestamp="1622834852410">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1920" y="23" key="MergeDialog/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1622834852410" />
-    <state x="-1424" y="251" key="MultipleFileMergeDialog" timestamp="1622834852455">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1424" y="251" key="MultipleFileMergeDialog/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1622834852455" />
-    <state x="-1546" y="103" key="SettingsEditor" timestamp="1622841624213">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1546" y="103" key="SettingsEditor/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1622841624213" />
-    <state x="-1833" y="23" width="1516" height="746" key="dock-window-1" timestamp="1622844522702">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1833" y="23" width="1516" height="746" key="dock-window-1/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1622844522702" />
-    <state x="-1342" y="211" width="763" height="716" key="find.popup" timestamp="1622848585843">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1342" y="211" width="763" height="716" key="find.popup/-1920.23.1920.1057/0.23.2560.1417@-1920.23.1920.1057" timestamp="1622848585843" />
   </component>
 </project>
